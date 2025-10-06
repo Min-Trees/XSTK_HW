@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -11,27 +11,27 @@
     
     <style>
         * {margin: 0; padding: 0; box-sizing: border-box;}
-        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: #333;}
-        .header {background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
-        .header h1 {color: #2c3e50; font-size: 2.2em; margin-bottom: 10px;}
+        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: #f0f9ff; padding: 20px; color: #0f172a;}
+        .header {background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.07); border-top: 4px solid #0284c7;}
+        .header h1 {color: #0284c7; font-size: 2.2em; margin-bottom: 10px; font-weight: 700;}
         .controls {background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; position: sticky; top: 20px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
-        .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #667eea; color: white; transition: all 0.3s;}
+        .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #0284c7; color: white; transition: all 0.3s;}
         .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
         .container {max-width: 1200px; margin: 0 auto;}
         .exercise {background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);}
-        .exercise-header {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
-        .exercise-header:hover {background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);}
+        .exercise-header {background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
+        .exercise-header:hover {background: linear-gradient(135deg, #075985 0%, #0ea5e9 100%);}
         .exercise-body {padding: 30px; display: none;}
         .exercise-body.active {display: block;}
-        .problem {background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 8px;}
-        .solution {background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;}
-        .solution h4 {color: #155724; margin-bottom: 15px;}
+        .problem {background: #e0f2fe; border-left: 4px solid #0284c7; padding: 20px; margin-bottom: 20px; border-radius: 8px; color: #0c4a6e;}
+        .solution {background: #ecfdf5; border-left: 4px solid #059669; padding: 20px; margin: 20px 0; border-radius: 8px;}
+        .solution h4 {color: #047857; margin-bottom: 15px; font-weight: 600;}
         .step {margin: 15px 0; padding-left: 20px;}
         .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; overflow-x: auto;}
-        .answer {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; margin-top: 20px; font-size: 1.1em;}
+        .answer {background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: 600; margin-top: 20px; font-size: 1.1em;}
         ul {margin-left: 30px; line-height: 2;}
         .nav-footer {background: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px;}
-        .nav-footer a {display: inline-block; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
+        .nav-footer a {display: inline-block; padding: 12px 30px; background: #0284c7; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
         .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
         @media print {.controls, .nav-footer {display: none;} .exercise-body {display: block !important;} body {background: white; padding: 0;}}
     </style>
