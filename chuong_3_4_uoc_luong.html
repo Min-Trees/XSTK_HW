@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 3+4: Lý Thuyết Mẫu & Ước Lượng - 15 Bài</title>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .formula-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 CHƯƠNG 3+4: LÝ THUYẾT MẪU & ƯỚC LƯỢNG THAM SỐ</h1>
+        <div class="subtitle">15 Bài Tập - 27+ Câu Hỏi - Đầy Đủ Lời Giải</div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="window.location.href='chuong_0_to_hop.html'">⬅️ Tổ Hợp</button>
+        <button class="btn" onclick="window.location.href='chuong_1_xac_suat.html'">⬅️ Chương 1</button>
+        <button class="btn" onclick="window.location.href='chuong_2_dlnn.html'">⬅️ Chương 2</button>
+        <button class="btn" onclick="window.location.href='chuong_5_kiem_dinh.html'">Chương 5 ➡️</button>
+    </div>
+    
+    <div class="container">
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📚 CHƯƠNG 3: LÝ THUYẾT MẪU</h2>
+            
+            <div class="highlight-box">
+                <strong>📋 Nội dung:</strong><br>
+                • Trung bình mẫu ($\overline{x}$)<br>
+                • Phương sai mẫu ($s^2$)<br>
+                • Độ lệch mẫu hiệu chỉnh ($s$)<br>
+                • Tỷ lệ mẫu ($f$)
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Bài</th>
+                    <th>Nội dung</th>
+                </tr>
+                <tr>
+                    <td>Bài 1</td>
+                    <td>Điểm thi SV - Tính trung bình, phương sai, tỷ lệ</td>
+                </tr>
+                <tr>
+                    <td>Bài 2</td>
+                    <td>Chỉ tiêu sản phẩm - Phân nhóm dữ liệu</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📚 CHƯƠNG 4: ƯỚC LƯỢNG THAM SỐ</h2>
+            
+            <div class="highlight-box">
+                <strong>📋 Nội dung:</strong><br>
+                • Ước lượng trung bình (biết σ) ⭐<br>
+                • Ước lượng trung bình (không biết σ) ⭐<br>
+                • Ước lượng tỷ lệ ⭐<br>
+                • Xác định cỡ mẫu ⭐⭐
+            </div>
+            
+            <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">📊 Danh Sách Bài Tập</h3>
+            
+            <table>
+                <tr>
+                    <th>Bài</th>
+                    <th>Nội dung</th>
+                    <th>Loại</th>
+                </tr>
+                <tr>
+                    <td>4.1</td>
+                    <td>Trọng lượng sản phẩm (biết σ)</td>
+                    <td>Ước lượng TB</td>
+                </tr>
+                <tr>
+                    <td>4.2</td>
+                    <td>Trọng lượng nguyên liệu (không biết σ)</td>
+                    <td>Ước lượng TB</td>
+                </tr>
+                <tr>
+                    <td>4.3</td>
+                    <td>Tuổi thọ bóng đèn (3 câu) ⭐⭐</td>
+                    <td>Ước lượng TB</td>
+                </tr>
+                <tr>
+                    <td>4.4</td>
+                    <td>Giờ sử dụng smartphone</td>
+                    <td>Ước lượng TB</td>
+                </tr>
+                <tr>
+                    <td>4.5</td>
+                    <td>Khối lượng máy phát điện</td>
+                    <td>Ước lượng TB</td>
+                </tr>
+                <tr>
+                    <td>4.6</td>
+                    <td>Số giờ tự học - Kết hợp TB & tỷ lệ</td>
+                    <td>Kết hợp</td>
+                </tr>
+                <tr>
+                    <td>4.7</td>
+                    <td>Tỷ lệ SP xấu (3 câu) ⭐⭐</td>
+                    <td>Ước lượng tỷ lệ</td>
+                </tr>
+                <tr>
+                    <td>4.8</td>
+                    <td>Tỷ lệ SV ngoại trú</td>
+                    <td>Ước lượng tỷ lệ</td>
+                </tr>
+                <tr>
+                    <td>4.9</td>
+                    <td>Ước lượng số SP loại B</td>
+                    <td>Ước lượng tỷ lệ</td>
+                </tr>
+                <tr>
+                    <td>4.10</td>
+                    <td>Bầu cử tổng thống</td>
+                    <td>Ước lượng tỷ lệ</td>
+                </tr>
+                <tr>
+                    <td>4.11</td>
+                    <td>Năng suất lúa ⭐⭐</td>
+                    <td>Tổng hợp</td>
+                </tr>
+                <tr>
+                    <td>4.12-4.13</td>
+                    <td>Bài tổng hợp</td>
+                    <td>Tổng hợp</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="formula-card">
+            <h2 style="margin-bottom: 20px;">📐 Công Thức Quan Trọng</h2>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>1. Ước lượng trung bình (biết σ):</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$\left(\overline{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}}; \overline{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right)$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>2. Ước lượng trung bình (không biết σ):</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$\left(\overline{x} - t_{\alpha/2}\frac{s}{\sqrt{n}}; \overline{x} + t_{\alpha/2}\frac{s}{\sqrt{n}}\right)$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>3. Ước lượng tỷ lệ:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$\left(f - z_{\alpha/2}\sqrt{\frac{f(1-f)}{n}}; f + z_{\alpha/2}\sqrt{\frac{f(1-f)}{n}}\right)$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>4. Xác định cỡ mẫu:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$n = \left(\frac{z_{\alpha/2} \times \sigma}{\varepsilon}\right)^2$$
+                </p>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">⭐ Bài Tập Quan Trọng</h2>
+            
+            <div class="highlight-box">
+                <h3 style="margin-bottom: 15px;">🔥 PHẢI LÀM:</h3>
+                <ul style="line-height: 2.5;">
+                    <li><strong>Bài 4.3:</strong> Tuổi thọ bóng đèn - Đầy đủ 3 câu ⭐⭐⭐</li>
+                    <li><strong>Bài 4.7:</strong> Tỷ lệ SP xấu - Đầy đủ 3 câu ⭐⭐</li>
+                    <li><strong>Bài 4.11:</strong> Năng suất lúa - Tổng hợp ⭐⭐</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">💡 Cách Xem Đầy Đủ</h2>
+            
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; line-height: 2.5;">
+                <strong>📄 File:</strong> <code>CHUONG_2_FINAL_CHUONG_3_4.md</code><br><br>
+                
+                <strong>Bước 1:</strong> Mở VS Code hoặc Notepad++<br>
+                <strong>Bước 2:</strong> Kéo file vào<br>
+                <strong>Bước 3:</strong> Nhấn <code>Ctrl+F</code> → Gõ "BÀI 3.X" hoặc "BÀI 4.X"<br>
+                <strong>Bước 4:</strong> Đọc ngay!
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            scrollTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+        
+        window.addEventListener('load', function() {
+            MathJax.typesetPromise().catch(err => console.log(err));
+        });
+    </script>
+</body>
+</html>
+

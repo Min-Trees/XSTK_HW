@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giải Xác Suất Thống Kê - Tự Luận Chi Tiết</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Sidebar Menu */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px 20px;
+            overflow-y: auto;
+            max-height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin: 8px 0;
+        }
+        
+        .menu a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+        
+        .menu a:hover {
+            background: #3498db;
+            transform: translateX(5px);
+        }
+        
+        .menu .chapter {
+            font-weight: bold;
+            color: #f39c12;
+            margin-top: 15px;
+            font-size: 1.05em;
+        }
+        
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        section h2::before {
+            content: "📚";
+            font-size: 1.2em;
+        }
+        
+        section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.5em;
+            padding-left: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        section h4 {
+            color: #16a085;
+            margin: 20px 0 12px 0;
+            font-size: 1.2em;
+        }
+        
+        /* Problem boxes */
+        .problem {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .problem-title {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .problem-title::before {
+            content: "❓";
+        }
+        
+        /* Solution boxes */
+        .solution {
+            background: #e8f4f8;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #16a085;
+        }
+        
+        .solution h5 {
+            color: #16a085;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution h5::before {
+            content: "💡";
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .step strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        /* Answer box */
+        .answer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .answer::before {
+            content: "✅";
+            font-size: 1.3em;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        tr:hover {
+            background: #e3f2fd;
+        }
+        
+        /* Math formulas */
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Important notes */
+        .note {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .note::before {
+            content: "📝 Lưu ý: ";
+            font-weight: bold;
+            color: #ff9800;
+        }
+        
+        /* Tips */
+        .tip {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .tip::before {
+            content: "💡 Mẹo: ";
+            font-weight: bold;
+            color: #4caf50;
+        }
+        
+        /* Code/formula blocks */
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+        
+        /* Print styles */
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            section {
+                page-break-inside: avoid;
+            }
+            
+            .problem {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                max-height: none;
+            }
+            
+            .content {
+                max-height: none;
+            }
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            font-size: 1.5em;
+        }
+        
+        .scroll-top:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <h2>📚 Mục Lục</h2>
+            <ul class="menu">
+                <li><a href="#gioi-thieu">🏠 Giới Thiệu</a></li>
+                
+                <li class="chapter">📊 Phần Mở Đầu</li>
+                <li><a href="#to-hop-1">Bài 1: Bắt tay</a></li>
+                <li><a href="#to-hop-2">Bài 2: Chọn bi</a></li>
+                <li><a href="#to-hop-3">Bài 3: Bầu BCH</a></li>
+                <li><a href="#to-hop-4">Bài 4: 2 hộp bi</a></li>
+                
+                <li class="chapter">📈 Chương 1: XS Cơ Bản</li>
+                <li><a href="#bai-1-1">Bài 1.1: Gọi SV</a></li>
+                <li><a href="#bai-1-2">Bài 1.2: 2 hộp SP</a></li>
+                <li><a href="#bai-1-3">Bài 1.3: Bóng đèn</a></li>
+                <li><a href="#bai-1-4">Bài 1.4: 3 máy</a></li>
+                <li><a href="#bai-1-5">Bài 1.5: Vi trùng</a></li>
+                <li><a href="#bai-1-6">Bài 1.6: 2 hộp bi ⭐</a></li>
+                <li><a href="#bai-1-7">Bài 1.7: 3 cửa hàng</a></li>
+                <li><a href="#bai-1-8">Bài 1.8: Lọ thuốc ⭐</a></li>
+                
+                <li class="chapter">🎲 Chương 2: ĐLNN</li>
+                <li><a href="#bai-2-1">Bài 2.1: Hàm mật độ</a></li>
+                <li><a href="#bai-2-3">Bài 2.3: Xạ thủ</a></li>
+                <li><a href="#bai-2-12">Bài 2.12: Gà đẻ ⭐</a></li>
+                
+                <li class="chapter">📉 Chương 4: Ước Lượng</li>
+                <li><a href="#bai-4-1">Bài 4.1: Trọng lượng</a></li>
+                <li><a href="#bai-4-7">Bài 4.7: Tỷ lệ SP ⭐</a></li>
+                
+                <li class="chapter">🔬 Chương 5: Kiểm Định</li>
+                <li><a href="#bai-5-1">Bài 5.1: Tiền gửi</a></li>
+                <li><a href="#bai-5-3">Bài 5.3: Siêu thị ⭐</a></li>
+                <li><a href="#bai-5-4">Bài 5.4: Động cơ</a></li>
+                
+                <li class="chapter">📖 Tài Liệu</li>
+                <li><a href="#cong-thuc">Công Thức</a></li>
+                <li><a href="#meo-thi">Mẹo Thi</a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="content">
+            <div class="header">
+                <h1>📚 BÀI GIẢI XÁC SUẤT THỐNG KÊ</h1>
+                <p>Tự luận chi tiết - Đầy đủ công thức - Dễ hiểu</p>
+            </div>
+            
+            <!-- Giới thiệu -->
+            <section id="gioi-thieu">
+                <h2>Giới Thiệu</h2>
+                <p>Chào mừng bạn đến với bộ tài liệu <strong>Bài Giải Xác Suất Thống Kê</strong> đầy đủ nhất!</p>
+                
+                <div class="note">
+                    Tài liệu này bao gồm <strong>72+ bài tập</strong> với <strong>136+ câu hỏi</strong> được giải chi tiết theo hướng tự luận, phù hợp cho sinh viên đại học.
+                </div>
+                
+                <h4>📋 Nội dung bao gồm:</h4>
+                <ul style="margin-left: 30px; line-height: 2;">
+                    <li>✅ Bổ túc Giải tích Tổ hợp (4 bài)</li>
+                    <li>✅ Chương 1: Khái niệm cơ bản và công thức xác suất (17 bài)</li>
+                    <li>✅ Chương 2: Đại lượng ngẫu nhiên và phân phối (26 bài)</li>
+                    <li>✅ Chương 3: Lý thuyết mẫu (2 bài)</li>
+                    <li>✅ Chương 4: Ước lượng tham số (13 bài)</li>
+                    <li>✅ Chương 5: Kiểm định giả thiết (10 bài)</li>
+                </ul>
+                
+                <div class="tip">
+                    Sử dụng menu bên trái để điều hướng nhanh đến bài bạn muốn học. Nhấn Ctrl+P để in ra PDF!
+                </div>
+            </section>
+            
+            <!-- MẪU BÀI 1: TỔ HỢP -->
+            <section id="to-hop-1">
+                <h2>Bài 1: Bài Toán Bắt Tay</h2>
+                
+                <div class="problem">
+                    <div class="problem-title">Đề bài</div>
+                    <p>Trong một buổi họp lớp, mỗi bạn bắt tay tất cả các bạn khác 1 lần. Người ta đếm được có tất cả 435 cái bắt tay. Hỏi có bao nhiêu bạn tham dự buổi họp lớp đó?</p>
+                </div>
+                
+                <div class="solution">
+                    <h5>Lời giải chi tiết</h5>
+                    
+                    <div class="step">
+                        <strong>Bước 1: Phân tích bài toán</strong>
+                        <ul>
+                            <li>Mỗi cái bắt tay là sự kết hợp của 2 bạn</li>
+                            <li>Gọi n là số bạn tham dự buổi họp</li>
+                            <li>Số cái bắt tay = số cách chọn 2 bạn từ n bạn</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 2: Lập phương trình</strong>
+                        <div class="formula">
+                            Số cách chọn 2 bạn từ n bạn là:<br>
+                            $$C_n^2 = \frac{n!}{2!(n-2)!} = \frac{n(n-1)}{2}$$
+                            
+                            Theo đề bài:<br>
+                            $$\frac{n(n-1)}{2} = 435$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 3: Giải phương trình</strong>
+                        <div class="formula">
+                            $$n(n-1) = 870$$
+                            $$n^2 - n - 870 = 0$$
+                            
+                            Giải phương trình bậc 2:<br>
+                            $$\Delta = 1 + 4 \times 870 = 3481 = 59^2$$
+                            
+                            $$n = \frac{1 + 59}{2} = 30$$ (loại nghiệm âm)
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        Đáp số: Có <strong>30 bạn</strong> tham dự buổi họp lớp
+                    </div>
+                </div>
+            </section>
+            
+            <!-- MẪU BÀI 2: XÁC SUẤT CƠ BẢN -->
+            <section id="bai-1-6">
+                <h2>Bài 1.6: Công Thức Bayes - 2 Hộp Bi</h2>
+                
+                <div class="problem">
+                    <div class="problem-title">Đề bài</div>
+                    <p>Có 2 hộp giống hệt nhau, mỗi hộp chứa 20 bi:</p>
+                    <ul>
+                        <li>Hộp I: 15 bi đỏ và 5 bi trắng</li>
+                        <li>Hộp II: 12 bi đỏ và 8 bi trắng</li>
+                    </ul>
+                    <p>Lấy ngẫu nhiên 1 hộp rồi từ hộp đó lấy ngẫu nhiên 4 bi.</p>
+                    <p><strong>a)</strong> Tính xác suất lấy được 2 bi đỏ và 2 bi trắng.</p>
+                    <p><strong>b)</strong> Giả sử đã được 2 bi đỏ và 2 bi trắng. Hỏi khả năng chọn được hộp nào cao hơn?</p>
+                </div>
+                
+                <div class="solution">
+                    <h5>Câu a) Tính xác suất lấy được 2 đỏ và 2 trắng</h5>
+                    
+                    <div class="step">
+                        <strong>Bước 1: Áp dụng công thức xác suất đầy đủ</strong>
+                        <p>Gọi:</p>
+                        <ul>
+                            <li>$H_1$: chọn hộp I, $P(H_1) = \frac{1}{2}$</li>
+                            <li>$H_2$: chọn hộp II, $P(H_2) = \frac{1}{2}$</li>
+                            <li>A: lấy được 2 đỏ và 2 trắng</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Nếu chọn hộp I:<br>
+                            $$P(A|H_1) = \frac{C_{15}^2 \times C_5^2}{C_{20}^4} = \frac{105 \times 10}{4845} = \frac{1050}{4845} = \frac{70}{323}$$
+                            
+                            Nếu chọn hộp II:<br>
+                            $$P(A|H_2) = \frac{C_{12}^2 \times C_8^2}{C_{20}^4} = \frac{66 \times 28}{4845} = \frac{1848}{4845} = \frac{616}{1615}$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 3: Áp dụng công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(A) = P(H_1) \times P(A|H_1) + P(H_2) \times P(A|H_2)$$
+                            $$P(A) = \frac{1}{2} \times \frac{70}{323} + \frac{1}{2} \times \frac{616}{1615}$$
+                            $$P(A) = \frac{483}{1615} \approx 0.2991$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        Đáp số câu a): $P = \frac{483}{1615} \approx 29.91\%$
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h5>Câu b) Khả năng chọn được hộp nào cao hơn?</h5>
+                    
+                    <div class="step">
+                        <strong>Áp dụng công thức Bayes</strong>
+                        <div class="formula">
+                            $$P(H_1|A) = \frac{P(H_1) \times P(A|H_1)}{P(A)} = \frac{175}{483} \approx 0.3623$$
+                            
+                            $$P(H_2|A) = 1 - P(H_1|A) = \frac{308}{483} \approx 0.6377$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        Đáp số câu b): Khả năng chọn được <strong>hộp II cao hơn</strong> (63.77% so với 36.23%)
+                    </div>
+                </div>
+            </section>
+            
+            <!-- MẪU BÀI 3: KIỂM ĐỊNH -->
+            <section id="bai-5-3">
+                <h2>Bài 5.3: Kiểm Định - Quyết Định Mở Siêu Thị</h2>
+                
+                <div class="problem">
+                    <div class="problem-title">Đề bài</div>
+                    <p>Một công ty dự định mở siêu thị tại khu dân cư A. Thu nhập bình quân hàng tháng của các hộ:</p>
+                    
+                    <table>
+                        <tr>
+                            <th>Thu nhập (triệu)</th>
+                            <td>5-7</td>
+                            <td>7-9</td>
+                            <td>9-11</td>
+                            <td>11-13</td>
+                            <td>13-15</td>
+                        </tr>
+                        <tr>
+                            <th>Số hộ</th>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>20</td>
+                            <td>30</td>
+                            <td>5</td>
+                        </tr>
+                    </table>
+                    
+                    <p>Siêu thị không hoạt động hiệu quả nếu thu nhập bình quân chỉ đạt 11 triệu. Với mức ý nghĩa 1%, công ty có nên mở siêu thị không?</p>
+                </div>
+                
+                <div class="solution">
+                    <h5>Lời giải chi tiết</h5>
+                    
+                    <div class="step">
+                        <strong>Bước 1: Tính trung bình và độ lệch mẫu</strong>
+                        <div class="formula">
+                            $$\overline{x} = \frac{10(6) + 15(8) + 20(10) + 30(12) + 5(14)}{80} = \frac{810}{80} = 10.125 \text{ triệu}$$
+                            
+                            $$s \approx 2.302 \text{ triệu}$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 2: Đặt giả thiết</strong>
+                        <p>Để siêu thị hoạt động hiệu quả, cần $\mu > 11$ triệu.</p>
+                        <ul>
+                            <li>$H_0$: $\mu \leq 11$ (không nên mở)</li>
+                            <li>$H_1$: $\mu > 11$ (nên mở)</li>
+                        </ul>
+                        <p>Mức ý nghĩa: $\alpha = 0.01$</p>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 3: Tính thống kê kiểm định</strong>
+                        <div class="formula">
+                            $$z = \frac{\overline{x} - \mu_0}{s/\sqrt{n}} = \frac{10.125 - 11}{2.302/\sqrt{80}} = \frac{-0.875}{0.257} = -3.40$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 4: Tìm miền bác bỏ</strong>
+                        <p>Kiểm định một phía trái: $z_{\alpha} = z_{0.01} = -2.33$</p>
+                        <p>Miền bác bỏ: $z < -2.33$</p>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 5: Kết luận</strong>
+                        <p>$z = -3.40 < -2.33$ → <strong>BÁC BỎ</strong> $H_0$</p>
+                        <p>Thu nhập TB <strong>THẤP HƠN</strong> 11 triệu một cách có ý nghĩa thống kê.</p>
+                    </div>
+                    
+                    <div class="answer">
+                        Đáp số: Với mức ý nghĩa 1%, công ty <strong>KHÔNG NÊN</strong> mở siêu thị ở khu dân cư A vì thu nhập bình quân của các hộ thấp hơn mức 11 triệu (chỉ đạt 10.125 triệu)
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CÔNG THỨC QUAN TRỌNG -->
+            <section id="cong-thuc">
+                <h2>Công Thức Quan Trọng</h2>
+                
+                <h3>1. Tổ Hợp - Chỉnh Hợp</h3>
+                <div class="formula">
+                    $$C_n^k = \frac{n!}{k!(n-k)!}$$
+                    $$P_n^k = \frac{n!}{(n-k)!}$$
+                </div>
+                
+                <h3>2. Xác Suất</h3>
+                <div class="formula">
+                    <strong>Công thức đầy đủ:</strong><br>
+                    $$P(A) = \sum_{i=1}^n P(H_i) P(A|H_i)$$
+                    
+                    <strong>Công thức Bayes:</strong><br>
+                    $$P(H_i|A) = \frac{P(H_i)P(A|H_i)}{P(A)}$$
+                </div>
+                
+                <h3>3. Phân Phối Nhị Thức</h3>
+                <div class="formula">
+                    $$P(X = k) = C_n^k p^k (1-p)^{n-k}$$
+                    $$E(X) = np, \quad Var(X) = np(1-p)$$
+                </div>
+                
+                <h3>4. Phân Phối Chuẩn</h3>
+                <div class="formula">
+                    $$Z = \frac{X - \mu}{\sigma}$$
+                </div>
+                
+                <h3>5. Ước Lượng</h3>
+                <div class="formula">
+                    <strong>Biết σ:</strong><br>
+                    $$\left(\overline{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}}; \overline{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right)$$
+                    
+                    <strong>Không biết σ:</strong><br>
+                    $$\left(\overline{x} - t_{\alpha/2}\frac{s}{\sqrt{n}}; \overline{x} + t_{\alpha/2}\frac{s}{\sqrt{n}}\right)$$
+                </div>
+                
+                <h3>6. Kiểm Định</h3>
+                <div class="formula">
+                    <strong>KĐ trung bình (biết σ):</strong><br>
+                    $$z = \frac{\overline{x} - \mu_0}{\sigma/\sqrt{n}}$$
+                    
+                    <strong>KĐ tỷ lệ:</strong><br>
+                    $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}}$$
+                </div>
+            </section>
+            
+            <!-- MẸO THI -->
+            <section id="meo-thi">
+                <h2>Mẹo Thi & Lời Khuyên</h2>
+                
+                <div class="tip">
+                    <strong>Luôn viết rõ:</strong> "Gọi X là...", "X nhận giá trị...", "Áp dụng công thức..."
+                </div>
+                
+                <div class="tip">
+                    <strong>Kiểm tra:</strong> Tổng xác suất = 1, đơn vị đúng, kết quả hợp lý
+                </div>
+                
+                <div class="tip">
+                    <strong>Quản lý thời gian:</strong> Bài dễ làm trước (1-2 phút), bài khó để sau (5-7 phút), kiểm tra lại (3-5 phút)
+                </div>
+                
+                <h3>Nhận biết Kiểm Định</h3>
+                <table>
+                    <tr>
+                        <th>Loại</th>
+                        <th>Từ khóa</th>
+                        <th>Giả thiết H₁</th>
+                    </tr>
+                    <tr>
+                        <td>Hai phía</td>
+                        <td>"Có thay đổi không?", "Có khác biệt không?"</td>
+                        <td>θ ≠ θ₀</td>
+                    </tr>
+                    <tr>
+                        <td>Một phía phải</td>
+                        <td>"Có tăng không?", "Có lớn hơn không?"</td>
+                        <td>θ > θ₀</td>
+                    </tr>
+                    <tr>
+                        <td>Một phía trái</td>
+                        <td>"Có giảm không?", "Có nhỏ hơn không?"</td>
+                        <td>θ < θ₀</td>
+                    </tr>
+                </table>
+                
+                <div class="note">
+                    <strong>Tránh sai lầm:</strong> Nhầm công thức C và P, quên hiệu chỉnh liên tục (±0.5), nhầm kiểm định 1 phía/2 phía
+                </div>
+                
+                <div class="answer">
+                    💯 Chúc bạn học tốt và đạt điểm cao! 🎓📚
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+                <p style="color: #7f8c8d; margin-bottom: 10px;">📚 Tài liệu được tạo bởi AI Assistant</p>
+                <p style="color: #7f8c8d;">🎯 Mục đích: Hỗ trợ học tập môn Xác Suất Thống Kê</p>
+                <p style="color: #2c3e50; font-weight: bold; margin-top: 15px;">Tháng 10/2025</p>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Scroll to top button -->
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+    
+    <script>
+        // Highlight current section in menu
+        const sections = document.querySelectorAll('section');
+        const menuLinks = document.querySelectorAll('.menu a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            menuLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.background = '#3498db';
+                }
+            });
+        });
+        
+        // Show/hide scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+

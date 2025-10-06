@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 4 Phần 2: Ước lượng tỷ lệ (Bài 4.7-4.11)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #fa709a;
+        }
+        
+        .nav-breadcrumb a {
+            color: #fa709a;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #fa709a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #fa709a;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #fee140;
+            text-shadow: 1px 1px 2px #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #fee140;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        table th {
+            background: #fa709a;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+            table { font-size: 0.9em; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Chương 4: Ước lượng tỷ lệ</h1>
+            <p>Phần 2: Ước lượng tỷ lệ & cỡ mẫu (Bài 4.7-4.11)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_4_phan_1.html">Phần 1</a> >
+            <span>Phần 2</span> >
+            <a href="chuong_5_phan_1.html">Chương 5</a>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 4.7 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.7: Ước lượng tỷ lệ sản phẩm xấu</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Để ước lượng tỉ lệ sản phẩm xấu của một kho dụng cụ điện, người ta kiểm tra ngẫu nhiên 100 sản phẩm thấy có 15 sản phẩm xấu.</p>
+                        <p><strong>a)</strong> Ước lượng tỷ lệ sản phẩm xấu của kho dụng cụ điện với độ tin cậy 94%.</p>
+                        <p><strong>b)</strong> Để ước lượng tỉ lệ sản phẩm xấu với sai số cho phép (độ chính xác) 6% thì độ tin cậy là bao nhiêu?</p>
+                        <p><strong>c)</strong> Để ước lượng tỉ lệ sản phẩm xấu với độ chính xác 7% và độ tin cậy 98% thì cần kiểm tra thêm bao nhiêu sản phẩm?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 100$, số SP xấu = 15 $\Rightarrow f = 0.15$</p>
+                        
+                        <p><strong>a) Ước lượng với 94% TC:</strong></p>
+                        <div class="formula">
+                            $$\alpha = 0.06 \Rightarrow z_{0.03} = 1.88$$
+                            
+                            $$\Delta = z_{\alpha/2} \sqrt{\frac{f(1-f)}{n}} = 1.88 \sqrt{\frac{0.15 \times 0.85}{100}}$$
+                            $$= 1.88 \times 0.0357 = 0.0671$$
+                            
+                            <strong>Khoảng TC:</strong> $(0.15 - 0.067; 0.15 + 0.067) = (0.083; 0.217)$
+                            $$= (8.3\%; 21.7\%)$$
+                        </div>
+                        
+                        <p><strong>b) Độ TC khi Δ = 0.06:</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = \frac{\Delta}{\sqrt{f(1-f)/n}} = \frac{0.06}{\sqrt{0.15 \times 0.85 / 100}}$$
+                            $$= \frac{0.06}{0.0357} = 1.68$$
+                            
+                            $$\Phi(1.68) = 0.9535$$
+                            $$1 - \alpha = 2 \times 0.9535 - 1 = 0.907 = 90.7\%$$
+                        </div>
+                        
+                        <p><strong>c) Cần n bao nhiêu để Δ=0.07, 98% TC:</strong></p>
+                        <div class="formula">
+                            $$z_{0.01} = 2.33$$
+                            $$n = \left(\frac{z_{\alpha/2}}{\Delta}\right)^2 f(1-f)$$
+                            $$= \left(\frac{2.33}{0.07}\right)^2 \times 0.15 \times 0.85$$
+                            $$= (33.29)^2 \times 0.1275 = 1108.6 \times 0.1275 = 141$$
+                            
+                            <strong>Cần thêm:</strong> $141 - 100 = 41$ sản phẩm
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> (8.3%; 21.7%) &nbsp;&nbsp; <strong>b)</strong> 90.7% &nbsp;&nbsp; <strong>c)</strong> Cần kiểm tra thêm <strong>41 SP</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.8 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.8: Tỷ lệ sinh viên ngoại trú</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Khảo sát ngẫu nhiên 200 sinh viên cho thấy có 23% số em được khảo sát ở ký túc xá của trường. Tìm khoảng tin cậy 97% cho tỷ lệ sinh viên ngoại trú.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 200$</p>
+                        <p>Tỷ lệ ngoại trú: $f = 1 - 0.23 = 0.77$</p>
+                        
+                        <div class="formula">
+                            $$z_{0.015} = 2.17$$
+                            
+                            $$\Delta = 2.17 \sqrt{\frac{0.77 \times 0.23}{200}} = 2.17 \times 0.0297 = 0.0645$$
+                            
+                            <strong>Khoảng tin cậy:</strong>
+                            $$(0.77 - 0.0645; 0.77 + 0.0645) = (0.7055; 0.8345)$$
+                            $$= (70.6\%; 83.5\%)$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Khoảng tin cậy 97%: <strong>(70.6%; 83.5%)</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.9 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.9: Ước lượng số sản phẩm của nhà máy B</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trong kho có 200 sản phẩm của xí nghiệp A sản xuất bỏ lẫn với nhiều sản phẩm của xí nghiệp B. Lấy ngẫu nhiên từ kho ra 100 sản phẩm thì thấy có 8 sản phẩm của xí nghiệp A. Với độ tin cậy 95%, hãy ước lượng số sản phẩm của xí nghiệp B có trong kho.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Tỷ lệ SP của A trong mẫu:</strong> $f = \frac{8}{100} = 0.08$</p>
+                        
+                        <div class="formula">
+                            $$\Delta = 1.96 \sqrt{\frac{0.08 \times 0.92}{100}} = 1.96 \times 0.0271 = 0.0531$$
+                            
+                            <strong>Khoảng TC cho tỷ lệ A:</strong>
+                            $$(0.08 - 0.0531; 0.08 + 0.0531) = (0.0269; 0.1331)$$
+                            $$= (2.69\%; 13.31\%)$$
+                            
+                            <strong>Tỷ lệ SP của B:</strong> $(1 - 0.1331; 1 - 0.0269) = (0.8669; 0.9731)$
+                        </div>
+                        
+                        <p><strong>Ước lượng số SP của B:</strong></p>
+                        <div class="formula">
+                            <p>Biết có 200 SP của A. Nếu 200 SP chiếm 2.69%-13.31% thì tổng N:</p>
+                            $$N = \frac{200}{0.0269 \sim 0.1331} \approx 1502 \sim 7435$$
+                            
+                            <strong>Số SP của B:</strong> $N - 200 \approx 1302 \sim 7235$
+                            
+                            <p>(Ước lượng chính xác hơn: dùng tỷ lệ giữa)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Ước lượng có từ <strong>1300 đến 7200 SP của B</strong> (với 95% TC)
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.10 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.10: Bầu cử tổng thống - Tỷ lệ phiếu bầu</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trước bầu cử tổng thống người ta phỏng vấn ngẫu nhiên 1800 cử tri thì thấy có 1170 người ủng hộ ứng cử viên A. Với độ tin cậy 99%, hỏi ứng cử viên đó có thể thu được tối thiểu bao nhiêu phần trăm số phiếu bầu? và tối đa là bao nhiêu phần trăm số phiếu bầu?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 1800$, số người ủng hộ = 1170</p>
+                        
+                        <div class="formula">
+                            $$f = \frac{1170}{1800} = 0.65$$
+                            
+                            $$z_{0.005} = 2.58$$
+                            
+                            $$\Delta = 2.58 \sqrt{\frac{0.65 \times 0.35}{1800}} = 2.58 \times 0.0112 = 0.0290$$
+                            
+                            <strong>Khoảng tin cậy:</strong>
+                            $$(0.65 - 0.029; 0.65 + 0.029) = (0.621; 0.679)$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Tối thiểu <strong>62.1%</strong>, tối đa <strong>67.9%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.11 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.11: Năng suất lúa - Dữ liệu nhóm</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Khảo sát năng suất (tấn/ha) của 100ha lúa ở địa phương M, ta có bảng số liệu sau:</p>
+                        
+                        <table>
+                            <tr>
+                                <th>Năng suất</th>
+                                <th>3-3.5</th>
+                                <th>3.5-4.0</th>
+                                <th>4.0-4.5</th>
+                                <th>4.5-5.0</th>
+                                <th>5.0-5.5</th>
+                                <th>5.5-6.0</th>
+                            </tr>
+                            <tr>
+                                <th>Số lượng (ha)</th>
+                                <td>9</td>
+                                <td>12</td>
+                                <td>20</td>
+                                <td>25</td>
+                                <td>23</td>
+                                <td>11</td>
+                            </tr>
+                        </table>
+                        
+                        <p>Những thửa có năng suất trên 5 tấn/ha xếp vào loại A.</p>
+                        <p><strong>a)</strong> Ước lượng năng suất trung bình của mỗi ha với độ tin cậy 95%.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Giá trị đại diện:</strong> 3.25, 3.75, 4.25, 4.75, 5.25, 5.75</p>
+                        
+                        <div class="formula">
+                            $$\overline{x} = \frac{9(3.25) + 12(3.75) + 20(4.25) + 25(4.75) + 23(5.25) + 11(5.75)}{100}$$
+                            $$= \frac{29.25 + 45 + 85 + 118.75 + 120.75 + 63.25}{100} = \frac{462}{100} = 4.62 \text{ tấn/ha}$$
+                            
+                            $$s \approx 0.72 \text{ tấn/ha}$$ (tính từ công thức)
+                            
+                            $$\Delta = 1.96 \times \frac{0.72}{\sqrt{100}} = 1.96 \times 0.072 = 0.141$$
+                            
+                            <strong>Khoảng TC:</strong> $(4.62 - 0.141; 4.62 + 0.141) = (4.48; 4.76)$ tấn/ha
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Khoảng tin cậy 95%: <strong>(4.48; 4.76) tấn/ha</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CÔNG THỨC TỔNG KẾT -->
+            <div class="exercise" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                <div class="exercise-title" style="color: #d63031;">📚 CÔNG THỨC ƯỚC LƯỢNG TỔNG KẾT</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">🔑 Ước lượng trung bình μ:</div>
+                        
+                        <div class="formula">
+                            <strong>1. Biết σ (hoặc n lớn):</strong>
+                            $$\Delta = z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+                            $$\text{Khoảng TC: } (\overline{x} - \Delta; \overline{x} + \Delta)$$
+                            
+                            <strong>2. Không biết σ (n nhỏ):</strong>
+                            $$\Delta = t_{\alpha/2}(n-1) \frac{s}{\sqrt{n}}$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">🔑 Ước lượng tỷ lệ p:</div>
+                        
+                        <div class="formula">
+                            $$\Delta = z_{\alpha/2} \sqrt{\frac{f(1-f)}{n}}$$
+                            $$\text{Khoảng TC: } (f - \Delta; f + \Delta)$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">🔑 Cỡ mẫu cần thiết:</div>
+                        
+                        <div class="formula">
+                            <strong>Cho trung bình:</strong>
+                            $$n = \left(\frac{z_{\alpha/2} \sigma}{\Delta}\right)^2$$
+                            
+                            <strong>Cho tỷ lệ:</strong>
+                            $$n = \left(\frac{z_{\alpha/2}}{\Delta}\right)^2 f(1-f)$$
+                            
+                            <p>(Nếu không biết f, dùng f = 0.5 để an toàn)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2 Phần 2: Đại lượng ngẫu nhiên (Bài 2.10-2.19)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: clamp(1.5em, 5vw, 2.5em);
+            margin-bottom: 10px;
+        }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step {
+            margin: 15px 0;
+        }
+        
+        .step-title {
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .exercise {
+                padding: 15px;
+            }
+            
+            table {
+                font-size: 0.85em;
+            }
+            
+            table th, table td {
+                padding: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.3em;
+            }
+            
+            .exercise-title {
+                font-size: 1.1em;
+            }
+            
+            .formula {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Chương 2: Đại lượng ngẫu nhiên</h1>
+            <p>Phần 2: Phân phối rời rạc nâng cao (Bài 2.10-2.19)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_2_phan_1.html">Chương 2 - Phần 1</a> >
+            <span>Phần 2</span> >
+            <a href="chuong_2_phan_3.html">Phần 3</a>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 2.10 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.10: Thùng bia 24 chai, 5 chai quá hạn. Chọn 6 chai.</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một thùng bia gồm 24 chai trong đó để lẫn 5 chai quá hạn sử dụng. Chọn ngẫu nhiên từ thùng đó ra 6 chai.</p>
+                        <p><strong>a)</strong> Gọi X là số chai bia quá hạn chọn phải. Xác định phân phối của X và tính kỳ vọng, phương sai của X.</p>
+                        <p><strong>b)</strong> Gọi Y là số chai bia còn hạn sử dụng chọn được. Xác định phân phối của Y và tính kỳ vọng, phương sai của Y.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <ul>
+                            <li>Tổng: 24 chai (5 quá hạn, 19 còn hạn)</li>
+                            <li>Chọn: 6 chai</li>
+                            <li>X: số chai quá hạn, X ∈ {0, 1, 2, 3, 4, 5}</li>
+                        </ul>
+                        
+                        <p><strong>X có phân phối siêu bội:</strong></p>
+                        <div class="formula">
+                            $$P(X = k) = \frac{C_5^k \times C_{19}^{6-k}}{C_{24}^6}$$
+                        </div>
+                        
+                        <p><strong>Tính các xác suất:</strong></p>
+                        <div class="formula">
+                            $$C_{24}^6 = 134596$$
+                            
+                            $$P(X=0) = \frac{C_5^0 \times C_{19}^6}{134596} = \frac{1 \times 27132}{134596} = 0.2016$$
+                            
+                            $$P(X=1) = \frac{C_5^1 \times C_{19}^5}{134596} = \frac{5 \times 11628}{134596} = 0.4320$$
+                            
+                            $$P(X=2) = \frac{C_5^2 \times C_{19}^4}{134596} = \frac{10 \times 3876}{134596} = 0.2880$$
+                            
+                            $$P(X=3) = \frac{C_5^3 \times C_{19}^3}{134596} = \frac{10 \times 969}{134596} = 0.0720$$
+                            
+                            $$P(X=4) = \frac{C_5^4 \times C_{19}^2}{134596} = \frac{5 \times 171}{134596} = 0.0064$$
+                            
+                            $$P(X=5) = \frac{C_5^5 \times C_{19}^1}{134596} = \frac{1 \times 19}{134596} = 0.0001$$
+                        </div>
+                        
+                        <p><strong>Kỳ vọng và phương sai:</strong></p>
+                        <div class="formula">
+                            $$E(X) = \frac{6 \times 5}{24} = 1.25 \text{ chai}$$
+                            
+                            $$Var(X) = \frac{6 \times 5 \times 19 \times 18}{24^2 \times 23} = \frac{10260}{13248} \approx 0.7745$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Y: số chai còn hạn, Y = 6 - X</p>
+                        <p>Y ∈ {1, 2, 3, 4, 5, 6}</p>
+                        
+                        <p><strong>Phân phối của Y:</strong></p>
+                        <div class="formula">
+                            $$P(Y = k) = P(X = 6-k)$$
+                        </div>
+                        
+                        <p><strong>Kỳ vọng và phương sai:</strong></p>
+                        <div class="formula">
+                            $$E(Y) = 6 - E(X) = 6 - 1.25 = 4.75 \text{ chai}$$
+                            
+                            $$Var(Y) = Var(6-X) = Var(X) = 0.7745$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> E(X) = 1.25 chai, Var(X) ≈ 0.7745<br>
+                        <strong>b)</strong> E(Y) = 4.75 chai, Var(Y) ≈ 0.7745
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.11 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.11: Kỹ thuật viên theo dõi 12 máy tự động</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một kỹ thuật viên theo dõi 12 máy tự động. Xác suất để mỗi máy cần đến sự điều chỉnh của kỹ thuật viên trong một giờ là 0,2. Các máy này hoạt động độc lập với nhau.</p>
+                        <p><strong>a)</strong> Tìm xác suất để trong 1 giờ làm việc có ít nhất 1 máy cần đến sự điều chỉnh.</p>
+                        <p><strong>b)</strong> Kỹ thuật viên phải theo dõi bao nhiêu máy tự động để trung bình gặp 3 máy cần điều chỉnh?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Gọi X là số máy cần điều chỉnh. $X \sim B(12, 0.2)$</p>
+                        
+                        <p><strong>Tính xác suất:</strong></p>
+                        <div class="formula">
+                            $$P(X \geq 1) = 1 - P(X = 0)$$
+                            
+                            $$P(X = 0) = C_{12}^0 \times (0.2)^0 \times (0.8)^{12} = (0.8)^{12}$$
+                            $$= 0.0687$$
+                            
+                            $$P(X \geq 1) = 1 - 0.0687 = 0.9313$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Gọi n là số máy cần theo dõi</p>
+                        <p>Kỳ vọng số máy cần điều chỉnh: $E(X) = np = n \times 0.2$</p>
+                        
+                        <p><strong>Giải phương trình:</strong></p>
+                        <div class="formula">
+                            $$n \times 0.2 = 3$$
+                            $$n = \frac{3}{0.2} = 15$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 0.9313 = 93.13%<br>
+                        <strong>b)</strong> Cần theo dõi 15 máy
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.12 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.12: Nuôi gà đẻ - Phân phối nhị thức</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Xác suất để một con gà đẻ trong ngày là 0,6. Một gia đình nuôi 30 con. Tính xác suất để trong một ngày:</p>
+                        <p><strong>a)</strong> Không có con nào đẻ</p>
+                        <p><strong>b)</strong> Có đúng 15 con đẻ</p>
+                        <p><strong>c)</strong> Có ít nhất 1 con đẻ</p>
+                        <p><strong>d)</strong> Có ít nhất 2 con đẻ</p>
+                        <p>Hỏi nhiều khả năng nhất sẽ có bao nhiêu con gà đẻ trong ngày? Nếu muốn mỗi ngày có trung bình 100 trứng thì phải nuôi bao nhiêu con gà?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong> Gọi X là số gà đẻ. $X \sim B(30, 0.6)$</p>
+                        
+                        <p><strong>a) P(X = 0):</strong></p>
+                        <div class="formula">
+                            $$P(X=0) = (0.4)^{30} \approx 1.15 \times 10^{-12} \approx 0$$
+                        </div>
+                        
+                        <p><strong>b) P(X = 15):</strong></p>
+                        <div class="formula">
+                            $$P(X=15) = C_{30}^{15} \times (0.6)^{15} \times (0.4)^{15}$$
+                            $$= 155117520 \times 4.7 \times 10^{-4} \times 1.1 \times 10^{-6}$$
+                            $$\approx 0.0783$$
+                        </div>
+                        
+                        <p><strong>c) P(X ≥ 1):</strong></p>
+                        <div class="formula">
+                            $$P(X \geq 1) = 1 - P(X=0) \approx 1$$
+                        </div>
+                        
+                        <p><strong>d) P(X ≥ 2):</strong></p>
+                        <div class="formula">
+                            $$P(X \geq 2) = 1 - P(X=0) - P(X=1)$$
+                            $$P(X=1) = 30 \times 0.6 \times (0.4)^{29} \approx 1.7 \times 10^{-11}$$
+                            $$P(X \geq 2) \approx 1$$
+                        </div>
+                        
+                        <p><strong>Số gà đẻ tin chắc nhất (Mode):</strong></p>
+                        <div class="formula">
+                            $$M_0 = \lfloor (n+1)p \rfloor = \lfloor 31 \times 0.6 \rfloor = \lfloor 18.6 \rfloor = 18 \text{ con}$$
+                        </div>
+                        
+                        <p><strong>Số gà cần nuôi để có 100 trứng/ngày:</strong></p>
+                        <div class="formula">
+                            $$E(X) = np = n \times 0.6 = 100$$
+                            $$n = \frac{100}{0.6} \approx 167 \text{ con}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        a) P ≈ 0 &nbsp;&nbsp; b) P ≈ 7.83% &nbsp;&nbsp; c) P ≈ 100% &nbsp;&nbsp; d) P ≈ 100%<br>
+                        Tin chắc nhất: 18 con đẻ<br>
+                        Cần nuôi: 167 con gà
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.13 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.13: Bệnh sốt rét - Phân phối nhị thức</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Cho biết tỷ lệ bệnh sốt rét tại một địa phương là 0,05.</p>
+                        <p><strong>a)</strong> Khám ngẫu nhiên 3 người, tính xác suất để có ít nhất 1 người mắc bệnh sốt rét.</p>
+                        <p><strong>b)</strong> Cần khám tối thiểu bao nhiêu người để xác suất có ít nhất 1 người mắc bệnh sốt rét không nhỏ hơn 0,9?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p>Gọi X là số người mắc bệnh. $X \sim B(3, 0.05)$</p>
+                        
+                        <div class="formula">
+                            $$P(X \geq 1) = 1 - P(X = 0)$$
+                            $$= 1 - (0.95)^3 = 1 - 0.8574 = 0.1426$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p>Gọi n là số người cần khám. Cần: $P(X \geq 1) \geq 0.9$</p>
+                        
+                        <div class="formula">
+                            $$1 - (0.95)^n \geq 0.9$$
+                            $$(0.95)^n \leq 0.1$$
+                            $$n \log(0.95) \leq \log(0.1)$$
+                            $$n \geq \frac{\log(0.1)}{\log(0.95)} = \frac{-1}{-0.0223} \approx 44.9$$
+                        </div>
+                        
+                        <p>Vậy $n \geq 45$ người</p>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 0.1426 = 14.26%<br>
+                        <strong>b)</strong> Cần khám tối thiểu 45 người
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.14 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.14: Nuôi gà - Mode của phân phối nhị thức</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một gia đình nuôi n con gà mái đẻ với xác suất đẻ trứng của mỗi con gà trong một ngày là 0,7. Để chắc chắn nhất mỗi ngày có 100 con gà mái đẻ trứng thì số gà gia đình đó phải nuôi tối thiểu là bao nhiêu con?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Số gà đẻ tin chắc nhất (Mode) là: $M_0 = \lfloor (n+1)p \rfloor$</p>
+                        
+                        <p><strong>Cần tìm n sao cho:</strong></p>
+                        <div class="formula">
+                            $$M_0 = 100$$
+                            $$\lfloor (n+1) \times 0.7 \rfloor = 100$$
+                        </div>
+                        
+                        <p><strong>Giải:</strong></p>
+                        <div class="formula">
+                            $$99 \leq (n+1) \times 0.7 < 100$$
+                            $$\frac{99}{0.7} \leq n+1 < \frac{100}{0.7}$$
+                            $$141.43 \leq n+1 < 142.86$$
+                            $$140.43 \leq n < 141.86$$
+                        </div>
+                        
+                        <p>Vậy $n = 141$ con</p>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Cần nuôi tối thiểu <strong>141 con gà</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.15 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.15: Thi trắc nghiệm 50 câu</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trong một lần thi trắc nghiệm, mỗi thí sinh nhận một đề thi gồm 50 câu hỏi. Mỗi câu hỏi có 4 phương án trả lời, trong đó chỉ có 1 phương án đúng. Mỗi câu trả lời đúng được 0,2 điểm.</p>
+                        <p><strong>a)</strong> Thí sinh A không học bài và trả lời tất cả các câu hỏi một cách ngẫu nhiên. Tính xác suất để thí sinh A thi được 5 điểm.</p>
+                        <p><strong>b)</strong> Thí sinh B chắc chắn trả lời được 8 câu đúng. Các câu còn lại B trả lời một cách ngẫu nhiên. Tính xác suất để thí sinh B thi được 5 điểm.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>5 điểm = 25 câu đúng</p>
+                        <p>Xác suất đoán đúng 1 câu: p = 1/4 = 0.25</p>
+                        <p>Gọi X là số câu đúng. $X \sim B(50, 0.25)$</p>
+                        
+                        <div class="formula">
+                            $$P(X = 25) = C_{50}^{25} \times (0.25)^{25} \times (0.75)^{25}$$
+                            $$\approx 1.26 \times 10^{14} \times 8.47 \times 10^{-16} \times 7.57 \times 10^{-7}$$
+                            $$\approx 8.07 \times 10^{-8}$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>B đã có 8 câu đúng (8 × 0.2 = 1.6 điểm)</p>
+                        <p>Cần thêm: 5 - 1.6 = 3.4 điểm = 17 câu đúng nữa</p>
+                        <p>Còn 42 câu, đoán ngẫu nhiên, cần đúng 17 câu</p>
+                        
+                        <p>Gọi Y là số câu đúng trong 42 câu. $Y \sim B(42, 0.25)$</p>
+                        
+                        <div class="formula">
+                            $$P(Y = 17) = C_{42}^{17} \times (0.25)^{17} \times (0.75)^{25}$$
+                            $$\approx 0.0183$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 8.07 × 10⁻⁸ (gần như không thể)<br>
+                        <strong>b)</strong> P ≈ 0.0183 = 1.83%
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.16 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.16: Vườn lan 10000 cây - Phân phối siêu bội xấp xỉ nhị thức</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một vườn lan có 10000 cây sắp nở hoa, trong đó có 2000 cây hoa màu trắng. Một khách chọn ngẫu nhiên 50 cây. Tính xác suất khách chọn được 10 cây có hoa màu trắng.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Tổng: 10000 cây (2000 trắng, 8000 màu khác)</p>
+                        <p>Chọn: 50 cây</p>
+                        <p>Vì N = 10000 >> n = 50, dùng xấp xỉ nhị thức</p>
+                        
+                        <p><strong>Phân phối siêu bội xấp xỉ nhị thức:</strong></p>
+                        <div class="formula">
+                            $$p = \frac{2000}{10000} = 0.2$$
+                            $$X \sim B(50, 0.2)$$
+                            
+                            $$P(X = 10) = C_{50}^{10} \times (0.2)^{10} \times (0.8)^{40}$$
+                        </div>
+                        
+                        <p><strong>Tính toán:</strong></p>
+                        <div class="formula">
+                            $$C_{50}^{10} = 10272278170$$
+                            $$(0.2)^{10} = 1.024 \times 10^{-7}$$
+                            $$(0.8)^{40} = 1.1 \times 10^{-4}$$
+                            
+                            $$P(X=10) \approx 0.1398$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> P ≈ 0.1398 = <strong>13.98%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.17 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.17: Bến xe - Phân phối Poisson</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một bến xe khách trung bình có 90 xe xuất bến trong 1 giờ. Tính xác suất để:</p>
+                        <p><strong>a)</strong> Có ít nhất 1 xe xuất bến trong 2 phút.</p>
+                        <p><strong>b)</strong> Trong 5 phút có 8 xe xuất bến.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>90 xe/giờ = 90/60 = 1.5 xe/phút</p>
+                        <p>Dùng phân phối Poisson với tham số $\lambda = 1.5t$ (t tính bằng phút)</p>
+                        
+                        <p><strong>Câu a) Trong 2 phút:</strong></p>
+                        <div class="formula">
+                            $$\lambda = 1.5 \times 2 = 3$$
+                            $$X \sim Po(3)$$
+                            
+                            $$P(X \geq 1) = 1 - P(X = 0)$$
+                            $$= 1 - e^{-3} \times \frac{3^0}{0!} = 1 - e^{-3}$$
+                            $$= 1 - 0.0498 = 0.9502$$
+                        </div>
+                        
+                        <p><strong>Câu b) Trong 5 phút:</strong></p>
+                        <div class="formula">
+                            $$\lambda = 1.5 \times 5 = 7.5$$
+                            $$Y \sim Po(7.5)$$
+                            
+                            $$P(Y = 8) = e^{-7.5} \times \frac{7.5^8}{8!}$$
+                            $$= 0.000553 \times \frac{1001129.15}{40320}$$
+                            $$= 0.000553 \times 24.83 = 0.1373$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 0.9502 = 95.02%<br>
+                        <strong>b)</strong> P ≈ 0.1373 = 13.73%
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.18 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.18: Cửa hàng - Poisson (đổi đơn vị thời gian)</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Quan sát thấy trung bình 5 phút có 15 khách vào cửa hàng M. Tính xác suất để có nhiều hơn 1 khách vào cửa hàng M trong 20 giây.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>5 phút (300 giây) có 15 khách</p>
+                        <p>20 giây có: $\lambda = 15 \times \frac{20}{300} = 15 \times \frac{1}{15} = 1$ khách</p>
+                        
+                        <p><strong>Tính xác suất:</strong></p>
+                        <div class="formula">
+                            $$X \sim Po(1)$$
+                            
+                            $$P(X > 1) = 1 - P(X \leq 1)$$
+                            $$= 1 - [P(X=0) + P(X=1)]$$
+                            
+                            $$P(X=0) = e^{-1} = 0.3679$$
+                            $$P(X=1) = e^{-1} \times 1 = 0.3679$$
+                            
+                            $$P(X > 1) = 1 - (0.3679 + 0.3679) = 1 - 0.7358 = 0.2642$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> P ≈ 0.2642 = <strong>26.42%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.19 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.19: Vận chuyển bia và Coca - Poisson phức hợp</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Nước giải khát được chở từ Sài Gòn đi Bình Dương. Mỗi xe chở 1000 chai bia Sài Gòn và 2000 chai Coca. Xác suất để mỗi chai mỗi loại bị bể trên đường đi tương ứng là 0,1% và 0,15%. Nếu không quá 1 chai bị bể thì lái xe được thưởng.</p>
+                        <p><strong>a)</strong> Tính xác suất có không quá 1 chai bia Sài Gòn bị bể.</p>
+                        <p><strong>b)</strong> Tính xác suất có không quá 2 chai Coca bị bể.</p>
+                        <p><strong>c)</strong> Tính xác suất để lái xe được thưởng.</p>
+                        <p><strong>d)</strong> Hỏi lái xe phải chở ít nhất bao nhiêu chuyến để xác suất có ít nhất 1 chuyến được thưởng không nhỏ hơn 95%.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phân tích:</strong></p>
+                        <p>Bia: $X \sim B(1000, 0.001)$ xấp xỉ $Po(1)$</p>
+                        <p>Coca: $Y \sim B(2000, 0.0015)$ xấp xỉ $Po(3)$</p>
+                        
+                        <p><strong>a) P(X ≤ 1):</strong></p>
+                        <div class="formula">
+                            $$P(X \leq 1) = P(X=0) + P(X=1)$$
+                            $$= e^{-1} + e^{-1} \times 1 = 2e^{-1} = 0.7358$$
+                        </div>
+                        
+                        <p><strong>b) P(Y ≤ 2):</strong></p>
+                        <div class="formula">
+                            $$P(Y \leq 2) = P(Y=0) + P(Y=1) + P(Y=2)$$
+                            $$= e^{-3}(1 + 3 + \frac{9}{2}) = e^{-3} \times 8.5$$
+                            $$= 0.0498 \times 8.5 = 0.4232$$
+                        </div>
+                        
+                        <p><strong>c) P(được thưởng) = P(tổng ≤ 1):</strong></p>
+                        <div class="formula">
+                            $$P(X+Y \leq 1) = P(X=0, Y=0) + P(X=1, Y=0) + P(X=0, Y=1)$$
+                            $$= e^{-1} \times e^{-3} + e^{-1} \times e^{-3} + e^{-1} \times 3e^{-3}$$
+                            $$= e^{-4}(1 + 1 + 3) = 5e^{-4} = 5 \times 0.0183 = 0.0916$$
+                        </div>
+                        
+                        <p><strong>d) Số chuyến cần chở:</strong></p>
+                        <p>Gọi n là số chuyến. Xác suất 1 chuyến được thưởng: p = 0.0916</p>
+                        <div class="formula">
+                            $$P(\text{ít nhất 1 chuyến thưởng}) = 1 - (1-0.0916)^n \geq 0.95$$
+                            $$(0.9084)^n \leq 0.05$$
+                            $$n \log(0.9084) \leq \log(0.05)$$
+                            $$n \geq \frac{-2.996}{-0.0956} = 31.32$$
+                        </div>
+                        <p>Vậy $n \geq 32$ chuyến</p>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 73.58% &nbsp; <strong>b)</strong> P ≈ 42.32% &nbsp; <strong>c)</strong> P ≈ 9.16%<br>
+                        <strong>d)</strong> Cần chở ít nhất <strong>32 chuyến</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

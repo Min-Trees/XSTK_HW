@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 5: Kiểm Định Giả Thiết - 10 Bài Đầy Đủ</title>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .formula-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .step-card {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔬 CHƯƠNG 5: KIỂM ĐỊNH GIẢ THIẾT THỐNG KÊ</h1>
+        <div class="subtitle">10 Bài Tập - 15 Câu Hỏi - Đầy Đủ Lời Giải</div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="window.location.href='chuong_0_to_hop.html'">⬅️ Tổ Hợp</button>
+        <button class="btn" onclick="window.location.href='chuong_1_xac_suat.html'">⬅️ Chương 1</button>
+        <button class="btn" onclick="window.location.href='chuong_2_dlnn.html'">⬅️ Chương 2</button>
+        <button class="btn" onclick="window.location.href='chuong_3_4_uoc_luong.html'">⬅️ Chương 3+4</button>
+    </div>
+    
+    <div class="container">
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📚 Nội Dung Chương 5</h2>
+            
+            <div class="highlight-box">
+                <strong>📋 Chương này bao gồm:</strong><br>
+                • Kiểm định trung bình (biết σ và không biết σ) ⭐<br>
+                • Kiểm định tỷ lệ ⭐<br>
+                • Kiểm định một phía và hai phía ⭐⭐<br>
+                • So sánh 2 trung bình ⭐⭐<br>
+                • So sánh 2 tỷ lệ ⭐
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <h2 style="color: #28a745; margin-bottom: 20px;">📝 Các Bước Kiểm Định</h2>
+            
+            <ol style="line-height: 2.5; margin-left: 30px;">
+                <li><strong>Bước 1:</strong> Đặt giả thiết $H_0$ và $H_1$</li>
+                <li><strong>Bước 2:</strong> Chọn mức ý nghĩa $\alpha$</li>
+                <li><strong>Bước 3:</strong> Tính thống kê kiểm định (z hoặc t)</li>
+                <li><strong>Bước 4:</strong> Tìm miền bác bỏ (tra bảng)</li>
+                <li><strong>Bước 5:</strong> So sánh và kết luận</li>
+            </ol>
+        </div>
+        
+        <div class="info-card">
+            <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">📊 Danh Sách Bài Tập</h3>
+            
+            <table>
+                <tr>
+                    <th>Bài</th>
+                    <th>Nội dung</th>
+                    <th>Loại</th>
+                    <th>Độ khó</th>
+                </tr>
+                <tr>
+                    <td>5.1</td>
+                    <td>Tiền gửi tiết kiệm (biết σ, n lớn)</td>
+                    <td>KĐ trung bình</td>
+                    <td>⭐</td>
+                </tr>
+                <tr>
+                    <td>5.2</td>
+                    <td>Độ dài chi tiết máy (không biết σ, n nhỏ)</td>
+                    <td>KĐ trung bình</td>
+                    <td>⭐</td>
+                </tr>
+                <tr>
+                    <td>5.3</td>
+                    <td>Thu nhập hộ dân - Quyết định mở siêu thị</td>
+                    <td>KĐ trung bình</td>
+                    <td>⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>5.4</td>
+                    <td>Tỷ lệ động cơ đạt chuẩn</td>
+                    <td>KĐ tỷ lệ</td>
+                    <td>⭐</td>
+                </tr>
+                <tr>
+                    <td>5.5</td>
+                    <td>Tỷ lệ SV làm thêm (một phía)</td>
+                    <td>KĐ tỷ lệ</td>
+                    <td>⭐</td>
+                </tr>
+                <tr>
+                    <td>5.6</td>
+                    <td>Tỷ lệ hạt nảy mầm (một phía)</td>
+                    <td>KĐ tỷ lệ</td>
+                    <td>⭐</td>
+                </tr>
+                <tr>
+                    <td>5.7</td>
+                    <td>Chiều cao cây (cả TB và tỷ lệ)</td>
+                    <td>KĐ kết hợp</td>
+                    <td>⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>5.8</td>
+                    <td>Trọng lượng trái cây - Đánh giá phân bón</td>
+                    <td>KĐ kết hợp</td>
+                    <td>⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>5.9</td>
+                    <td>So sánh 2 trung bình (trước/sau cải tiến)</td>
+                    <td>So sánh 2 mẫu</td>
+                    <td>⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>5.10</td>
+                    <td>So sánh 2 tỷ lệ (tai nạn lao động)</td>
+                    <td>So sánh 2 mẫu</td>
+                    <td>⭐</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="formula-card">
+            <h2 style="margin-bottom: 20px;">📐 Công Thức Kiểm Định</h2>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>1. Kiểm định trung bình (biết σ):</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$z = \frac{\overline{x} - \mu_0}{\sigma/\sqrt{n}}$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>2. Kiểm định trung bình (không biết σ):</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}}$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>3. Kiểm định tỷ lệ:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}}$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>4. So sánh 2 trung bình:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$$
+                </p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3>5. So sánh 2 tỷ lệ:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0;">
+                    $$z = \frac{f_1 - f_2}{\sqrt{\overline{f}(1-\overline{f})(\frac{1}{n_1} + \frac{1}{n_2})}}$$
+                </p>
+                <p>Với: $\overline{f} = \frac{n_1f_1 + n_2f_2}{n_1 + n_2}$</p>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">💡 Nhận Biết Loại Kiểm Định</h2>
+            
+            <table>
+                <tr>
+                    <th>Loại</th>
+                    <th>Từ khóa trong đề</th>
+                    <th>Giả thiết $H_1$</th>
+                </tr>
+                <tr>
+                    <td>Hai phía</td>
+                    <td>"Có thay đổi không?", "Có khác biệt không?"</td>
+                    <td>$\theta \neq \theta_0$</td>
+                </tr>
+                <tr>
+                    <td>Một phía phải</td>
+                    <td>"Có tăng không?", "Có lớn hơn không?"</td>
+                    <td>$\theta > \theta_0$</td>
+                </tr>
+                <tr>
+                    <td>Một phía trái</td>
+                    <td>"Có giảm không?", "Có nhỏ hơn không?"</td>
+                    <td>$\theta < \theta_0$</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">⭐ Bài Tập Quan Trọng</h2>
+            
+            <div class="highlight-box">
+                <h3 style="margin-bottom: 15px;">🔥 PHẢI LÀM:</h3>
+                <ul style="line-height: 2.5;">
+                    <li><strong>Bài 5.3:</strong> Quyết định mở siêu thị - Ứng dụng thực tế ⭐⭐⭐</li>
+                    <li><strong>Bài 5.7:</strong> Chiều cao cây - Kết hợp TB & tỷ lệ ⭐⭐</li>
+                    <li><strong>Bài 5.9:</strong> So sánh 2 TB - Trước/sau cải tiến ⭐⭐</li>
+                    <li><strong>Bài 5.10:</strong> So sánh 2 tỷ lệ - Tai nạn lao động ⭐</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">💡 Cách Xem Đầy Đủ</h2>
+            
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; line-height: 2.5;">
+                <strong>📄 File:</strong> <code>CHUONG_5_KIEM_DINH_GIA_THIET.md</code><br><br>
+                
+                <strong>Đặc biệt:</strong> File này có:<br>
+                • Lý thuyết kiểm định đầy đủ<br>
+                • Bảng tóm tắt kết quả 10 bài<br>
+                • Mẹo kiểm định 1 phía/2 phía<br>
+                • Bài giải chi tiết từng bước<br><br>
+                
+                <strong>Cách xem:</strong><br>
+                1️⃣ Mở VS Code hoặc Notepad++<br>
+                2️⃣ Kéo file vào<br>
+                3️⃣ Nhấn <code>Ctrl+F</code> → Gõ "BÀI 5.X"<br>
+                4️⃣ Đọc ngay!
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            scrollTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+        
+        window.addEventListener('load', function() {
+            MathJax.typesetPromise().catch(err => console.log(err));
+        });
+    </script>
+</body>
+</html>
+

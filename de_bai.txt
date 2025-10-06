@@ -1,0 +1,14 @@
+VÍ DỤ FORMAT ĐỀ BÀI - BẠN SỬA LẠI NỘI DUNG:
+
+Bài 1: Một hộp có 5 viên bi đỏ và 3 viên bi xanh. Lấy ngẫu nhiên 3 viên bi.
+a) Tính xác suất để lấy được 2 bi đỏ và 1 bi xanh
+b) Tính xác suất để lấy được ít nhất 1 bi đỏ
+
+Bài 2: Biến ngẫu nhiên X có phân phối chuẩn N(10, 4). 
+a) Tính P(8 < X < 12)
+b) Tìm a sao cho P(X > a) = 0.1
+
+Bài 3: [Thêm đề bài ở đây...]
+
+... (thêm các bài khác)
+

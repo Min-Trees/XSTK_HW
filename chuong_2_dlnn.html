@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2: ĐLNN - 26 Bài Đầy Đủ</title>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .file-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .file-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .file-card ul {
+            list-style: none;
+            line-height: 2.5;
+        }
+        
+        .file-card li::before {
+            content: "✅ ";
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎲 CHƯƠNG 2: ĐẠI LƯỢNG NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI XS</h1>
+        <div class="subtitle">26 Bài Tập - 48 Câu Hỏi - Đầy Đủ Lời Giải</div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="window.location.href='chuong_0_to_hop.html'">⬅️ Tổ Hợp</button>
+        <button class="btn" onclick="window.location.href='chuong_1_xac_suat.html'">⬅️ Chương 1</button>
+        <button class="btn" onclick="window.location.href='chuong_3_4_uoc_luong.html'">Chương 3+4 ➡️</button>
+        <button class="btn" onclick="window.location.href='chuong_5_kiem_dinh.html'">Chương 5 ➡️</button>
+    </div>
+    
+    <div class="container">
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📚 Nội Dung Chương 2</h2>
+            
+            <div class="highlight-box">
+                <strong>📋 Chương này bao gồm:</strong><br>
+                • ĐLNN rời rạc và liên tục<br>
+                • Bảng phân phối xác suất<br>
+                • Hàm mật độ xác suất<br>
+                • Phân phối Nhị thức (Binomial) ⭐<br>
+                • Phân phối Poisson ⭐<br>
+                • Phân phối Chuẩn (Normal) ⭐⭐<br>
+                • Xấp xỉ chuẩn cho nhị thức<br>
+                • Kỳ vọng, phương sai, độ lệch chuẩn
+            </div>
+            
+            <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">📊 Danh Sách Bài Tập</h3>
+            
+            <table>
+                <tr>
+                    <th>Bài</th>
+                    <th>Nội dung</th>
+                    <th>Loại</th>
+                    <th>File chứa</th>
+                </tr>
+                <tr>
+                    <td>2.1</td>
+                    <td>Hàm mật độ XS</td>
+                    <td>Liên tục</td>
+                    <td>BAI_GIAI_XAC_XUAT_THONG_KE.md</td>
+                </tr>
+                <tr>
+                    <td>2.2-2.4</td>
+                    <td>ĐLNN rời rạc, bảng phân phối</td>
+                    <td>Rời rạc</td>
+                    <td>CHUONG_2_3_4_BAI_GIAI.md</td>
+                </tr>
+                <tr>
+                    <td>2.5-2.10</td>
+                    <td>Kỳ vọng, bảng phân phối</td>
+                    <td>Rời rạc</td>
+                    <td>CHUONG_2_3_4_BAI_GIAI.md</td>
+                </tr>
+                <tr>
+                    <td>2.11-2.16</td>
+                    <td>Phân phối Nhị thức ⭐</td>
+                    <td>Nhị thức</td>
+                    <td>CHUONG_2_3_4_BAI_GIAI.md</td>
+                </tr>
+                <tr>
+                    <td>2.17-2.19</td>
+                    <td>Phân phối Poisson ⭐</td>
+                    <td>Poisson</td>
+                    <td>CHUONG_2_3_4_BAI_GIAI.md</td>
+                </tr>
+                <tr>
+                    <td>2.20-2.26</td>
+                    <td>Phân phối Chuẩn + Xấp xỉ ⭐⭐</td>
+                    <td>Chuẩn</td>
+                    <td>CHUONG_2_FINAL_CHUONG_3_4.md</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="file-grid">
+            <div class="file-card">
+                <h3>📄 File 1: CHUONG_2_3_4_BAI_GIAI.md</h3>
+                <ul>
+                    <li>Bài 2.2-2.19 (18 bài)</li>
+                    <li>ĐLNN rời rạc</li>
+                    <li>Nhị thức, Poisson</li>
+                    <li>Kỳ vọng, phương sai</li>
+                </ul>
+            </div>
+            
+            <div class="file-card">
+                <h3>📄 File 2: CHUONG_2_FINAL_CHUONG_3_4.md</h3>
+                <ul>
+                    <li>Bài 2.20-2.26 (7 bài)</li>
+                    <li>Phân phối Chuẩn</li>
+                    <li>Xấp xỉ chuẩn</li>
+                    <li>Bài tập ứng dụng</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">⭐ Bài Tập Quan Trọng</h2>
+            
+            <div class="highlight-box">
+                <h3 style="margin-bottom: 15px;">🔥 PHẢI LÀM:</h3>
+                <ul style="line-height: 2.5;">
+                    <li><strong>Bài 2.12:</strong> Gà đẻ - Phân phối Nhị thức cơ bản ⭐⭐</li>
+                    <li><strong>Bài 2.19:</strong> Nước giải khát - Poisson ứng dụng ⭐⭐</li>
+                    <li><strong>Bài 2.24:</strong> Kiểm tra kiện hàng - Xấp xỉ chuẩn ⭐⭐⭐</li>
+                    <li><strong>Bài 2.25:</strong> Máy SX - Tính lãi - Xấp xỉ chuẩn ⭐⭐⭐</li>
+                    <li><strong>Bài 2.26:</strong> Khách sạn - Xấp xỉ chuẩn ⭐⭐</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">💡 Cách Xem Nhanh</h2>
+            
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; line-height: 2.5;">
+                <strong>Bước 1:</strong> Mở VS Code hoặc Notepad++<br>
+                <strong>Bước 2:</strong> Kéo file <code>CHUONG_2_3_4_BAI_GIAI.md</code> vào<br>
+                <strong>Bước 3:</strong> Nhấn <code>Ctrl+F</code> → Gõ "BÀI 2.X"<br>
+                <strong>Bước 4:</strong> Đọc ngay!<br><br>
+                
+                <em>💡 Hoặc mở bằng Chrome + Extension "Markdown Viewer"</em>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            scrollTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+    </script>
+</body>
+</html>
+

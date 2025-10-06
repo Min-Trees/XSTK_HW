@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 4 Phần 1: Ước lượng tham số (Bài 4.1-4.6)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #fa709a;
+        }
+        
+        .nav-breadcrumb a {
+            color: #fa709a;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #fa709a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #fa709a;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #fee140;
+            text-shadow: 1px 1px 2px #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #fee140;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Chương 4: Ước lượng tham số</h1>
+            <p>Phần 1: Ước lượng khoảng tin cậy (Bài 4.1-4.6)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_3_ly_thuyet_mau.html">Chương 3</a> >
+            <span>Chương 4 - Phần 1</span> >
+            <a href="chuong_4_phan_2.html">Phần 2</a>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 4.1 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.1: Ước lượng trọng lượng sản phẩm (biết σ)</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trọng lượng sản phẩm điện tử là ĐLNN X có luật phân phối chuẩn, biết rằng phương sai bằng 4 g². Kiểm tra 20 sản phẩm điện tử tính được trung bình mẫu bằng 20 g.</p>
+                        <p><strong>a)</strong> Ước lượng trọng lượng trung bình của sản phẩm điện tử với độ tin cậy 95%.</p>
+                        <p><strong>b)</strong> Muốn độ chính xác là 1 g thì độ tin cậy của ước lượng trọng lượng trung bình của sản phẩm điện tử là bao nhiêu?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 20$, $\overline{x} = 20$g, $\sigma^2 = 4 \Rightarrow \sigma = 2$g</p>
+                        <p><strong>Độ tin cậy:</strong> $1 - \alpha = 0.95 \Rightarrow \alpha = 0.05$</p>
+                        
+                        <div class="formula">
+                            $$z_{\alpha/2} = z_{0.025} = 1.96$$
+                            
+                            $$\Delta = z_{\alpha/2} \frac{\sigma}{\sqrt{n}} = 1.96 \times \frac{2}{\sqrt{20}}$$
+                            $$= 1.96 \times 0.447 = 0.876 \text{ g}$$
+                            
+                            <strong>Khoảng tin cậy:</strong>
+                            $$(\overline{x} - \Delta; \overline{x} + \Delta) = (20 - 0.876; 20 + 0.876)$$
+                            $$= (19.124; 20.876) \text{ g}$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p><strong>Cho:</strong> $\Delta = 1$ g. Tìm độ tin cậy $1 - \alpha$?</p>
+                        
+                        <div class="formula">
+                            $$\Delta = z_{\alpha/2} \times \frac{\sigma}{\sqrt{n}}$$
+                            $$1 = z_{\alpha/2} \times \frac{2}{\sqrt{20}}$$
+                            $$z_{\alpha/2} = \frac{1 \times \sqrt{20}}{2} = \frac{4.472}{2} = 2.236$$
+                            
+                            $$\Phi(2.236) = 0.9873$$
+                            $$1 - \alpha = 2 \times 0.9873 - 1 = 0.9746$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> Khoảng tin cậy 95%: <strong>(19.12; 20.88) g</strong><br>
+                        <strong>b)</strong> Độ tin cậy = <strong>97.46%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.2 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.2: Ước lượng trọng lượng nguyên liệu (không biết σ)</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trọng lượng một loại nguyên liệu cho một đơn vị sản phẩm điện là ĐLNN X có luật phân phối chuẩn. Khảo sát 25 sản phẩm điện tính được trung bình trọng lượng loại nguyên liệu cho 1 sản phẩm điện trong mẫu là 50g, độ lệch tiêu chuẩn mẫu điều chỉnh là 5,3 g. Ước lượng trung bình trọng lượng nguyên liệu với độ tin cậy 95%.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 25$, $\overline{x} = 50$g, $s = 5.3$g, $1 - \alpha = 0.95$</p>
+                        
+                        <p><strong>Vì không biết σ, dùng phân phối Student (t):</strong></p>
+                        <div class="formula">
+                            $$\alpha = 0.05, \quad df = n - 1 = 24$$
+                            $$t_{\alpha/2}(24) = t_{0.025}(24) = 2.064$$
+                            
+                            $$\Delta = t_{\alpha/2} \frac{s}{\sqrt{n}} = 2.064 \times \frac{5.3}{\sqrt{25}}$$
+                            $$= 2.064 \times 1.06 = 2.188 \text{ g}$$
+                            
+                            <strong>Khoảng tin cậy:</strong>
+                            $$(50 - 2.188; 50 + 2.188) = (47.812; 52.188) \text{ g}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Khoảng tin cậy 95%: <strong>(47.81; 52.19) g</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.3 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.3: Tuổi thọ bóng đèn Led</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Tuổi thọ của một loại bóng đèn Led dành cho học sinh bảo vệ mắt được biết theo quy luật chuẩn với độ lệch chuẩn 100 giờ. Chọn ngẫu nhiên 120 bóng để thử nghiệm, thấy mỗi bóng tuổi thọ trung bình là 1000 giờ.</p>
+                        <p><strong>a)</strong> Hãy ước lượng tuổi thọ trung bình của bóng đèn với độ tin cậy 95%.</p>
+                        <p><strong>b)</strong> Để ước lượng tuổi thọ trung bình với độ chính xác là 14 giờ thì độ tin cậy là bao nhiêu?</p>
+                        <p><strong>c)</strong> Để ước lượng với độ chính xác là 13 giờ và độ tin cậy là 95% thì cần thử nghiệm bao nhiêu bóng?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 120$, $\overline{x} = 1000$h, $\sigma = 100$h</p>
+                        
+                        <p><strong>a) Ước lượng với 95% TC:</strong></p>
+                        <div class="formula">
+                            $$z_{0.025} = 1.96$$
+                            $$\Delta = 1.96 \times \frac{100}{\sqrt{120}} = 1.96 \times 9.13 = 17.89 \text{ h}$$
+                            
+                            <strong>Khoảng TC:</strong> $(1000 - 17.89; 1000 + 17.89) = (982.11; 1017.89)$ h
+                        </div>
+                        
+                        <p><strong>b) Độ TC khi Δ = 14h:</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = \frac{\Delta \times \sqrt{n}}{\sigma} = \frac{14 \times \sqrt{120}}{100} = 1.534$$
+                            
+                            $$\Phi(1.534) = 0.9375$$
+                            $$1 - \alpha = 2 \times 0.9375 - 1 = 0.875 = 87.5\%$$
+                        </div>
+                        
+                        <p><strong>c) Cần n bao nhiêu để Δ=13h, 95% TC:</strong></p>
+                        <div class="formula">
+                            $$n = \left(\frac{z_{\alpha/2} \sigma}{\Delta}\right)^2 = \left(\frac{1.96 \times 100}{13}\right)^2$$
+                            $$= (15.08)^2 = 227.4 \approx 228 \text{ bóng}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> (982; 1018) giờ &nbsp;&nbsp; <strong>b)</strong> 87.5% &nbsp;&nbsp; <strong>c)</strong> 228 bóng
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.4 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.4: Số giờ sử dụng smartphone</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một cuộc khảo sát 100 sinh viên cho thấy số giờ sử dụng smartphone trung bình trong một ngày của các bạn ấy là 4,2 giờ và phương sai mẫu hiệu chỉnh là 6,5 giờ. Tìm khoảng tin cậy 98% cho số giờ sử dụng smart phone trung bình trong 1 tuần của các bạn sinh viên.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Cho:</strong> $n = 100$, $\overline{x} = 4.2$h/ngày, $s^2 = 6.5$</p>
+                        
+                        <p><strong>Ước lượng cho 1 ngày trước:</strong></p>
+                        <div class="formula">
+                            $$z_{0.01} = 2.33$$
+                            $$\Delta = 2.33 \times \frac{\sqrt{6.5}}{\sqrt{100}} = 2.33 \times 0.255 = 0.594 \text{ h}$$
+                            
+                            <strong>Khoảng TC 1 ngày:</strong>
+                            $$(4.2 - 0.594; 4.2 + 0.594) = (3.606; 4.794) \text{ giờ/ngày}$$
+                        </div>
+                        
+                        <p><strong>Khoảng TC 1 tuần (× 7):</strong></p>
+                        <div class="formula">
+                            $$(3.606 \times 7; 4.794 \times 7) = (25.24; 33.56) \text{ giờ/tuần}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Khoảng tin cậy 98%: <strong>(25.2; 33.6) giờ/tuần</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.5 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.5: Khối lượng máy phát điện (dữ liệu gốc)</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Khối lượng (kg) các sản phẩm máy phát điện tại một cửa hàng điện công nghiệp là một đại lượng ngẫu nhiên có phân phối chuẩn. Kiểm tra 20 sản phẩm, ta được kết quả sau:</p>
+                        <p>46, 49, 47, 50, 46, 48, 48, 49, 47, 50, 49, 48, 46, 49, 48, 49, 48, 50, 49, 47</p>
+                        <p>Với độ tin cậy 97% hãy ước lượng khối lượng trung bình của một sản phẩm thuộc cửa hàng.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Bước 1: Tính $\overline{x}$ và $s$:</strong></p>
+                        <div class="formula">
+                            $$\overline{x} = \frac{46+49+47+50+...+49+47}{20} = \frac{963}{20} = 48.15 \text{ kg}$$
+                            
+                            $$s \approx 1.387 \text{ kg}$$ (tính từ công thức)
+                        </div>
+                        
+                        <p><strong>Bước 2: Ước lượng:</strong></p>
+                        <div class="formula">
+                            $$n = 20, \quad df = 19, \quad \alpha = 0.03$$
+                            $$t_{0.015}(19) = 2.205$$
+                            
+                            $$\Delta = 2.205 \times \frac{1.387}{\sqrt{20}} = 2.205 \times 0.310 = 0.684 \text{ kg}$$
+                            
+                            <strong>Khoảng tin cậy:</strong>
+                            $$(48.15 - 0.684; 48.15 + 0.684) = (47.47; 48.83) \text{ kg}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Khoảng tin cậy 97%: <strong>(47.5; 48.8) kg</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.6 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 4.6: Số giờ tự học và tỷ lệ sinh viên</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Theo dõi 100 sinh viên để xác định số giờ tự học ở nhà thì tính được số giờ tự học trung bình là 2,8 giờ với độ lệch mẫu hiệu chỉnh là 1,5. Biết trong 100 SV đó có 95 sinh viên có tự học ở nhà.</p>
+                        <p><strong>a)</strong> Ước lượng số giờ tự học trung bình của sinh viên với độ tin cậy 95%.</p>
+                        <p><strong>b)</strong> Ước lượng tỷ lệ sinh viên không tự học ở nhà với độ tin cậy 98%.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>a) Ước lượng số giờ TB:</strong></p>
+                        <p>$n = 100$, $\overline{x} = 2.8$h, $s = 1.5$h</p>
+                        <div class="formula">
+                            $$z_{0.025} = 1.96$$
+                            $$\Delta = 1.96 \times \frac{1.5}{\sqrt{100}} = 1.96 \times 0.15 = 0.294$$
+                            
+                            <strong>Khoảng TC:</strong> $(2.8 - 0.294; 2.8 + 0.294) = (2.506; 3.094)$ giờ
+                        </div>
+                        
+                        <p><strong>b) Ước lượng tỷ lệ không tự học:</strong></p>
+                        <p>Số SV không tự học: 5 người $\Rightarrow f = 0.05$</p>
+                        <div class="formula">
+                            $$z_{0.01} = 2.33$$
+                            $$\Delta = 2.33 \sqrt{\frac{0.05 \times 0.95}{100}} = 2.33 \times 0.0218 = 0.0508$$
+                            
+                            <strong>Khoảng TC:</strong>
+                            $$(0.05 - 0.0508; 0.05 + 0.0508) = (0; 0.1008)$$
+                            
+                            Thực tế: $(0; 0.10) = (0; 10\%)$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> (2.51; 3.09) giờ &nbsp;&nbsp; <strong>b)</strong> (0; 10%)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

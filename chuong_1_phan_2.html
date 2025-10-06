@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1 - Phần 2: Bài 1.7-1.12</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+    
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: #333;}
+        .header {background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+        .header h1 {color: #2c3e50; font-size: 2.2em; margin-bottom: 10px;}
+        .controls {background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; position: sticky; top: 20px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+        .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #667eea; color: white; transition: all 0.3s;}
+        .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .container {max-width: 1200px; margin: 0 auto;}
+        .exercise {background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);}
+        .exercise-header {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
+        .exercise-header:hover {background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);}
+        .exercise-body {padding: 30px; display: none;}
+        .exercise-body.active {display: block;}
+        .problem {background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 8px;}
+        .solution {background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;}
+        .solution h4 {color: #155724; margin-bottom: 15px;}
+        .step {margin: 15px 0; padding-left: 20px;}
+        .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; overflow-x: auto;}
+        .answer {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; margin-top: 20px; font-size: 1.1em;}
+        ul {margin-left: 30px; line-height: 2;}
+        .nav-footer {background: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px;}
+        .nav-footer a {display: inline-block; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
+        .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        @media print {.controls, .nav-footer {display: none;} .exercise-body {display: block !important;} body {background: white; padding: 0;}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 CHƯƠNG 1 - PHẦN 2: BÀI 1.7 - 1.12</h1>
+        <p style="color: #7f8c8d; margin-top: 10px;">✅ ĐẦY ĐỦ 6 BÀI - 11 CÂU HỎI - XÁC SUẤT ĐẦY ĐỦ & BAYES</p>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="expandAll()">📂 Mở Tất Cả</button>
+        <button class="btn" onclick="collapseAll()">📁 Đóng Tất Cả</button>
+        <button class="btn" onclick="window.location.href='chuong_1_phan_1.html'">⬅️ Phần 1 (Bài 1-6)</button>
+        <button class="btn" onclick="window.location.href='chuong_1_phan_3.html'">➡️ Phần 3 (Bài 13-17)</button>
+        <button class="btn" onclick="window.location.href='INDEX_CHINH.html'">🏠 Trang Chủ</button>
+    </div>
+    
+    <div class="container">
+        
+        <!-- BÀI 1.7 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.7: 3 cửa hàng (2 câu a,b)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 3 cửa hàng I, II, III cùng kinh doanh một loại sản phẩm. Tỷ lệ sản phẩm tốt trong 3 cửa hàng lần lượt là 80%, 85% và 75%. Một khách chọn ngẫu nhiên một cửa hàng và từ đó mua 1 sản phẩm.<br><br>
+                    <strong>a)</strong> Tính xác suất để khách mua phải phế phẩm<br>
+                    <strong>b)</strong> Giả sử khách mua phải 1 phế phẩm. Tính xác suất khách mua sản phẩm đó từ cửa hàng II
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Tính xác suất để khách mua phải phế phẩm</h4>
+                    <div class="step">
+                        <strong>Bước 1: Xác định giả thuyết</strong>
+                        <div class="formula">
+                            - $H_1$: Chọn CH I, $P(H_1) = \frac{1}{3}$, $P(\text{phế}|H_1) = 0.2$<br>
+                            - $H_2$: Chọn CH II, $P(H_2) = \frac{1}{3}$, $P(\text{phế}|H_2) = 0.15$<br>
+                            - $H_3$: Chọn CH III, $P(H_3) = \frac{1}{3}$, $P(\text{phế}|H_3) = 0.25$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(\text{phế}) = \sum_{i=1}^{3} P(H_i) \times P(\text{phế}|H_i)$$<br>
+                            $$P(\text{phế}) = \frac{1}{3}(0.2 + 0.15 + 0.25) = \frac{1}{3} \times 0.6 = 0.2$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.2 = 20\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Giả sử khách mua phải 1 phế phẩm. Tính xác suất khách mua sản phẩm đó từ cửa hàng II</h4>
+                    <div class="step">
+                        <strong>Áp dụng công thức Bayes:</strong>
+                        <div class="formula">
+                            $$P(H_2|\text{phế}) = \frac{P(H_2) \times P(\text{phế}|H_2)}{P(\text{phế})} = \frac{\frac{1}{3} \times 0.15}{0.2} = \frac{0.05}{0.2} = 0.25$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.25 = 25\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.8 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.8: Chuyển lọ thuốc - Bayes
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 2 hộp đựng cùng một loại thuốc. Hộp I gồm 8 lọ thuốc (có 3 lọ kém phẩm chất). Hộp II gồm 10 lọ thuốc (có 4 lọ kém phẩm chất). Từ hộp I lấy ngẫu nhiên 1 lọ bỏ sang hộp II, sau đó từ hộp II lấy ngẫu nhiên 2 lọ. Giả sử đã lấy được 1 lọ tốt và 1 lọ kém phẩm chất từ hộp II. Tính xác suất đã lấy được lọ thuốc tốt ở hộp I.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Bước 1: Xác định giả thuyết</strong>
+                        <div class="formula">
+                            - $H_1$: Lấy lọ tốt từ I sang II (5 lọ tốt, 3 lọ kém)<br>
+                            &nbsp;&nbsp;• $P(H_1) = \frac{5}{8}$<br>
+                            &nbsp;&nbsp;• Hộp II lúc này: 7 tốt, 4 kém<br><br>
+                            - $H_2$: Lấy lọ kém từ I sang II<br>
+                            &nbsp;&nbsp;• $P(H_2) = \frac{3}{8}$<br>
+                            &nbsp;&nbsp;• Hộp II lúc này: 6 tốt, 5 kém
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Gọi A: Lấy được 1 tốt + 1 kém từ hộp II<br><br>
+                            $$P(A|H_1) = \frac{C_7^1 \times C_4^1}{C_{11}^2} = \frac{7 \times 4}{55} = \frac{28}{55}$$<br><br>
+                            $$P(A|H_2) = \frac{C_6^1 \times C_5^1}{C_{11}^2} = \frac{6 \times 5}{55} = \frac{30}{55}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Tính P(A)</strong>
+                        <div class="formula">
+                            $$P(A) = \frac{5}{8} \times \frac{28}{55} + \frac{3}{8} \times \frac{30}{55} = \frac{140 + 90}{440} = \frac{230}{440} = \frac{23}{44}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 4: Áp dụng công thức Bayes</strong>
+                        <div class="formula">
+                            $$P(H_1|A) = \frac{P(H_1) \times P(A|H_1)}{P(A)} = \frac{\frac{5}{8} \times \frac{28}{55}}{\frac{23}{44}} = \frac{\frac{140}{440}}{\frac{230}{440}} = \frac{140}{230} = \frac{14}{23}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{14}{23} \approx 0.6087 = 60.87\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.9 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.9: Chuyển bi giữa 2 hộp (3 câu a,b,c)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 2 hộp đựng bi, mỗi hộp chứa 10 bi. Trong đó, hộp I gồm 8 bi đỏ và 2 bi trắng; hộp II gồm 7 bi đỏ và 3 bi trắng. Lấy ngẫu nhiên từ hộp I 2 bi bỏ sang hộp II, sau đó, từ hộp II lấy ngẫu nhiên ra 4 bi. Tính xác suất để lấy được:<br><br>
+                    <strong>a)</strong> 2 bi đỏ và 2 bi trắng từ hộp II<br>
+                    <strong>b)</strong> 1 bi đỏ và 3 bi trắng từ hộp II<br>
+                    <strong>c)</strong> Lấy được 1 bi đỏ và 1 bi trắng từ hộp I, biết đã lấy được 2 bi đỏ và 2 bi trắng từ hộp II
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) 2 bi đỏ và 2 bi trắng từ hộp II</h4>
+                    <div class="step">
+                        <strong>Bước 1: Phân tích các trường hợp chuyển từ I sang II</strong>
+                        <div class="formula">
+                            - $H_1$: Chuyển 2 đỏ từ I sang II<br>
+                            &nbsp;&nbsp;• $P(H_1) = \frac{C_8^2}{C_{10}^2} = \frac{28}{45}$<br>
+                            &nbsp;&nbsp;• Hộp II có: 9 đỏ, 3 trắng<br><br>
+                            - $H_2$: Chuyển 1 đỏ + 1 trắng từ I sang II<br>
+                            &nbsp;&nbsp;• $P(H_2) = \frac{C_8^1 \times C_2^1}{C_{10}^2} = \frac{16}{45}$<br>
+                            &nbsp;&nbsp;• Hộp II có: 8 đỏ, 4 trắng<br><br>
+                            - $H_3$: Chuyển 2 trắng từ I sang II<br>
+                            &nbsp;&nbsp;• $P(H_3) = \frac{C_2^2}{C_{10}^2} = \frac{1}{45}$<br>
+                            &nbsp;&nbsp;• Hộp II có: 7 đỏ, 5 trắng
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Gọi A: Lấy 2 đỏ + 2 trắng từ hộp II<br><br>
+                            $$P(A|H_1) = \frac{C_9^2 \times C_3^2}{C_{12}^4} = \frac{36 \times 3}{495} = \frac{108}{495}$$<br><br>
+                            $$P(A|H_2) = \frac{C_8^2 \times C_4^2}{C_{12}^4} = \frac{28 \times 6}{495} = \frac{168}{495}$$<br><br>
+                            $$P(A|H_3) = \frac{C_7^2 \times C_5^2}{C_{12}^4} = \frac{21 \times 10}{495} = \frac{210}{495}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(A) = \frac{28}{45} \times \frac{108}{495} + \frac{16}{45} \times \frac{168}{495} + \frac{1}{45} \times \frac{210}{495}$$<br>
+                            $$P(A) = \frac{1}{22275}(28 \times 108 + 16 \times 168 + 1 \times 210)$$<br>
+                            $$P(A) = \frac{3024 + 2688 + 210}{22275} = \frac{5922}{22275} = \frac{658}{2475}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{658}{2475} \approx 0.2659 = 26.59\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) 1 bi đỏ và 3 bi trắng từ hộp II</h4>
+                    <div class="step">
+                        <strong>Gọi B: Lấy 1 đỏ + 3 trắng từ hộp II</strong>
+                        <div class="formula">
+                            $$P(B|H_1) = \frac{C_9^1 \times C_3^3}{C_{12}^4} = \frac{9 \times 1}{495} = \frac{9}{495}$$<br><br>
+                            $$P(B|H_2) = \frac{C_8^1 \times C_4^3}{C_{12}^4} = \frac{8 \times 4}{495} = \frac{32}{495}$$<br><br>
+                            $$P(B|H_3) = \frac{C_7^1 \times C_5^3}{C_{12}^4} = \frac{7 \times 10}{495} = \frac{70}{495}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Công thức xác suất đầy đủ:</strong>
+                        <div class="formula">
+                            $$P(B) = \frac{28}{45} \times \frac{9}{495} + \frac{16}{45} \times \frac{32}{495} + \frac{1}{45} \times \frac{70}{495}$$<br>
+                            $$P(B) = \frac{1}{22275}(28 \times 9 + 16 \times 32 + 1 \times 70)$$<br>
+                            $$P(B) = \frac{252 + 512 + 70}{22275} = \frac{834}{22275} = \frac{278}{7425}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{278}{7425} \approx 0.0374 = 3.74\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu c) Lấy được 1 bi đỏ và 1 bi trắng từ hộp I, biết đã lấy được 2 bi đỏ và 2 bi trắng từ hộp II</h4>
+                    <div class="step">
+                        <strong>Cần tìm $P(H_2|A)$ với A: lấy 2 đỏ + 2 trắng từ II</strong>
+                    </div>
+                    <div class="step">
+                        <strong>Áp dụng công thức Bayes:</strong>
+                        <div class="formula">
+                            $$P(H_2|A) = \frac{P(H_2) \times P(A|H_2)}{P(A)}$$<br><br>
+                            Từ câu a, ta có $P(A) = \frac{658}{2475}$<br><br>
+                            $$P(H_2|A) = \frac{\frac{16}{45} \times \frac{168}{495}}{\frac{658}{2475}} = \frac{\frac{2688}{22275}}{\frac{658}{2475}}$$<br><br>
+                            $$P(H_2|A) = \frac{2688}{22275} \times \frac{2475}{658} = \frac{2688}{658 \times 9} = \frac{2688}{5922} = \frac{448}{987}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{448}{987} \approx 0.4539 = 45.39\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.10 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.10: 3 sinh viên làm bài - XS có điều kiện
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 3 sinh viên làm bài thi một cách độc lập. Xác suất làm được bài của sinh viên I là 0,8; của sinh viên II là 0,7; và của sinh viên III là 0,5. Biết có ít nhất một sinh viên làm được bài, tính xác suất sinh viên III làm được bài.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Bước 1: Ký hiệu</strong>
+                        <div class="formula">
+                            - $A_1$: SV I làm được, $P(A_1) = 0.8$<br>
+                            - $A_2$: SV II làm được, $P(A_2) = 0.7$<br>
+                            - $A_3$: SV III làm được, $P(A_3) = 0.5$<br>
+                            - B: Có ít nhất 1 SV làm được
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính P(B)</strong>
+                        <div class="formula">
+                            $$P(\overline{B}) = P(\text{cả 3 đều không làm được}) = 0.2 \times 0.3 \times 0.5 = 0.03$$<br>
+                            $$P(B) = 1 - 0.03 = 0.97$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Tính $P(A_3 \cap B)$</strong>
+                        <div class="formula">
+                            $A_3 \cap B$ nghĩa là SV III làm được và có ít nhất 1 SV làm được.<br><br>
+                            Vì SV III đã làm được rồi thì điều kiện "ít nhất 1 SV làm được" tự động thỏa mãn.<br><br>
+                            Do đó: $P(A_3 \cap B) = P(A_3) = 0.5$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 4: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            $$P(A_3|B) = \frac{P(A_3 \cap B)}{P(B)} = \frac{0.5}{0.97} = \frac{50}{97} \approx 0.5155$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{50}{97} \approx 51.55\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.11 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.11: 10 hộp 3 loại (3 câu a,b,c)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 10 hộp đựng các sản phẩm cùng loại, mỗi hộp chứa 20 sản phẩm. Trong đó, có 3 hộp loại I (mỗi hộp đựng 18 sản phẩm tốt và 2 phế phẩm); 5 hộp loại II (mỗi hộp đựng 16 sản phẩm tốt và 4 phế phẩm); và 2 hộp loại III (mỗi hộp đựng 14 sản phẩm tốt và 6 phế phẩm). Lấy ngẫu nhiên một hộp và từ hộp đó lấy ngẫu nhiên 4 sản phẩm.<br><br>
+                    <strong>a)</strong> Tính xác suất lấy được cả 4 sản phẩm tốt<br>
+                    <strong>b)</strong> Tính xác suất để được số sản phẩm tốt nhiều hơn số phế phẩm<br>
+                    <strong>c)</strong> Giả sử trong 4 sản phẩm lấy ra có 3 sản phẩm tốt. Tính xác suất đã lấy được hộp loại III
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Tính xác suất lấy được cả 4 sản phẩm tốt</h4>
+                    <div class="step">
+                        <strong>Bước 1: Xác định giả thuyết</strong>
+                        <div class="formula">
+                            - $H_1$: Chọn hộp loại I, $P(H_1) = \frac{3}{10}$<br>
+                            - $H_2$: Chọn hộp loại II, $P(H_2) = \frac{5}{10}$<br>
+                            - $H_3$: Chọn hộp loại III, $P(H_3) = \frac{2}{10}$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Gọi A: Lấy được 4 SP tốt<br><br>
+                            $$P(A|H_1) = \frac{C_{18}^4}{C_{20}^4} = \frac{3060}{4845} = \frac{68}{107}$$<br><br>
+                            $$P(A|H_2) = \frac{C_{16}^4}{C_{20}^4} = \frac{1820}{4845} = \frac{364}{969}$$<br><br>
+                            $$P(A|H_3) = \frac{C_{14}^4}{C_{20}^4} = \frac{1001}{4845} = \frac{143}{693}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(A) = \frac{3}{10} \times \frac{3060}{4845} + \frac{5}{10} \times \frac{1820}{4845} + \frac{2}{10} \times \frac{1001}{4845}$$<br>
+                            $$P(A) = \frac{1}{48450}(3 \times 3060 + 5 \times 1820 + 2 \times 1001)$$<br>
+                            $$P(A) = \frac{9180 + 9100 + 2002}{48450} = \frac{20282}{48450} = \frac{10141}{24225} \approx 0.4186$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P \approx 0.4186 = 41.86\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Tính xác suất để được số sản phẩm tốt nhiều hơn số phế phẩm</h4>
+                    <div class="step">
+                        <strong>Số SP tốt > số phế phẩm nghĩa là: 3 tốt + 1 phế, hoặc 4 tốt</strong>
+                    </div>
+                    <div class="step">
+                        <strong>TH1: 4 tốt</strong> (đã tính ở câu a): $\frac{20282}{48450}$
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 3 tốt + 1 phế</strong>
+                        <div class="formula">
+                            $$P(B|H_1) = \frac{C_{18}^3 \times C_2^1}{C_{20}^4} = \frac{816 \times 2}{4845} = \frac{1632}{4845}$$<br><br>
+                            $$P(B|H_2) = \frac{C_{16}^3 \times C_4^1}{C_{20}^4} = \frac{560 \times 4}{4845} = \frac{2240}{4845}$$<br><br>
+                            $$P(B|H_3) = \frac{C_{14}^3 \times C_6^1}{C_{20}^4} = \frac{364 \times 6}{4845} = \frac{2184}{4845}$$<br><br>
+                            $$P(B) = \frac{3}{10} \times \frac{1632}{4845} + \frac{5}{10} \times \frac{2240}{4845} + \frac{2}{10} \times \frac{2184}{4845}$$<br>
+                            $$P(B) = \frac{1}{48450}(3 \times 1632 + 5 \times 2240 + 2 \times 2184) = \frac{20464}{48450}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Tổng xác suất (4 tốt hoặc 3 tốt):</strong>
+                        <div class="formula">
+                            $$P(\text{tốt > phế}) = P(A) + P(B) = \frac{20282 + 20464}{48450} = \frac{40746}{48450} \approx 0.8410$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P \approx 0.8410 = 84.10\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu c) Giả sử trong 4 sản phẩm lấy ra có 3 sản phẩm tốt. Tính xác suất đã lấy được hộp loại III</h4>
+                    <div class="step">
+                        <strong>Gọi C: Lấy được 3 tốt + 1 phế</strong><br>
+                        Từ câu b, ta có: $P(C) = \frac{20464}{48450}$
+                    </div>
+                    <div class="step">
+                        <strong>Áp dụng công thức Bayes:</strong>
+                        <div class="formula">
+                            $$P(H_3|C) = \frac{P(H_3) \times P(C|H_3)}{P(C)} = \frac{\frac{2}{10} \times \frac{2184}{4845}}{\frac{20464}{48450}}$$<br><br>
+                            $$P(H_3|C) = \frac{\frac{4368}{48450}}{\frac{20464}{48450}} = \frac{4368}{20464} = \frac{273}{1279} \approx 0.2134$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{273}{1279} \approx 21.34\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.12 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.12: 3 nhà máy M, N, P (2 câu a,b)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 10 hộp đựng sản phẩm cùng loại, mỗi hộp chứa rất nhiều sản phẩm. Trong đó, có 7 hộp của nhà máy M sản xuất, 2 hộp của nhà máy N sản xuất và 1 hộp của nhà máy P sản xuất. Tỷ lệ sản phẩm tốt của các nhà máy M, N, P lần lượt là 60%, 80% và 95%.<br><br>
+                    <strong>a)</strong> Lấy ngẫu nhiên một hộp và từ hộp đó lấy ngẫu nhiên 1 sản phẩm. Tính xác suất lấy được sản phẩm tốt<br>
+                    <strong>b)</strong> Lấy ngẫu nhiên một hộp và từ hộp đó lấy ngẫu nhiên 5 sản phẩm. Tính xác suất lấy được 4 sản phẩm tốt
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Lấy ngẫu nhiên một hộp và từ hộp đó lấy ngẫu nhiên 1 sản phẩm. Tính xác suất lấy được sản phẩm tốt</h4>
+                    <div class="step">
+                        <strong>Bước 1: Xác định giả thuyết</strong>
+                        <div class="formula">
+                            - $H_M$: Chọn hộp M, $P(H_M) = \frac{7}{10}$, $P(\text{tốt}|H_M) = 0.6$<br>
+                            - $H_N$: Chọn hộp N, $P(H_N) = \frac{2}{10}$, $P(\text{tốt}|H_N) = 0.8$<br>
+                            - $H_P$: Chọn hộp P, $P(H_P) = \frac{1}{10}$, $P(\text{tốt}|H_P) = 0.95$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(\text{tốt}) = \frac{7}{10} \times 0.6 + \frac{2}{10} \times 0.8 + \frac{1}{10} \times 0.95$$<br>
+                            $$P(\text{tốt}) = 0.42 + 0.16 + 0.095 = 0.675$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.675 = 67.5\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Lấy ngẫu nhiên một hộp và từ hộp đó lấy ngẫu nhiên 5 sản phẩm. Tính xác suất lấy được 4 sản phẩm tốt</h4>
+                    <div class="step">
+                        <strong>Vì mỗi hộp chứa rất nhiều SP nên các lần lấy độc lập, áp dụng phân phối nhị thức:</strong>
+                        <div class="formula">
+                            $$P(4\text{ tốt}|H_M) = C_5^4 \times (0.6)^4 \times (0.4)^1 = 5 \times 0.1296 \times 0.4 = 0.2592$$<br><br>
+                            $$P(4\text{ tốt}|H_N) = C_5^4 \times (0.8)^4 \times (0.2)^1 = 5 \times 0.4096 \times 0.2 = 0.4096$$<br><br>
+                            $$P(4\text{ tốt}|H_P) = C_5^4 \times (0.95)^4 \times (0.05)^1 = 5 \times 0.8145 \times 0.05 = 0.2036$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Công thức xác suất đầy đủ:</strong>
+                        <div class="formula">
+                            $$P(4\text{ tốt}) = \frac{7}{10} \times 0.2592 + \frac{2}{10} \times 0.4096 + \frac{1}{10} \times 0.2036$$<br>
+                            $$P(4\text{ tốt}) = 0.1814 + 0.0819 + 0.0204 = 0.2837$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.2837 = 28.37\%$</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="nav-footer">
+        <h3 style="color: #2c3e50; margin-bottom: 20px;">📚 Điều Hướng</h3>
+        <a href="chuong_1_phan_1.html">⬅️ Phần 1 (Bài 1-6)</a>
+        <a href="chuong_1_phan_3.html">➡️ Phần 3 (Bài 13-17)</a>
+        <a href="INDEX_CHINH.html">🏠 Trang Chủ</a>
+    </div>
+    
+    <script>
+        function toggle(header) {
+            const body = header.nextElementSibling;
+            const isActive = body.classList.contains('active');
+            body.classList.toggle('active');
+            header.querySelector('span').textContent = isActive ? '▼' : '▲';
+            if (!isActive) MathJax.typesetPromise([body]).catch(err => console.log(err));
+        }
+        function expandAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.add('active');
+                b.previousElementSibling.querySelector('span').textContent = '▲';
+            });
+            MathJax.typesetPromise().catch(err => console.log(err));
+        }
+        function collapseAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.remove('active');
+                b.previousElementSibling.querySelector('span').textContent = '▼';
+            });
+        }
+        window.addEventListener('load', () => MathJax.typesetPromise().catch(err => console.log(err)));
+    </script>
+</body>
+</html>
+

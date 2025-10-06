@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2 Phần 3: Phân phối chuẩn (Bài 2.20-2.26)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Chương 2: Phân phối chuẩn</h1>
+            <p>Phần 3: Phân phối chuẩn và ứng dụng (Bài 2.20-2.26)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_2_phan_2.html">Phần 2</a> >
+            <span>Phần 3</span>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 2.20 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.20: Thi tuyển - Phân phối chuẩn</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trong kỳ thi vào một trường chuyên, nếu tổng điểm 2 môn thi của học sinh từ 15 điểm trở lên thì trúng tuyển. Biết các môn thi đều có thang điểm 10 và tổng điểm 2 môn thi là biến ngẫu nhiên có phân phối chuẩn với trung bình 13 điểm và độ lệch chuẩn 5 điểm. Tính tỷ lệ học sinh thi đỗ.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p>Gọi X là tổng điểm. $X \sim N(13, 25)$ (μ=13, σ²=25)</p>
+                        
+                        <div class="formula">
+                            $$P(X \geq 15) = P\left(\frac{X - 13}{5} \geq \frac{15 - 13}{5}\right)$$
+                            $$= P(Z \geq 0.4) = 1 - \Phi(0.4)$$
+                            $$= 1 - 0.6554 = 0.3446$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Tỷ lệ đỗ ≈ <strong>34.46%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.21 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.21: Chiều cao nam sinh viên</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Chiều cao nam sinh viên là biến ngẫu nhiên có phân phối chuẩn với trung bình 168cm và độ lệch chuẩn 6cm. Chọn ngẫu nhiên 10 nam sinh viên. Tính xác suất chọn được ít nhất 1 nam sinh cao từ 165cm tới 175cm.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p>Gọi X là chiều cao. $X \sim N(168, 36)$</p>
+                        
+                        <p><strong>Bước 1: Tính P(165 < X < 175):</strong></p>
+                        <div class="formula">
+                            $$P(165 < X < 175) = \Phi\left(\frac{175-168}{6}\right) - \Phi\left(\frac{165-168}{6}\right)$$
+                            $$= \Phi(1.17) - \Phi(-0.5)$$
+                            $$= 0.8790 - 0.3085 = 0.5705$$
+                        </div>
+                        
+                        <p><strong>Bước 2: Với 10 SV:</strong></p>
+                        <div class="formula">
+                            $$P(\text{ít nhất 1}) = 1 - P(\text{không ai})$$
+                            $$= 1 - (1 - 0.5705)^{10} = 1 - (0.4295)^{10}$$
+                            $$\approx 1 - 0.0001 \approx 1$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> P ≈ <strong>100%</strong> (gần chắc chắn)
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.22 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.22: Hai máy sản xuất</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Có 2 máy I và II cùng sản xuất một loại sản phẩm. Tỷ lệ sản phẩm tốt của các máy I, II tương ứng là 60% và 70%.</p>
+                        <p><strong>a)</strong> Cho mỗi máy sản xuất 2 sản phẩm. Tính xác suất để trong 4 sản phẩm thu được có đúng 3 sản phẩm tốt.</p>
+                        <p><strong>b)</strong> Cho máy I sản xuất 300 sản phẩm. Tính xác suất để được ít nhất 185 sản phẩm tốt.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu a:</div>
+                        
+                        <p>Gọi $X_1$ là số SP tốt từ máy I, $X_2$ từ máy II.</p>
+                        <p>$X_1 \sim B(2, 0.6)$, $X_2 \sim B(2, 0.7)$</p>
+                        
+                        <p><strong>TH1: $X_1 = 1, X_2 = 2$</strong></p>
+                        <div class="formula">
+                            $$P_1 = C_2^1(0.6)(0.4) \times C_2^2(0.7)^2$$
+                            $$= 0.48 \times 0.49 = 0.2352$$
+                        </div>
+                        
+                        <p><strong>TH2: $X_1 = 2, X_2 = 1$</strong></p>
+                        <div class="formula">
+                            $$P_2 = C_2^2(0.6)^2 \times C_2^1(0.7)(0.3)$$
+                            $$= 0.36 \times 0.42 = 0.1512$$
+                        </div>
+                        
+                        <div class="formula">
+                            $$P = 0.2352 + 0.1512 = 0.3864$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải câu b:</div>
+                        
+                        <p>$X \sim B(300, 0.6)$ xấp xỉ chuẩn</p>
+                        <p>$\mu = 180$, $\sigma = \sqrt{300 \times 0.6 \times 0.4} = 8.49$</p>
+                        
+                        <div class="formula">
+                            $$P(X \geq 185) \approx P\left(Z \geq \frac{184.5 - 180}{8.49}\right)$$
+                            $$= P(Z \geq 0.53) = 1 - \Phi(0.53)$$
+                            $$= 1 - 0.7019 = 0.2981$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 38.64% &nbsp;&nbsp; <strong>b)</strong> P ≈ 29.81%
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.23 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.23: Chọn ngẫu nhiên 1 máy</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Có 2 máy I và II hình thức giống nhau cùng sản xuất một loại sản phẩm. Tỷ lệ sản phẩm tốt của các máy I, II tương ứng là 60% và 70%. Chọn ngẫu nhiên một máy và cho máy đó sản xuất 300 sản phẩm.</p>
+                        <p><strong>a)</strong> Đúng 200 sản phẩm tốt.</p>
+                        <p><strong>b)</strong> Ít nhất 200 sản phẩm tốt.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p>$P(\text{chọn I}) = P(\text{chọn II}) = 0.5$</p>
+                        <p>Máy I: $\mu_1 = 180$, $\sigma_1 = 8.49$</p>
+                        <p>Máy II: $\mu_2 = 210$, $\sigma_2 = 7.94$</p>
+                        
+                        <p><strong>a) P(X = 200):</strong></p>
+                        <div class="formula">
+                            $$P(X=200) = 0.5 \times P(X=200|I) + 0.5 \times P(X=200|II)$$
+                            $$\approx 0.5 \times 0.0024 + 0.5 \times 0.0311 = 0.0168$$
+                        </div>
+                        
+                        <p><strong>b) P(X ≥ 200):</strong></p>
+                        <div class="formula">
+                            $$P(X \geq 200|I) = P(Z \geq 2.36) = 0.0091$$
+                            $$P(X \geq 200|II) = P(Z \geq -1.26) = 0.8962$$
+                            
+                            $$P(X \geq 200) = 0.5 \times 0.0091 + 0.5 \times 0.8962 = 0.4527$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 1.68% &nbsp;&nbsp; <strong>b)</strong> P ≈ 45.27%
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.24 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.24: Kiểm tra kiện hàng</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Sản phẩm của một nhà máy được đóng thành từng kiện, mỗi kiện gồm 20 sản phẩm (15 tốt và 5 phế phẩm). Khách hàng chọn cách kiểm tra: từ mỗi kiện lấy ngẫu nhiên 4 sản phẩm, nếu được ít nhất 3 sản phẩm tốt thì nhận kiện hàng.</p>
+                        <p><strong>a)</strong> Khách kiểm tra 10 kiện. XS có ít nhất 9 kiện được nhận?</p>
+                        <p><strong>b)</strong> Khách kiểm tra 250 kiện. XS có ít nhất 180 kiện / đúng 190 kiện được nhận?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Tính xác suất 1 kiện được nhận:</strong></p>
+                        <div class="formula">
+                            $$p = P(X \geq 3) = P(X=3) + P(X=4)$$
+                            $$= \frac{C_{15}^3 C_5^1}{C_{20}^4} + \frac{C_{15}^4}{C_{20}^4}$$
+                            $$= \frac{2275 + 1365}{4845} = 0.7513$$
+                        </div>
+                        
+                        <p><strong>a) 10 kiện:</strong></p>
+                        <p>$Y \sim B(10, 0.7513)$</p>
+                        <div class="formula">
+                            $$P(Y \geq 9) = P(Y=9) + P(Y=10)$$
+                            $$= C_{10}^9(0.7513)^9(0.2487) + (0.7513)^{10}$$
+                            $$\approx 0.1885 + 0.0563 = 0.2448$$
+                        </div>
+                        
+                        <p><strong>b) 250 kiện (dùng xấp xỉ chuẩn):</strong></p>
+                        <p>$\mu = 187.825$, $\sigma = 6.84$</p>
+                        
+                        <div class="formula">
+                            <strong>b.1) Ít nhất 180:</strong>
+                            $$P(Y \geq 180) = P(Z \geq -1.22) = 0.8888$$
+                            
+                            <strong>b.2) Đúng 190:</strong>
+                            $$P(Y = 190) \approx 0.0508$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 24.48% &nbsp;&nbsp; <strong>b.1)</strong> P ≈ 88.88% &nbsp;&nbsp; <strong>b.2)</strong> P ≈ 5.08%
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.25 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.25: Máy sản xuất 1600 SP/ngày</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một máy sản xuất tự động chi tiết máy có khả năng để sản xuất được sản phẩm tốt là 80%. Công suất của máy làm được 1600 sản phẩm trong một ngày làm việc.</p>
+                        <p><strong>a)</strong> Tìm xác suất để trong ngày máy sản xuất được từ 1200 đến 1300 sản phẩm tốt.</p>
+                        <p><strong>b)</strong> Tìm số sản phẩm tốt trung bình và tin chắc nhất mỗi ngày.</p>
+                        <p><strong>c)</strong> Nếu mỗi sản phẩm tốt bán được 3000 đồng và chi phí sản xuất 600 đồng/SP thì hãy tính số tiền lãi tin chắc nhất trong một ngày.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p>$X \sim B(1600, 0.8)$ xấp xỉ chuẩn</p>
+                        <p>$\mu = 1280$, $\sigma = 16$</p>
+                        
+                        <p><strong>a) P(1200 ≤ X ≤ 1300):</strong></p>
+                        <div class="formula">
+                            $$P(1200 \leq X \leq 1300) = \Phi\left(\frac{1300.5-1280}{16}\right) - \Phi\left(\frac{1199.5-1280}{16}\right)$$
+                            $$= \Phi(1.28) - \Phi(-5.03) \approx 0.8997$$
+                        </div>
+                        
+                        <p><strong>b) Trung bình và Mode:</strong></p>
+                        <div class="formula">
+                            $$E(X) = 1280 \text{ SP}$$
+                            $$M_0 = \lfloor 1601 \times 0.8 \rfloor = 1280 \text{ SP}$$
+                        </div>
+                        
+                        <p><strong>c) Lãi tin chắc nhất:</strong></p>
+                        <div class="formula">
+                            $$\text{Lãi} = 1280 \times 3000 - 1600 \times 600$$
+                            $$= 3,840,000 - 960,000 = 2,880,000 \text{ đồng}$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 89.97% &nbsp;&nbsp; <strong>b)</strong> TB = Mode = 1280 SP<br>
+                        <strong>c)</strong> Lãi tin chắc nhất = <strong>2.880.000đ/ngày</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.26 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2.26: Khách sạn đặt chỗ quá số phòng</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Một khách sạn nhận đặt chỗ của 225 khách hàng cho 200 phòng vào ngày lễ 30/4 vì theo kinh nghiệm của những năm trước cho thấy có 15% khách đặt chỗ nhưng không đến.</p>
+                        <p><strong>a)</strong> Có đúng 195 khách đến?</p>
+                        <p><strong>b)</strong> Có từ 190 đến 199 khách đến?</p>
+                        <p><strong>c)</strong> Tất cả khách đặt và đến đều được nhận phòng?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p>$X \sim B(225, 0.85)$ (85% đến)</p>
+                        <p>$\mu = 191.25$, $\sigma = 5.35$</p>
+                        
+                        <p><strong>a) P(X = 195):</strong></p>
+                        <div class="formula">
+                            $$P(X = 195) \approx \frac{1}{\sqrt{2\pi} \times 5.35} e^{-\frac{(195-191.25)^2}{2 \times 28.62}}$$
+                            $$\approx 0.0604$$
+                        </div>
+                        
+                        <p><strong>b) P(190 ≤ X ≤ 199):</strong></p>
+                        <div class="formula">
+                            $$P(190 \leq X \leq 199) = \Phi\left(\frac{199.5-191.25}{5.35}\right) - \Phi\left(\frac{189.5-191.25}{5.35}\right)$$
+                            $$= \Phi(1.54) - \Phi(-0.33) = 0.9382 - 0.3707 = 0.5675$$
+                        </div>
+                        
+                        <p><strong>c) P(X ≤ 200):</strong></p>
+                        <div class="formula">
+                            $$P(X \leq 200) = \Phi\left(\frac{200.5-191.25}{5.35}\right)$$
+                            $$= \Phi(1.73) = 0.9582$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> P ≈ 6.04% &nbsp;&nbsp; <strong>b)</strong> P ≈ 56.75% &nbsp;&nbsp; <strong>c)</strong> P ≈ 95.82%
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

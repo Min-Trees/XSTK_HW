@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1 - Phần 3: Bài 1.13-1.17</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+    
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: #333;}
+        .header {background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+        .header h1 {color: #2c3e50; font-size: 2.2em; margin-bottom: 10px;}
+        .controls {background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; position: sticky; top: 20px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+        .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #667eea; color: white; transition: all 0.3s;}
+        .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .container {max-width: 1200px; margin: 0 auto;}
+        .exercise {background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);}
+        .exercise-header {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
+        .exercise-header:hover {background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);}
+        .exercise-body {padding: 30px; display: none;}
+        .exercise-body.active {display: block;}
+        .problem {background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 8px;}
+        .solution {background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;}
+        .solution h4 {color: #155724; margin-bottom: 15px;}
+        .step {margin: 15px 0; padding-left: 20px;}
+        .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; overflow-x: auto;}
+        .answer {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; margin-top: 20px; font-size: 1.1em;}
+        ul {margin-left: 30px; line-height: 2;}
+        .nav-footer {background: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px;}
+        .nav-footer a {display: inline-block; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
+        .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .success-banner {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 30px; border-radius: 15px; text-align: center; margin: 40px 0; box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);}
+        @media print {.controls, .nav-footer {display: none;} .exercise-body {display: block !important;} body {background: white; padding: 0;}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 CHƯƠNG 1 - PHẦN 3: BÀI 1.13 - 1.17</h1>
+        <p style="color: #7f8c8d; margin-top: 10px;">✅ ĐẦY ĐỦ 5 BÀI - 10 CÂU HỎI - PHÂN PHỐI NHỊ THỨC & TỔNG HỢP</p>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="expandAll()">📂 Mở Tất Cả</button>
+        <button class="btn" onclick="collapseAll()">📁 Đóng Tất Cả</button>
+        <button class="btn" onclick="window.location.href='chuong_1_phan_2.html'">⬅️ Phần 2 (Bài 7-12)</button>
+        <button class="btn" onclick="window.location.href='chuong_2_dlnn.html'">➡️ Chương 2</button>
+        <button class="btn" onclick="window.location.href='INDEX_CHINH.html'">🏠 Trang Chủ</button>
+    </div>
+    
+    <div class="container">
+        
+        <!-- BÀI 1.13 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.13: Nhà máy 3 phân xưởng (2 câu a,b)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Một nhà máy gồm 3 phân xưởng I, II, III. Trong đó, phân xưởng I sản xuất ra 45% số lượng sản phẩm, phân xưởng II sản xuất ra 30% số lượng sản phẩm, phân xưởng III sản xuất ra 25% số lượng sản phẩm. Tỷ lệ sản phẩm tốt của các phân xưởng I, II, III lần lượt là 70%, 75% và 80%.<br><br>
+                    <strong>a)</strong> Tính tỷ lệ sản phẩm tốt nói chung do nhà máy sản xuất<br>
+                    <strong>b)</strong> Mua ngẫu nhiên 10 sản phẩm (trong số rất nhiều sản phẩm) do nhà máy sản xuất. Tính xác suất để mua được ít nhất 9 sản phẩm tốt
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Tính tỷ lệ sản phẩm tốt nói chung do nhà máy sản xuất</h4>
+                    <div class="step">
+                        <strong>Gọi:</strong>
+                        <div class="formula">
+                            - $H_1$: SP từ phân xưởng I, $P(H_1) = 0.45$<br>
+                            - $H_2$: SP từ phân xưởng II, $P(H_2) = 0.30$<br>
+                            - $H_3$: SP từ phân xưởng III, $P(H_3) = 0.25$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Công thức xác suất đầy đủ:</strong>
+                        <div class="formula">
+                            $$P(\text{tốt}) = 0.45 \times 0.7 + 0.30 \times 0.75 + 0.25 \times 0.8$$<br>
+                            $$P(\text{tốt}) = 0.315 + 0.225 + 0.2 = 0.74$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Tỷ lệ SP tốt = **74%**</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Mua ngẫu nhiên 10 sản phẩm. Tính xác suất để mua được ít nhất 9 sản phẩm tốt</h4>
+                    <div class="step">
+                        <strong>Vì số SP rất nhiều nên các lần mua độc lập:</strong>
+                        <div class="formula">
+                            Gọi X là số SP tốt trong 10 SP, $X \sim B(10, 0.74)$<br><br>
+                            $$P(X \geq 9) = P(X = 9) + P(X = 10)$$<br><br>
+                            $$P(X = 9) = C_{10}^9 \times (0.74)^9 \times (0.26)^1 = 10 \times 0.0596 \times 0.26 \approx 0.1550$$<br><br>
+                            $$P(X = 10) = C_{10}^{10} \times (0.74)^{10} = 0.0441$$<br><br>
+                            $$P(X \geq 9) = 0.1550 + 0.0441 = 0.1991$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P \approx 0.1991 = 19.91\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.14 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.14: 2 lô hàng lấy 5+5 SP
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có hai lô hàng đựng các sản phẩm cùng loại, mỗi lô chứa 70% sản phẩm tốt, trong đó lô I chứa 30 sản phẩm, lô II chứa rất nhiều sản phẩm. Từ mỗi lô lấy ngẫu nhiên 5 sản phẩm. Tính xác suất để trong 10 sản phẩm thu được có đúng 8 sản phẩm tốt.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Phân tích:</strong>
+                        <div class="formula">
+                            - Lô I: 30 SP (21 tốt, 9 phế) - lấy không hoàn lại<br>
+                            - Lô II: Rất nhiều SP (70% tốt) - lấy có hoàn lại (các lần độc lập)<br><br>
+                            Gọi $X_1$ là số SP tốt từ lô I, $X_2$ là số SP tốt từ lô II.<br>
+                            Cần: $X_1 + X_2 = 8$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Các trường hợp:</strong>
+                        <ul>
+                            <li>$X_1 = 3, X_2 = 5$</li>
+                            <li>$X_1 = 4, X_2 = 4$</li>
+                            <li>$X_1 = 5, X_2 = 3$</li>
+                        </ul>
+                    </div>
+                    <div class="step">
+                        <strong>TH1:</strong> $P(X_1 = 3, X_2 = 5)$
+                        <div class="formula">
+                            $$P(X_1 = 3) = \frac{C_{21}^3 \times C_9^2}{C_{30}^5} = \frac{1330 \times 36}{142506} = \frac{47880}{142506}$$<br>
+                            $$P(X_2 = 5) = C_5^5 \times (0.7)^5 = 0.16807$$<br>
+                            $$P_1 = \frac{47880}{142506} \times 0.16807 \approx 0.0565$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2:</strong> $P(X_1 = 4, X_2 = 4)$
+                        <div class="formula">
+                            $$P(X_1 = 4) = \frac{C_{21}^4 \times C_9^1}{C_{30}^5} = \frac{5985 \times 9}{142506} = \frac{53865}{142506}$$<br>
+                            $$P(X_2 = 4) = C_5^4 \times (0.7)^4 \times (0.3)^1 = 5 \times 0.2401 \times 0.3 = 0.36015$$<br>
+                            $$P_2 = \frac{53865}{142506} \times 0.36015 \approx 0.1361$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>TH3:</strong> $P(X_1 = 5, X_2 = 3)$
+                        <div class="formula">
+                            $$P(X_1 = 5) = \frac{C_{21}^5}{C_{30}^5} = \frac{20349}{142506}$$<br>
+                            $$P(X_2 = 3) = C_5^3 \times (0.7)^3 \times (0.3)^2 = 10 \times 0.343 \times 0.09 = 0.3087$$<br>
+                            $$P_3 = \frac{20349}{142506} \times 0.3087 \approx 0.0441$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Tổng:</strong>
+                        <div class="formula">
+                            $$P = P_1 + P_2 + P_3 \approx 0.0565 + 0.1361 + 0.0441 = 0.2367$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P \approx 0.2367 = 23.67\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.15 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.15: Chuyển từ lô II sang I
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có hai lô hàng đựng các sản phẩm cùng loại, mỗi lô chứa 70% sản phẩm tốt, trong đó lô I chứa 30 sản phẩm, lô II chứa rất nhiều sản phẩm. Lấy ngẫu nhiên từ lô II 1 sản phẩm bỏ sang lô I, sau đó từ lô I lấy ngẫu nhiên 5 sản phẩm. Tính xác suất được 4 sản phẩm tốt.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Bước 1: Phân tích giả thuyết</strong>
+                        <div class="formula">
+                            Lô I ban đầu: 21 tốt, 9 phế<br><br>
+                            - $H_1$: Bỏ SP tốt từ II sang I<br>
+                            &nbsp;&nbsp;• $P(H_1) = 0.7$<br>
+                            &nbsp;&nbsp;• Lô I lúc này: 22 tốt, 9 phế (tổng 31)<br><br>
+                            - $H_2$: Bỏ SP phế từ II sang I<br>
+                            &nbsp;&nbsp;• $P(H_2) = 0.3$<br>
+                            &nbsp;&nbsp;• Lô I lúc này: 21 tốt, 10 phế (tổng 31)
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Gọi A: Lấy được 4 SP tốt từ lô I<br><br>
+                            $$P(A|H_1) = \frac{C_{22}^4 \times C_9^1}{C_{31}^5} = \frac{7315 \times 9}{169911} = \frac{65835}{169911}$$<br><br>
+                            $$P(A|H_2) = \frac{C_{21}^4 \times C_{10}^1}{C_{31}^5} = \frac{5985 \times 10}{169911} = \frac{59850}{169911}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(A) = 0.7 \times \frac{65835}{169911} + 0.3 \times \frac{59850}{169911}$$<br>
+                            $$P(A) = \frac{46084.5 + 17955}{169911} = \frac{64039.5}{169911} \approx 0.3769$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P \approx 0.3769 = 37.69\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.16 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.16: Máy sản xuất + lô hàng
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Một máy sản xuất sản phẩm với tỷ lệ sản phẩm tốt là 70%. Một lô hàng chứa 20 sản phẩm (14 tốt, 6 phế phẩm). Cho máy sản xuất 2 sp và từ lô hàng lấy ra 1 sp. Tính xs được ít nhất 2 sp tốt.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Phân tích:</strong>
+                        <div class="formula">
+                            - Máy sản xuất 2 SP: Gọi X là số SP tốt, $X \sim B(2, 0.7)$<br>
+                            - Lô hàng lấy 1 SP: Xác suất lấy được SP tốt = $\frac{14}{20} = 0.7$<br><br>
+                            Tổng có 3 SP. Ít nhất 2 tốt nghĩa là: 2 tốt hoặc 3 tốt
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>TH1: 3 tốt</strong> (máy sản xuất 2 tốt, lô cho 1 tốt)
+                        <div class="formula">
+                            $$P_1 = (0.7)^2 \times 0.7 = 0.49 \times 0.7 = 0.343$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: Đúng 2 tốt</strong>
+                        <div class="formula">
+                            - Máy: 2 tốt, Lô: 1 phế: $P = 0.49 \times 0.3 = 0.147$<br>
+                            - Máy: 1 tốt + 1 phế, Lô: 1 tốt: $P = C_2^1 \times 0.7 \times 0.3 \times 0.7 = 2 \times 0.21 \times 0.7 = 0.294$<br>
+                            - Máy: 0 tốt (2 phế), Lô: 1 tốt: Không đủ 2 tốt - loại<br><br>
+                            $$P_2 = 0.147 + 0.294 = 0.441$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Tổng:</strong>
+                        <div class="formula">
+                            $$P = 0.343 + 0.441 = 0.784$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.784 = 78.4\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.17 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.17: 4 SP từ 2 lô, chọn 2/4
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có hai lô hàng I và II. Lô I chứa 10 sản phẩm (có 8 sản phẩm tốt). Lô II chứa 15 sản phẩm (có 12 sản phẩm tốt). Lấy ngẫu nhiên từ mỗi lô 2 sản phẩm. Sau đó, trong 4 sản phẩm thu được lấy ngẫu nhiên 2 sản phẩm. Tính XS để được 2 sản phẩm tốt sau cùng.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        <strong>Bước 1: Phân tích các trường hợp</strong>
+                        <div class="formula">
+                            Gọi $X$ là số SP tốt trong 4 SP lấy từ 2 lô.<br>
+                            $X$ có thể nhận các giá trị: 0, 1, 2, 3, 4
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính phân phối của X</strong>
+                        <div class="formula">
+                            $$P(X = 0) = \frac{C_2^2}{C_{10}^2} \times \frac{C_3^2}{C_{15}^2} = \frac{1}{45} \times \frac{3}{105} = \frac{1}{1575}$$<br><br>
+                            $$P(X = 1) = \frac{C_8^1 \times C_2^1}{C_{10}^2} \times \frac{C_3^2}{C_{15}^2} + \frac{C_2^2}{C_{10}^2} \times \frac{C_{12}^1 \times C_3^1}{C_{15}^2}$$<br>
+                            $$= \frac{16}{45} \times \frac{3}{105} + \frac{1}{45} \times \frac{36}{105} = \frac{4}{225}$$<br><br>
+                            $$P(X = 2) = \frac{C_8^2}{C_{10}^2} \times \frac{C_3^2}{C_{15}^2} + \frac{C_8^1 \times C_2^1}{C_{10}^2} \times \frac{C_{12}^1 \times C_3^1}{C_{15}^2} + \frac{C_2^2}{C_{10}^2} \times \frac{C_{12}^2}{C_{15}^2}$$<br>
+                            $$= \frac{84 + 576 + 66}{4725} = \frac{242}{1575}$$<br><br>
+                            $$P(X = 3) = \frac{C_8^2}{C_{10}^2} \times \frac{C_{12}^1 \times C_3^1}{C_{15}^2} + \frac{C_8^1 \times C_2^1}{C_{10}^2} \times \frac{C_{12}^2}{C_{15}^2}$$<br>
+                            $$= \frac{1008 + 1056}{4725} = \frac{688}{1575}$$<br><br>
+                            $$P(X = 4) = \frac{C_8^2}{C_{10}^2} \times \frac{C_{12}^2}{C_{15}^2} = \frac{28}{45} \times \frac{66}{105} = \frac{88}{225}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Tính xác suất lấy được 2 tốt trong 4 SP</strong>
+                        <div class="formula">
+                            Gọi B: Lấy được 2 tốt trong 4 SP<br><br>
+                            $$P(B) = \sum_{k=2}^{4} P(X = k) \times P(\text{lấy 2 tốt} | X = k)$$<br><br>
+                            $$P(\text{lấy 2 tốt} | X = k) = \frac{C_k^2}{C_4^2}$$<br><br>
+                            $$P(B) = P(X=2) \times \frac{1}{6} + P(X=3) \times \frac{3}{6} + P(X=4) \times 1$$<br><br>
+                            $$P(B) = \frac{242}{1575} \times \frac{1}{6} + \frac{688}{1575} \times \frac{3}{6} + \frac{88}{225} \times 1$$<br><br>
+                            $$P(B) = \frac{242}{9450} + \frac{2064}{9450} + \frac{3696}{9450} = \frac{6002}{9450} = \frac{3001}{4725}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{3001}{4725} \approx 0.6351 = 63.51\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner hoàn thành -->
+        <div class="success-banner">
+            <h2 style="font-size: 2em; margin-bottom: 20px;">🎉 HOÀN THÀNH CHƯƠNG 1!</h2>
+            <p style="font-size: 1.3em; line-height: 2;">
+                ✅ Đã hoàn thành <strong>17 BÀI TẬP</strong> - <strong>33 CÂU HỎI</strong><br>
+                ✅ Tất cả bài giải đầy đủ, chi tiết từng bước<br>
+                ✅ Phân chia 3 phần để tối ưu hiệu suất<br><br>
+                
+                📚 <strong>Tiếp tục với Chương 2: Đại lượng ngẫu nhiên</strong><br>
+                👉 Nhấn nút "Chương 2" bên dưới hoặc về Trang Chủ
+            </p>
+        </div>
+
+    </div>
+    
+    <div class="nav-footer">
+        <h3 style="color: #2c3e50; margin-bottom: 20px;">📚 Điều Hướng</h3>
+        <a href="chuong_1_phan_2.html">⬅️ Phần 2 (Bài 7-12)</a>
+        <a href="chuong_1_phan_1.html">⏪ Phần 1 (Bài 1-6)</a>
+        <a href="chuong_2_dlnn.html">➡️ Chương 2: ĐLNN</a>
+        <a href="INDEX_CHINH.html">🏠 Trang Chủ</a>
+    </div>
+    
+    <script>
+        function toggle(header) {
+            const body = header.nextElementSibling;
+            const isActive = body.classList.contains('active');
+            body.classList.toggle('active');
+            header.querySelector('span').textContent = isActive ? '▼' : '▲';
+            if (!isActive) MathJax.typesetPromise([body]).catch(err => console.log(err));
+        }
+        function expandAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.add('active');
+                b.previousElementSibling.querySelector('span').textContent = '▲';
+            });
+            MathJax.typesetPromise().catch(err => console.log(err));
+        }
+        function collapseAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.remove('active');
+                b.previousElementSibling.querySelector('span').textContent = '▼';
+            });
+        }
+        window.addEventListener('load', () => MathJax.typesetPromise().catch(err => console.log(err)));
+    </script>
+</body>
+</html>
+

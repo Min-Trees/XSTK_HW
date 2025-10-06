@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Template Responsive</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+    
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Header - Responsive */
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: clamp(1.5em, 5vw, 2.5em);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: clamp(0.9em, 3vw, 1.1em);
+            line-height: 1.6;
+        }
+        
+        /* Controls - Responsive */
+        .controls {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #667eea;
+            color: white;
+            font-size: clamp(0.85em, 2.5vw, 1em);
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            min-width: 120px;
+            white-space: nowrap;
+        }
+        
+        .btn:hover, .btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Exercise Cards - Responsive */
+        .exercise {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: clamp(1em, 3.5vw, 1.3em);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            word-wrap: break-word;
+        }
+        
+        .exercise-header:active {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+        }
+        
+        .exercise-body {
+            padding: 15px;
+            display: none;
+        }
+        
+        .exercise-body.active {
+            display: block;
+        }
+        
+        /* Problem & Solution - Responsive */
+        .problem {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+        }
+        
+        .solution {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+        }
+        
+        .solution h4 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: clamp(1em, 3vw, 1.2em);
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        
+        /* Formula - Responsive & Scrollable */
+        .formula {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: clamp(0.85em, 2.5vw, 0.95em);
+        }
+        
+        /* Answer - Responsive */
+        .answer {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: clamp(0.95em, 2.8vw, 1.1em);
+            word-wrap: break-word;
+        }
+        
+        /* Lists - Responsive */
+        ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        /* Footer Navigation - Responsive */
+        .nav-footer {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .nav-footer h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: clamp(1.2em, 4vw, 1.5em);
+        }
+        
+        .nav-footer a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 5px;
+            transition: all 0.3s;
+            font-size: clamp(0.85em, 2.5vw, 1em);
+        }
+        
+        .nav-footer a:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+                font-size: 14px;
+            }
+            
+            .header {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .controls {
+                padding: 8px;
+                gap: 5px;
+                top: 5px;
+            }
+            
+            .btn {
+                padding: 8px 12px;
+                min-width: 100px;
+                font-size: 0.85em;
+            }
+            
+            .exercise {
+                margin-bottom: 15px;
+            }
+            
+            .exercise-header {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            
+            .exercise-body {
+                padding: 12px;
+            }
+            
+            .problem, .solution {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .formula {
+                padding: 10px;
+                font-size: 0.85em;
+                max-width: 100%;
+            }
+            
+            .step {
+                padding-left: 10px;
+            }
+            
+            .nav-footer {
+                padding: 12px;
+            }
+            
+            .nav-footer a {
+                display: block;
+                margin: 8px 0;
+                width: 100%;
+            }
+            
+            /* MathJax mobile fix */
+            .MJXc-display {
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .exercise-header {
+                font-size: 0.95em;
+                padding: 10px 12px;
+            }
+            
+            .formula {
+                font-size: 0.8em;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .controls, .nav-footer {
+                display: none;
+            }
+            
+            .exercise-body {
+                display: block !important;
+            }
+            
+            .exercise {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Touch improvements */
+        @media (hover: none) {
+            .btn:hover {
+                transform: none;
+            }
+            
+            .btn:active {
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 RESPONSIVE DESIGN</h1>
+            <p>Tối ưu cho mọi thiết bị - Desktop, Tablet, Mobile</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="alert('Đã tối ưu cho mobile!')">📱 Mobile</button>
+            <button class="btn" onclick="alert('Tối ưu cho tablet!')">💻 Tablet</button>
+            <button class="btn" onclick="alert('Tối ưu cho desktop!')">🖥️ Desktop</button>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">✅ TÍNH NĂNG RESPONSIVE</h3>
+            <ul style="color: #555; line-height: 2;">
+                <li>📱 <strong>Viewport tối ưu:</strong> Tự động scale theo màn hình</li>
+                <li>🔤 <strong>Font size linh hoạt:</strong> Dùng clamp() để responsive</li>
+                <li>📐 <strong>Layout flexible:</strong> Grid & Flexbox responsive</li>
+                <li>👆 <strong>Touch friendly:</strong> Nút bấm lớn, dễ chạm</li>
+                <li>⚡ <strong>Performance:</strong> Lazy load, GPU acceleration</li>
+                <li>📊 <strong>Formula scrollable:</strong> Công thức dài cuộn ngang</li>
+                <li>🎨 <strong>3 breakpoints:</strong> Mobile (<480px), Tablet (<768px), Desktop</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

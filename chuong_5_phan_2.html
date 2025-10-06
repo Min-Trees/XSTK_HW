@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 5 Phần 2: Kiểm định giả thiết (Bài 5.6-5.10)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #89f7fe;
+        }
+        
+        .nav-breadcrumb a {
+            color: #66a6ff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #66a6ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #66a6ff;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #0984e3;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #0984e3;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        .hypothesis {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .conclusion {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        table th {
+            background: #66a6ff;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+            table { font-size: 0.9em; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Chương 5: Kiểm định giả thiết</h1>
+            <p>Phần 2: Kiểm định nâng cao & So sánh (Bài 5.6-5.10)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_5_phan_1.html">Phần 1</a> >
+            <span>Phần 2</span>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 5.6 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.6: Tỷ lệ nảy mầm của hạt giống</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Kho hạt giống có tỷ lệ nảy mầm 80%. Sau khi thiết bị hỏng, gieo 200 hạt có 146 nảy mầm. Với α = 2%, tỷ lệ nảy mầm có giảm không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Bước 1: Xác định dữ liệu</strong></p>
+                        <p>Tỷ lệ mẫu: $f = \frac{146}{200} = 0.73 = 73\%$</p>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 2: Đặt giả thiết</strong>
+                            $$H_0: p \geq 0.8 \text{ (tỷ lệ không giảm)}$$
+                            $$H_1: p < 0.8 \text{ (tỷ lệ giảm)}$$
+                        </div>
+                        
+                        <p><strong>Bước 3: Mức ý nghĩa</strong> $\alpha = 0.02$</p>
+                        
+                        <p><strong>Bước 4: Tính thống kê</strong></p>
+                        <div class="formula">
+                            $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.73 - 0.8}{\sqrt{0.8 \times 0.2 / 200}}$$
+                            $$= \frac{-0.07}{\sqrt{0.0008}} = \frac{-0.07}{0.0283} = -2.47$$
+                        </div>
+                        
+                        <p><strong>Bước 5: Miền bác bỏ (kiểm định một phía trái)</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha} = -z_{0.02} = -2.05$$
+                            <strong>Miền bác bỏ:</strong> $z < -2.05$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 6: Kết luận</strong><br>
+                            $z = -2.47 < -2.05$ ⟹ Ta <strong>BÁC BỎ $H_0$</strong>, chấp nhận $H_1$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 2%, tỷ lệ nảy mầm của kho hạt giống <strong>ĐÃ BỊ GIẢM</strong> một cách có ý nghĩa thống kê (từ 80% xuống còn khoảng 73%). Thiết bị hỏng đã ảnh hưởng đến chất lượng hạt giống.
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.7 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.7: Chiều cao cây trồng - Kiểm định kép</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Đại diện cho biết: TB = 52cm, tỷ lệ loại B = 30% (<45cm). Khảo sát 110 cây, kiểm định với α = 5%.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Phần 1: Kiểm định chiều cao trung bình</strong></p>
+                        <div class="formula">
+                            $$\overline{x} = 48.5 \text{ cm}, \quad s = 12.45 \text{ cm}$$
+                        </div>
+                        
+                        <div class="hypothesis">
+                            $$H_0: \mu = 52 \text{ cm} \quad vs \quad H_1: \mu \neq 52 \text{ cm}$$
+                        </div>
+                        
+                        <div class="formula">
+                            $$z = \frac{48.5 - 52}{12.45/\sqrt{110}} = \frac{-3.5}{1.187} = -2.95$$
+                            
+                            <strong>Miền bác bỏ:</strong> $|z| > 1.96$
+                        </div>
+                        
+                        <div class="conclusion">
+                            $|z| = 2.95 > 1.96$ ⟹ <strong>BÁC BỎ $H_0$</strong><br>
+                            Thông tin về chiều cao TB = 52cm <strong>KHÔNG ĐÁNG TIN</strong>
+                        </div>
+                        
+                        <hr style="margin: 20px 0;">
+                        
+                        <p><strong>Phần 2: Kiểm định tỷ lệ loại B</strong></p>
+                        <div class="formula">
+                            <p>Số cây < 45cm: 32 cây ⟹ $f = \frac{32}{110} = 0.291 = 29.1\%$</p>
+                        </div>
+                        
+                        <div class="hypothesis">
+                            $$H_0: p = 0.3 \quad vs \quad H_1: p \neq 0.3$$
+                        </div>
+                        
+                        <div class="formula">
+                            $$z = \frac{0.291 - 0.3}{\sqrt{0.3 \times 0.7 / 110}} = \frac{-0.009}{0.0437} = -0.206$$
+                        </div>
+                        
+                        <div class="conclusion">
+                            $|z| = 0.206 < 1.96$ ⟹ <strong>CHẤP NHẬN $H_0$</strong><br>
+                            Thông tin về tỷ lệ loại B = 30% <strong>ĐÁNG TIN</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        • Thông tin về chiều cao TB = 52cm: <strong>KHÔNG ĐÁNG TIN</strong><br>
+                        • Thông tin về tỷ lệ loại B = 30%: <strong>ĐÁNG TIN</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.8 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.8: Trọng lượng trái cây - Hiệu quả phân bón</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trước: TB = 56g, tỷ lệ loại II (<50g) = 16%. Sau dùng phân bón mới, khảo sát 300 trái. Kiểm định với α = 3%:</p>
+                        <p><strong>a)</strong> Phân bón có làm tăng khối lượng không?</p>
+                        <p><strong>b)</strong> Phân bón có làm giảm tỷ lệ loại II không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>a) Kiểm định khối lượng TB:</strong></p>
+                        <p>$\overline{x} = 55.67$ g, $s \approx 5.8$ g</p>
+                        
+                        <div class="hypothesis">
+                            $$H_0: \mu \leq 56 \text{ (không tăng)}$$
+                            $$H_1: \mu > 56 \text{ (tăng)}$$
+                        </div>
+                        
+                        <div class="formula">
+                            $$z = \frac{55.67 - 56}{5.8/\sqrt{300}} = \frac{-0.33}{0.335} = -0.985$$
+                            
+                            <strong>Miền bác bỏ:</strong> $z > 1.88$ (kiểm định một phía phải)
+                        </div>
+                        
+                        <div class="conclusion">
+                            $z = -0.985 < 1.88$ ⟹ <strong>CHẤP NHẬN $H_0$</strong><br>
+                            Chưa có cơ sở khẳng định phân bón làm tăng khối lượng
+                        </div>
+                        
+                        <hr style="margin: 20px 0;">
+                        
+                        <p><strong>b) Kiểm định tỷ lệ loại II:</strong></p>
+                        <p>Số trái < 50g: 45 trái ⟹ $f = 0.15 = 15\%$</p>
+                        
+                        <div class="hypothesis">
+                            $$H_0: p \geq 0.16 \text{ (không giảm)}$$
+                            $$H_1: p < 0.16 \text{ (giảm)}$$
+                        </div>
+                        
+                        <div class="formula">
+                            $$z = \frac{0.15 - 0.16}{\sqrt{0.16 \times 0.84 / 300}} = \frac{-0.01}{0.0212} = -0.472$$
+                            
+                            <strong>Miền bác bỏ:</strong> $z < -1.88$
+                        </div>
+                        
+                        <div class="conclusion">
+                            $z = -0.472 > -1.88$ ⟹ <strong>CHẤP NHẬN $H_0$</strong><br>
+                            Chưa có cơ sở khẳng định phân bón làm giảm tỷ lệ loại II
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        <strong>a)</strong> Chưa có cơ sở khẳng định phân bón làm tăng khối lượng (55.67g ≈ 56g)<br>
+                        <strong>b)</strong> Chưa có cơ sở khẳng định phân bón làm giảm tỷ lệ loại II (15% ≈ 16%)
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.9 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.9: So sánh thời gian làm việc trước và sau cải tiến</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Trước: $n_1 = 20$, $\overline{x}_1 = 565$ h, $\sigma_1 = 70$ h</p>
+                        <p>Sau: $n_2 = 30$, $\overline{x}_2 = 600$ h, $\sigma_2 = 50$ h</p>
+                        <p>Với α = 1%, việc cải tiến có thay đổi thời gian không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <div class="hypothesis">
+                            <strong>Đặt giả thiết:</strong>
+                            $$H_0: \mu_1 = \mu_2 \text{ (không thay đổi)}$$
+                            $$H_1: \mu_1 \neq \mu_2 \text{ (có thay đổi)}$$
+                        </div>
+                        
+                        <p><strong>Tính thống kê kiểm định:</strong></p>
+                        <div class="formula">
+                            $$z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$$
+                            
+                            $$= \frac{565 - 600}{\sqrt{\frac{70^2}{20} + \frac{50^2}{30}}} = \frac{-35}{\sqrt{245 + 83.33}}$$
+                            
+                            $$= \frac{-35}{\sqrt{328.33}} = \frac{-35}{18.12} = -1.93$$
+                        </div>
+                        
+                        <p><strong>Miền bác bỏ (kiểm định hai phía):</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = z_{0.005} = 2.58$$
+                            <strong>Miền bác bỏ:</strong> $|z| > 2.58$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Kết luận:</strong><br>
+                            $|z| = 1.93 < 2.58$ ⟹ Ta <strong>CHẤP NHẬN $H_0$</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 1%, chưa có cơ sở khẳng định việc cải tiến có tác dụng làm thay đổi thời gian làm việc của thiết bị (sự khác biệt 35 giờ chưa đủ lớn để kết luận có ý nghĩa thống kê với α = 1%).
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.10 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.10: So sánh tỷ lệ tai nạn 2 phân xưởng</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>PX1: 20/200 = 10% tai nạn</p>
+                        <p>PX2: 36/300 = 12% tai nạn</p>
+                        <p>Với α = 5%, có sự khác biệt không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <div class="hypothesis">
+                            <strong>Đặt giả thiết:</strong>
+                            $$H_0: p_1 = p_2 \text{ (không khác biệt)}$$
+                            $$H_1: p_1 \neq p_2 \text{ (có khác biệt)}$$
+                        </div>
+                        
+                        <p><strong>Tính tỷ lệ chung:</strong></p>
+                        <div class="formula">
+                            $$f_1 = \frac{20}{200} = 0.1, \quad f_2 = \frac{36}{300} = 0.12$$
+                            
+                            $$\overline{f} = \frac{n_1f_1 + n_2f_2}{n_1 + n_2} = \frac{200(0.1) + 300(0.12)}{500}$$
+                            $$= \frac{20 + 36}{500} = \frac{56}{500} = 0.112$$
+                        </div>
+                        
+                        <p><strong>Tính thống kê kiểm định:</strong></p>
+                        <div class="formula">
+                            $$z = \frac{f_1 - f_2}{\sqrt{\overline{f}(1-\overline{f})(\frac{1}{n_1} + \frac{1}{n_2})}}$$
+                            
+                            $$= \frac{0.1 - 0.12}{\sqrt{0.112 \times 0.888 \times (\frac{1}{200} + \frac{1}{300})}}$$
+                            
+                            $$= \frac{-0.02}{\sqrt{0.0995 \times 0.00833}} = \frac{-0.02}{0.0288} = -0.694$$
+                        </div>
+                        
+                        <p><strong>Miền bác bỏ (kiểm định hai phía):</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = z_{0.025} = 1.96$$
+                            <strong>Miền bác bỏ:</strong> $|z| > 1.96$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Kết luận:</strong><br>
+                            $|z| = 0.694 < 1.96$ ⟹ Ta <strong>CHẤP NHẬN $H_0$</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 5%, chưa có cơ sở khẳng định có sự khác biệt đáng kể về chất lượng công tác bảo hộ lao động ở hai phân xưởng (tỷ lệ tai nạn 10% và 12% không khác biệt có ý nghĩa thống kê).
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG TÓM TẮT -->
+            <div class="exercise" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                <div class="exercise-title" style="color: #d63031;">📊 BẢNG TÓM TẮT KẾT QUẢ & CÔNG THỨC</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📋 Tóm tắt kết quả kiểm định:</div>
+                        
+                        <table>
+                            <tr>
+                                <th>Bài</th>
+                                <th>Giả thiết</th>
+                                <th>Kết luận</th>
+                                <th>Ý nghĩa thực tế</th>
+                            </tr>
+                            <tr>
+                                <td>5.1</td>
+                                <td>Tiền gửi = 1000 USD</td>
+                                <td>Chấp nhận H₀</td>
+                                <td>Tiền gửi không đổi</td>
+                            </tr>
+                            <tr>
+                                <td>5.2</td>
+                                <td>Độ dài = 20 cm</td>
+                                <td>Chấp nhận H₀</td>
+                                <td>Độ dài = 20cm</td>
+                            </tr>
+                            <tr>
+                                <td>5.3</td>
+                                <td>Thu nhập > 11 tr</td>
+                                <td>Bác bỏ H₀</td>
+                                <td>Không nên mở ST</td>
+                            </tr>
+                            <tr>
+                                <td>5.4</td>
+                                <td>Tỷ lệ = 90%</td>
+                                <td>Bác bỏ H₀</td>
+                                <td>Không đáng tin</td>
+                            </tr>
+                            <tr>
+                                <td>5.5</td>
+                                <td>Tỷ lệ tăng</td>
+                                <td>Bác bỏ H₀</td>
+                                <td>Tỷ lệ đã tăng</td>
+                            </tr>
+                            <tr>
+                                <td>5.6</td>
+                                <td>Tỷ lệ giảm</td>
+                                <td>Bác bỏ H₀</td>
+                                <td>Tỷ lệ đã giảm</td>
+                            </tr>
+                            <tr>
+                                <td>5.7</td>
+                                <td>Chiều cao & tỷ lệ</td>
+                                <td>Bác bỏ/Chấp nhận</td>
+                                <td>TB sai, TL đúng</td>
+                            </tr>
+                            <tr>
+                                <td>5.8</td>
+                                <td>PB tăng TL & giảm loại II</td>
+                                <td>Chấp nhận H₀</td>
+                                <td>Chưa cải thiện</td>
+                            </tr>
+                            <tr>
+                                <td>5.9</td>
+                                <td>Cải tiến thay đổi TG</td>
+                                <td>Chấp nhận H₀</td>
+                                <td>Chưa thay đổi rõ</td>
+                            </tr>
+                            <tr>
+                                <td>5.10</td>
+                                <td>2 PX khác biệt</td>
+                                <td>Chấp nhận H₀</td>
+                                <td>Không khác biệt</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">🔑 Công thức kiểm định quan trọng:</div>
+                        
+                        <div class="formula">
+                            <strong>1. Kiểm định trung bình μ:</strong>
+                            
+                            <p>Biết σ, hoặc n lớn: $z = \dfrac{\overline{x} - \mu_0}{\sigma/\sqrt{n}}$</p>
+                            
+                            <p>Không biết σ, n nhỏ: $t = \dfrac{\overline{x} - \mu_0}{s/\sqrt{n}} \sim t(n-1)$</p>
+                            
+                            <strong>2. Kiểm định tỷ lệ p:</strong>
+                            
+                            <p>$z = \dfrac{f - p_0}{\sqrt{p_0(1-p_0)/n}}$</p>
+                            
+                            <strong>3. So sánh 2 trung bình:</strong>
+                            
+                            <p>$z = \dfrac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$</p>
+                            
+                            <strong>4. So sánh 2 tỷ lệ:</strong>
+                            
+                            <p>$z = \dfrac{f_1 - f_2}{\sqrt{\overline{f}(1-\overline{f})(\dfrac{1}{n_1} + \dfrac{1}{n_2})}}$</p>
+                            
+                            <p>với $\overline{f} = \dfrac{n_1f_1 + n_2f_2}{n_1 + n_2}$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

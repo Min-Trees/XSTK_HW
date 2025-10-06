@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 5 Phần 1: Kiểm định giả thiết (Bài 5.1-5.5)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #89f7fe;
+        }
+        
+        .nav-breadcrumb a {
+            color: #66a6ff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #66a6ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #66a6ff;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #0984e3;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #0984e3;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        .hypothesis {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .conclusion {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Chương 5: Kiểm định giả thiết thống kê</h1>
+            <p>Phần 1: Kiểm định trung bình và tỷ lệ (Bài 5.1-5.5)</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <a href="chuong_4_phan_2.html">Chương 4</a> >
+            <span>Chương 5 - Phần 1</span> >
+            <a href="chuong_5_phan_2.html">Phần 2</a>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 5.1 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.1: Số tiền gửi tiết kiệm trung bình</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Số tiền gửi tiết kiệm trung bình trước đây là 1000 USD. Kiểm tra 64 sổ: $\overline{x} = 990$ USD, $s = 100$ USD. Với α = 4%, kiểm định xem số tiền gửi TB có thay đổi không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 1: Đặt giả thiết</strong>
+                            $$H_0: \mu = 1000 \text{ (số tiền gửi TB không đổi)}$$
+                            $$H_1: \mu \neq 1000 \text{ (số tiền gửi TB có thay đổi)}$$
+                        </div>
+                        
+                        <p><strong>Bước 2: Mức ý nghĩa</strong> $\alpha = 0.04$</p>
+                        
+                        <p><strong>Bước 3: Tính thống kê kiểm định</strong></p>
+                        <p>Do $n = 64 \geq 30$ (mẫu lớn), dùng kiểm định z:</p>
+                        <div class="formula">
+                            $$z = \frac{\overline{x} - \mu_0}{s/\sqrt{n}} = \frac{990 - 1000}{100/\sqrt{64}}$$
+                            $$= \frac{-10}{100/8} = \frac{-10}{12.5} = -0.8$$
+                        </div>
+                        
+                        <p><strong>Bước 4: Tìm miền bác bỏ</strong></p>
+                        <p>Kiểm định hai phía: $\alpha = 0.04 \Rightarrow \alpha/2 = 0.02$</p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = z_{0.02} = 2.05$$
+                            <strong>Miền bác bỏ:</strong> $|z| > 2.05$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 5: Kết luận</strong><br>
+                            $|z| = 0.8 < 2.05$ ⟹ Ta <strong>CHẤP NHẬN $H_0$</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 4%, <strong>chưa có cơ sở khẳng định</strong> số tiền gửi tiết kiệm trung bình có thay đổi. Số tiền gửi TB vẫn giữ nguyên ở mức <strong>1000 USD</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.2 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.2: Độ dài chi tiết máy</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Độ dài chi tiết máy. n = 28, dữ liệu: 20.10, 20.05, 20.03,... Với độ tin cậy 95%, có thể cho rằng TB độ dài = 20 cm không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Bước 1: Tính trung bình và độ lệch mẫu</strong></p>
+                        <div class="formula">
+                            $$\overline{x} = 20.0075 \text{ cm}$$
+                            $$s \approx 0.0219 \text{ cm}$$
+                        </div>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 2: Đặt giả thiết</strong>
+                            $$H_0: \mu = 20 \text{ cm}$$
+                            $$H_1: \mu \neq 20 \text{ cm}$$
+                        </div>
+                        
+                        <p><strong>Bước 3: Mức ý nghĩa</strong> Độ tin cậy 95% $\Rightarrow \alpha = 0.05$</p>
+                        
+                        <p><strong>Bước 4: Tính thống kê (dùng t vì n nhỏ)</strong></p>
+                        <div class="formula">
+                            $$t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}} = \frac{20.0075 - 20}{0.0219/\sqrt{28}}$$
+                            $$= \frac{0.0075}{0.00414} = 1.812$$
+                        </div>
+                        
+                        <p><strong>Bước 5: Miền bác bỏ</strong></p>
+                        <div class="formula">
+                            $$t_{\alpha/2}(27) = t_{0.025}(27) = 2.052$$
+                            <strong>Miền bác bỏ:</strong> $|t| > 2.052$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 6: Kết luận</strong><br>
+                            $|t| = 1.812 < 2.052$ ⟹ Ta <strong>CHẤP NHẬN $H_0$</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với độ tin cậy 95%, <strong>có thể cho rằng</strong> trung bình độ dài chi tiết máy <strong>bằng 20 cm</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.3 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.3: Thu nhập bình quân - Quyết định mở siêu thị</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Thu nhập bình quân hàng tháng của các hộ ở khu dân cư A. Siêu thị không hiệu quả nếu TB chỉ đạt 11 triệu. Với α = 1%, công ty có nên mở siêu thị không?</p>
+                        <p>Dữ liệu: 10 hộ (5-7tr), 15 hộ (7-9tr), 20 hộ (9-11tr), 30 hộ (11-13tr), 5 hộ (13-15tr)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Bước 1: Tính trung bình và độ lệch</strong></p>
+                        <div class="formula">
+                            $$n = 80$$
+                            $$\overline{x} = 10.125 \text{ triệu}$$
+                            $$s = 2.302 \text{ triệu}$$
+                        </div>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 2: Đặt giả thiết</strong><br>
+                            Để siêu thị hoạt động hiệu quả, cần $\mu > 11$ triệu
+                            $$H_0: \mu \leq 11 \text{ (không nên mở)}$$
+                            $$H_1: \mu > 11 \text{ (nên mở)}$$
+                        </div>
+                        
+                        <p><strong>Bước 3: Tính thống kê</strong></p>
+                        <div class="formula">
+                            $$z = \frac{\overline{x} - \mu_0}{s/\sqrt{n}} = \frac{10.125 - 11}{2.302/\sqrt{80}}$$
+                            $$= \frac{-0.875}{0.257} = -3.40$$
+                        </div>
+                        
+                        <p><strong>Bước 4: Miền bác bỏ (kiểm định một phía trái)</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha} = z_{0.01} = -2.33$$
+                            <strong>Miền bác bỏ:</strong> $z < -2.33$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 5: Kết luận</strong><br>
+                            $z = -3.40 < -2.33$ ⟹ Ta <strong>BÁC BỎ $H_0$</strong><br>
+                            Thu nhập TB <strong>THẤP HƠN</strong> 11 triệu một cách có ý nghĩa thống kê
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 1%, công ty <strong>KHÔNG NÊN</strong> mở siêu thị ở khu dân cư A vì thu nhập bình quân của các hộ thấp hơn mức 11 triệu đáng kể (chỉ đạt 10.125 triệu).
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.4 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.4: Tuyên bố của giám đốc - 90% đạt chuẩn</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Giám đốc tuyên bố 90% động cơ đạt chuẩn. Kiểm tra 200 động cơ có 170 đạt. Với α = 5%, nhận xét về tuyên bố?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 1: Đặt giả thiết</strong>
+                            $$H_0: p = 0.9 \text{ (tuyên bố đúng)}$$
+                            $$H_1: p \neq 0.9 \text{ (tuyên bố sai)}$$
+                        </div>
+                        
+                        <p><strong>Bước 2: Mức ý nghĩa</strong> $\alpha = 0.05$</p>
+                        
+                        <p><strong>Bước 3: Tính thống kê</strong></p>
+                        <p>Tỷ lệ mẫu: $f = \frac{170}{200} = 0.85$</p>
+                        <div class="formula">
+                            $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.85 - 0.9}{\sqrt{0.9 \times 0.1 / 200}}$$
+                            $$= \frac{-0.05}{\sqrt{0.00045}} = \frac{-0.05}{0.0212} = -2.36$$
+                        </div>
+                        
+                        <p><strong>Bước 4: Miền bác bỏ (kiểm định hai phía)</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha/2} = z_{0.025} = 1.96$$
+                            <strong>Miền bác bỏ:</strong> $|z| > 1.96$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 5: Kết luận</strong><br>
+                            $|z| = 2.36 > 1.96$ ⟹ Ta <strong>BÁC BỎ $H_0$</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 5%, tuyên bố của giám đốc <strong>KHÔNG ĐÁNG TIN</strong>. Tỷ lệ động cơ đạt tiêu chuẩn thực tế <strong>THẤP HƠN</strong> 90% một cách có ý nghĩa thống kê (chỉ khoảng 85%).
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.5 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 5.5: Tỷ lệ sinh viên làm thêm</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>5 năm trước tỷ lệ SV làm thêm là 65%. Năm nay khảo sát 350 SV, có 70 chưa làm thêm. Với α = 1%, tỷ lệ năm nay có tăng không?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Bước 1: Xác định dữ liệu</strong></p>
+                        <div class="formula">
+                            <p>Có làm thêm: $350 - 70 = 280$ SV</p>
+                            <p>Tỷ lệ mẫu: $f = \frac{280}{350} = 0.8 = 80\%$</p>
+                        </div>
+                        
+                        <div class="hypothesis">
+                            <strong>Bước 2: Đặt giả thiết</strong>
+                            $$H_0: p \leq 0.65 \text{ (tỷ lệ không tăng)}$$
+                            $$H_1: p > 0.65 \text{ (tỷ lệ tăng)}$$
+                        </div>
+                        
+                        <p><strong>Bước 3: Mức ý nghĩa</strong> $\alpha = 0.01$</p>
+                        
+                        <p><strong>Bước 4: Tính thống kê</strong></p>
+                        <div class="formula">
+                            $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.8 - 0.65}{\sqrt{0.65 \times 0.35 / 350}}$$
+                            $$= \frac{0.15}{\sqrt{0.000650}} = \frac{0.15}{0.0255} = 5.88$$
+                        </div>
+                        
+                        <p><strong>Bước 5: Miền bác bỏ (kiểm định một phía phải)</strong></p>
+                        <div class="formula">
+                            $$z_{\alpha} = z_{0.01} = 2.33$$
+                            <strong>Miền bác bỏ:</strong> $z > 2.33$
+                        </div>
+                        
+                        <div class="conclusion">
+                            <strong>Bước 6: Kết luận</strong><br>
+                            $z = 5.88 > 2.33$ ⟹ Ta <strong>BÁC BỎ $H_0$</strong>, chấp nhận $H_1$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong> Với mức ý nghĩa 1%, tỷ lệ sinh viên trường T có làm thêm năm nay <strong>ĐÃ THỰC SỰ TĂNG</strong> so với 5 năm trước (từ 65% lên 80%).
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

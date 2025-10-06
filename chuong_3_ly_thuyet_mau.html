@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 3: Lý thuyết mẫu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #333;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 { font-size: clamp(1.5em, 5vw, 2.5em); margin-bottom: 10px; }
+        
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #f093fb;
+        }
+        
+        .nav-breadcrumb a {
+            color: #f093fb;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .content { padding: 20px; }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-left: 4px solid #f093fb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .exercise-title {
+            color: #f093fb;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .solution {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .step { margin: 15px 0; }
+        
+        .step-title {
+            color: #f5576c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formula {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 3px solid #f5576c;
+        }
+        
+        .answer {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        table th {
+            background: #f093fb;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .content { padding: 15px; }
+            .exercise { padding: 15px; }
+            table { font-size: 0.9em; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.3em; }
+            .exercise-title { font-size: 1.1em; }
+        }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Chương 3: Lý thuyết mẫu</h1>
+            <p>Thống kê mô tả - Trung bình, phương sai, tỷ lệ mẫu</p>
+        </header>
+        
+        <div class="nav-breadcrumb">
+            <a href="INDEX_CHINH.html">🏠 Trang chủ</a> >
+            <span>Chương 3</span> >
+            <a href="chuong_4_phan_1.html">Chương 4</a>
+        </div>
+        
+        <div class="content">
+            <!-- BÀI 1 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 1: Điểm thi môn XSTK của một lớp 50 sinh viên</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Điểm thi môn XSTK của một lớp gồm 50 sv:</p>
+                        
+                        <table>
+                            <tr>
+                                <th>X</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                            </tr>
+                            <tr>
+                                <th>n<sub>X</sub></th>
+                                <td>2</td>
+                                <td>8</td>
+                                <td>6</td>
+                                <td>15</td>
+                                <td>13</td>
+                                <td>5</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                        
+                        <p>Tính điểm trung bình, phương sai mẫu hiệu chỉnh, độ lệch mẫu hiệu chỉnh, tỷ lệ sv khá (điểm từ 7 trở lên).</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Điểm trung bình mẫu:</strong></p>
+                        <div class="formula">
+                            $$\overline{x} = \frac{\sum x_i n_i}{n} = \frac{2(4) + 8(5) + 6(6) + 15(7) + 13(8) + 5(9) + 1(10)}{50}$$
+                            $$= \frac{8 + 40 + 36 + 105 + 104 + 45 + 10}{50} = \frac{348}{50} = 6.96$$
+                        </div>
+                        
+                        <p><strong>Phương sai mẫu hiệu chỉnh:</strong></p>
+                        <div class="formula">
+                            $$\overline{x^2} = \frac{\sum x_i^2 n_i}{n} = \frac{2(16) + 8(25) + 6(36) + 15(49) + 13(64) + 5(81) + 1(100)}{50}$$
+                            $$= \frac{32 + 200 + 216 + 735 + 832 + 405 + 100}{50} = \frac{2520}{50} = 50.4$$
+                            
+                            $$s^2 = \frac{n}{n-1}(\overline{x^2} - \overline{x}^2) = \frac{50}{49}(50.4 - 48.44)$$
+                            $$= \frac{50}{49} \times 1.96 = 2.0$$
+                        </div>
+                        
+                        <p><strong>Độ lệch mẫu hiệu chỉnh:</strong></p>
+                        <div class="formula">
+                            $$s = \sqrt{2.0} \approx 1.414$$
+                        </div>
+                        
+                        <p><strong>Tỷ lệ SV khá (≥7):</strong></p>
+                        <div class="formula">
+                            $$f = \frac{15 + 13 + 5 + 1}{50} = \frac{34}{50} = 0.68 = 68\%$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        • Điểm trung bình: $\overline{x} = 6.96$<br>
+                        • Phương sai mẫu hiệu chỉnh: $s^2 = 2.0$<br>
+                        • Độ lệch mẫu hiệu chỉnh: $s \approx 1.414$<br>
+                        • Tỷ lệ SV khá: <strong>68%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2 -->
+            <div class="exercise">
+                <div class="exercise-title">BÀI 2: Khảo sát chỉ tiêu X (dữ liệu nhóm)</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">📌 Đề bài:</div>
+                        <p>Để khảo sát chỉ tiêu X của một loại sản phẩm, người ta quan sát một mẫu và có kết quả sau:</p>
+                        
+                        <table>
+                            <tr>
+                                <th>X (cm)</th>
+                                <th>10-15</th>
+                                <th>15-20</th>
+                                <th>20-25</th>
+                                <th>25-30</th>
+                                <th>30-35</th>
+                                <th>35-40</th>
+                            </tr>
+                            <tr>
+                                <th>Số sp</th>
+                                <td>6</td>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>25</td>
+                                <td>12</td>
+                                <td>5</td>
+                            </tr>
+                        </table>
+                        
+                        <p>Những sản phẩm có chỉ tiêu từ 20cm trở xuống xếp vào loại B. Tính trung bình mẫu, độ lệch mẫu hiệu chỉnh và tính tỷ lệ sp loại B.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">📝 Giải:</div>
+                        
+                        <p><strong>Lấy giá trị đại diện (giữa khoảng):</strong></p>
+                        <table>
+                            <tr>
+                                <th>Giữa khoảng</th>
+                                <th>12.5</th>
+                                <th>17.5</th>
+                                <th>22.5</th>
+                                <th>27.5</th>
+                                <th>32.5</th>
+                                <th>37.5</th>
+                            </tr>
+                            <tr>
+                                <th>Tần số</th>
+                                <td>6</td>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>25</td>
+                                <td>12</td>
+                                <td>5</td>
+                            </tr>
+                        </table>
+                        
+                        <p><strong>Trung bình mẫu:</strong></p>
+                        <div class="formula">
+                            $$n = 6 + 8 + 14 + 25 + 12 + 5 = 70$$
+                            
+                            $$\overline{x} = \frac{6(12.5) + 8(17.5) + 14(22.5) + 25(27.5) + 12(32.5) + 5(37.5)}{70}$$
+                            $$= \frac{75 + 140 + 315 + 687.5 + 390 + 187.5}{70} = \frac{1795}{70} = 25.64 \text{ cm}$$
+                        </div>
+                        
+                        <p><strong>Độ lệch mẫu hiệu chỉnh:</strong></p>
+                        <div class="formula">
+                            $$\overline{x^2} = \frac{6(156.25) + 8(306.25) + 14(506.25) + 25(756.25) + 12(1056.25) + 5(1406.25)}{70}$$
+                            $$= \frac{49087.5}{70} = 701.25$$
+                            
+                            $$s^2 = \frac{70}{69}(701.25 - 657.41) = 1.0145 \times 43.84 = 44.48$$
+                            
+                            $$s = \sqrt{44.48} \approx 6.67 \text{ cm}$$
+                        </div>
+                        
+                        <p><strong>Tỷ lệ loại B (≤20cm):</strong></p>
+                        <div class="formula">
+                            $$f = \frac{6 + 8}{70} = \frac{14}{70} = 0.2 = 20\%$$
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ <strong>Đáp số:</strong><br>
+                        • Trung bình mẫu: $\overline{x} = 25.64$ cm<br>
+                        • Độ lệch mẫu hiệu chỉnh: $s \approx 6.67$ cm<br>
+                        • Tỷ lệ loại B: <strong>20%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CÔNG THỨC TỔNG KẾT -->
+            <div class="exercise" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                <div class="exercise-title" style="color: #d63031;">📚 CÔNG THỨC QUAN TRỌNG</div>
+                
+                <div class="solution">
+                    <div class="step">
+                        <div class="step-title">🔑 Dữ liệu rời rạc:</div>
+                        
+                        <div class="formula">
+                            <strong>Trung bình mẫu:</strong>
+                            $$\overline{x} = \frac{1}{n}\sum_{i=1}^{k} x_i n_i$$
+                            
+                            <strong>Phương sai mẫu:</strong>
+                            $$s_n^2 = \frac{1}{n}\sum_{i=1}^{k} x_i^2 n_i - \overline{x}^2$$
+                            
+                            <strong>Phương sai mẫu hiệu chỉnh:</strong>
+                            $$s^2 = \frac{n}{n-1}s_n^2$$
+                            
+                            <strong>Độ lệch chuẩn mẫu hiệu chỉnh:</strong>
+                            $$s = \sqrt{s^2}$$
+                            
+                            <strong>Tỷ lệ mẫu:</strong>
+                            $$f = \frac{m}{n}$$ (m: số phần tử thỏa điều kiện)
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">🔑 Dữ liệu nhóm:</div>
+                        
+                        <div class="formula">
+                            <strong>Lấy giá trị đại diện:</strong> giữa khoảng $c_i = \frac{a_i + b_i}{2}$
+                            
+                            <strong>Trung bình:</strong>
+                            $$\overline{x} = \frac{1}{n}\sum_{i=1}^{k} c_i n_i$$
+                            
+                            <strong>Phương sai:</strong>
+                            $$s^2 = \frac{n}{n-1}\left(\frac{1}{n}\sum_{i=1}^{k} c_i^2 n_i - \overline{x}^2\right)$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

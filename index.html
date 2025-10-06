@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giải XS-TK Đầy Đủ - 72+ Bài</title>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        /* Search bar */
+        .search-bar {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            background: #2c3e50;
+            overflow-x: auto;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 20px;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background: #34495e;
+        }
+        
+        .nav-tab.active {
+            background: #3498db;
+        }
+        
+        /* Content area */
+        .content {
+            padding: 30px;
+        }
+        
+        .chapter {
+            display: none;
+        }
+        
+        .chapter.active {
+            display: block;
+        }
+        
+        /* Accordion styles */
+        .accordion-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .accordion-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #e0e5ec 0%, #b8c6db 100%);
+        }
+        
+        .accordion-header.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s;
+            font-size: 1.2em;
+        }
+        
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+        
+        .accordion-content.active {
+            max-height: 5000px;
+        }
+        
+        .accordion-body {
+            padding: 25px;
+        }
+        
+        /* Problem & Solution styles */
+        .problem {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .problem-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .solution {
+            background: #e8f4f8;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .step strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .answer {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .note {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .tip {
+            background: #cce5ff;
+            border-left: 5px solid #004085;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            font-size: 1.5em;
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav-tabs, .search-bar, .scroll-top {
+                display: none !important;
+            }
+            
+            .accordion-content {
+                max-height: none !important;
+            }
+            
+            .accordion-header {
+                background: #f8f9fa !important;
+                color: black !important;
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-tab {
+                font-size: 12px;
+                padding: 12px 10px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 BÀI GIẢI XÁC SUẤT THỐNG KÊ ĐẦY ĐỦ</h1>
+            <p>72+ Bài Tập - 136+ Câu Hỏi - Tự Luận Chi Tiết</p>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">72+</div>
+                <div class="stat-label">Bài Tập</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">136+</div>
+                <div class="stat-label">Câu Hỏi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Chương</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Chi Tiết</div>
+            </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Tìm kiếm bài tập... (VD: Bayes, nhị thức, kiểm định...)">
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showChapter('intro')">🏠 Giới Thiệu</button>
+            <button class="nav-tab" onclick="showChapter('to-hop')">📊 Tổ Hợp</button>
+            <button class="nav-tab" onclick="showChapter('chuong1')">📈 Chương 1</button>
+            <button class="nav-tab" onclick="showChapter('chuong2')">🎲 Chương 2</button>
+            <button class="nav-tab" onclick="showChapter('chuong3')">📉 Chương 3</button>
+            <button class="nav-tab" onclick="showChapter('chuong4')">📊 Chương 4</button>
+            <button class="nav-tab" onclick="showChapter('chuong5')">🔬 Chương 5</button>
+            <button class="nav-tab" onclick="showChapter('congthuc')">📖 Công Thức</button>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Intro Chapter -->
+            <div id="intro" class="chapter active">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">🎯 Hướng Dẫn Sử Dụng</h2>
+                
+                <div class="note">
+                    <strong>📚 Chào mừng bạn!</strong><br>
+                    Đây là bộ tài liệu <strong>BÀI GIẢI XÁC SUẤT THỐNG KÊ</strong> đầy đủ nhất với 72+ bài tập được giải chi tiết theo hướng tự luận.
+                </div>
+                
+                <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">📋 Cách sử dụng:</h3>
+                <ul style="margin-left: 30px; line-height: 2.5;">
+                    <li>✅ <strong>Tìm kiếm:</strong> Gõ từ khóa vào ô tìm kiếm (VD: "Bayes", "nhị thức", "kiểm định")</li>
+                    <li>✅ <strong>Điều hướng:</strong> Click vào các tab trên để chuyển chương</li>
+                    <li>✅ <strong>Mở/Đóng bài:</strong> Click vào tiêu đề bài để xem lời giải</li>
+                    <li>✅ <strong>In PDF:</strong> Nhấn Ctrl+P để in ra file PDF</li>
+                    <li>✅ <strong>Xem offline:</strong> Lưu file HTML này để xem bất cứ lúc nào</li>
+                </ul>
+                
+                <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">📚 Nội dung:</h3>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Bài Tổ Hợp<br>(15 câu)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Chương 1<br>(33 câu)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">26</div>
+                        <div class="stat-label">Chương 2<br>(48 câu)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Chương 3<br>(2 bài)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Chương 4<br>(25 câu)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Chương 5<br>(15 câu)</div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Mẹo học tập:</strong><br>
+                    1. Đọc đề → Tự suy nghĩ 5 phút<br>
+                    2. Xem lời giải → Hiểu từng bước<br>
+                    3. Tự làm lại không nhìn<br>
+                    4. Lặp lại đến khi thành thạo
+                </div>
+                
+                <h3 style="margin: 30px 0 15px 0; color: #2c3e50;">⭐ Bài tập quan trọng:</h3>
+                <ul style="margin-left: 30px; line-height: 2.5;">
+                    <li>🔥 <strong>Chương 1:</strong> Bài 1.6, 1.8, 1.9 (Công thức Bayes)</li>
+                    <li>🔥 <strong>Chương 2:</strong> Bài 2.12, 2.24, 2.25 (Phân phối Nhị thức & Chuẩn)</li>
+                    <li>🔥 <strong>Chương 4:</strong> Bài 4.3, 4.7 (Ước lượng)</li>
+                    <li>🔥 <strong>Chương 5:</strong> Bài 5.3, 5.7, 5.9 (Kiểm định)</li>
+                </ul>
+            </div>
+            
+            <!-- Tổ Hợp Chapter -->
+            <div id="to-hop" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">📊 PHẦN MỞ ĐẦU: BỔ TÚC GIẢI TÍCH TỔ HỢP</h2>
+                
+                <!-- Bài 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📝 Bài 1: Bài toán bắt tay (Tìm số người)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="problem">
+                                <div class="problem-title">Đề bài:</div>
+                                Trong một buổi họp lớp, mỗi bạn bắt tay tất cả các bạn khác 1 lần. Người ta đếm được có tất cả 435 cái bắt tay. Hỏi có bao nhiêu bạn tham dự buổi họp lớp đó?
+                            </div>
+                            
+                            <div class="solution">
+                                <h4>Lời giải chi tiết:</h4>
+                                
+                                <div class="step">
+                                    <strong>Bước 1: Phân tích bài toán</strong>
+                                    <ul>
+                                        <li>Mỗi cái bắt tay là sự kết hợp của 2 bạn</li>
+                                        <li>Gọi n là số bạn tham dự buổi họp</li>
+                                        <li>Số cái bắt tay = số cách chọn 2 bạn từ n bạn</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="step">
+                                    <strong>Bước 2: Lập phương trình</strong>
+                                    <div class="formula">
+                                        Số cách chọn 2 bạn từ n bạn là:<br>
+                                        $$C_n^2 = \frac{n!}{2!(n-2)!} = \frac{n(n-1)}{2}$$<br><br>
+                                        Theo đề bài:<br>
+                                        $$\frac{n(n-1)}{2} = 435$$
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <strong>Bước 3: Giải phương trình</strong>
+                                    <div class="formula">
+                                        $$n(n-1) = 870$$<br>
+                                        $$n^2 - n - 870 = 0$$<br><br>
+                                        Giải phương trình bậc 2:<br>
+                                        $$\Delta = 1 + 4 \times 870 = 3481 = 59^2$$<br><br>
+                                        $$n = \frac{1 + 59}{2} = 30$$ (loại nghiệm âm)
+                                    </div>
+                                </div>
+                                
+                                <div class="answer">
+                                    ✅ Đáp số: Có <strong>30 bạn</strong> tham dự buổi họp lớp
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bài 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📝 Bài 2: Chọn bi từ hộp (3 câu a,b,c)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="problem">
+                                <div class="problem-title">Đề bài:</div>
+                                Một hộp gồm 20 bi (6 trắng, 4 đỏ và 10 xanh). Có bao nhiêu cách:<br>
+                                a) Chọn 4 viên bi từ hộp?<br>
+                                b) Chọn 4 viên bi từ hộp, trong đó có ít nhất 1 bi đỏ?<br>
+                                c) Chọn ra 4 viên bi, trong đó số bi trắng nhiều hơn tổng số bi đỏ và xanh?
+                            </div>
+                            
+                            <div class="solution">
+                                <h4>Câu a) Chọn 4 viên bi từ hộp</h4>
+                                <div class="formula">
+                                    $$C_{20}^4 = \frac{20!}{4! \times 16!} = \frac{20 \times 19 \times 18 \times 17}{24} = 4845$$
+                                </div>
+                                <div class="answer">✅ Đáp số: <strong>4845 cách</strong></div>
+                            </div>
+                            
+                            <div class="solution">
+                                <h4>Câu b) Có ít nhất 1 bi đỏ</h4>
+                                <div class="step">
+                                    <strong>Cách 2: Phần bù (đơn giản hơn)</strong>
+                                    <div class="formula">
+                                        Số cách chọn 4 bi không có bi đỏ nào:<br>
+                                        $$C_{16}^4 = 1820$$<br><br>
+                                        Số cách chọn có ít nhất 1 bi đỏ:<br>
+                                        $$4845 - 1820 = 3025$$
+                                    </div>
+                                </div>
+                                <div class="answer">✅ Đáp số: <strong>3025 cách</strong></div>
+                            </div>
+                            
+                            <div class="solution">
+                                <h4>Câu c) Số bi trắng nhiều hơn tổng bi đỏ và xanh</h4>
+                                <div class="step">
+                                    <strong>TH1: 3 bi trắng, 1 bi khác</strong>
+                                    <div class="formula">$$C_6^3 \times C_{14}^1 = 20 \times 14 = 280$$</div>
+                                </div>
+                                <div class="step">
+                                    <strong>TH2: 4 bi trắng</strong>
+                                    <div class="formula">$$C_6^4 = 15$$</div>
+                                </div>
+                                <div class="formula">
+                                    <strong>Tổng:</strong> $280 + 15 = 295$ cách
+                                </div>
+                                <div class="answer">✅ Đáp số: <strong>295 cách</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Các bài còn lại sẽ load động -->
+                <div class="loading">
+                    <p>📄 Các bài tập còn lại (Bài 3, 4) được tích hợp đầy đủ trong các file Markdown</p>
+                    <p style="margin-top: 10px; color: #667eea;">Xem file <strong>BAI_GIAI_XAC_XUAT_THONG_KE.md</strong> để đọc đầy đủ!</p>
+                </div>
+            </div>
+            
+            <!-- Chương 1 -->
+            <div id="chuong1" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">📈 CHƯƠNG 1: KHÁI NIỆM CƠ BẢN VÀ CÔNG THỨC XÁC SUẤT</h2>
+                
+                <div class="note">
+                    Chương này có <strong>17 bài</strong> (Bài 1.1 - 1.17) với 33 câu hỏi, bao gồm:<br>
+                    • Xác suất cổ điển<br>
+                    • Công thức xác suất đầy đủ<br>
+                    • Công thức Bayes ⭐<br>
+                    • Biến cố độc lập
+                </div>
+                
+                <!-- Bài 1.1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📝 Bài 1.1: Gọi tên sinh viên (3 câu)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="problem">
+                                <div class="problem-title">Đề bài:</div>
+                                Một lớp có 50 sinh viên. Trong kỳ thi môn XSTK có 6 SV đạt giỏi, 20 SV đạt khá, 5 SV không đạt yêu cầu, các SV còn lại đạt trung bình. Gọi tên ngẫu nhiên 3 SV của lớp. Tìm xác suất gọi được:<br>
+                                a. Ít nhất 1 SV đạt giỏi<br>
+                                b. 2 SV đạt trung bình và 1 SV đạt khá<br>
+                                c. Không quá 1 SV không đạt yêu cầu
+                            </div>
+                            
+                            <div class="solution">
+                                <h4>Phân tích: Số SV trung bình = 50 - 6 - 20 - 5 = 19</h4>
+                                
+                                <div class="step">
+                                    <strong>Câu a) Ít nhất 1 SV đạt giỏi</strong>
+                                    <div class="formula">
+                                        Số cách gọi 3 SV: $|\Omega| = C_{50}^3 = 19600$<br><br>
+                                        Dùng phần bù - Không có SV giỏi:<br>
+                                        $$C_{44}^3 = 13244$$<br><br>
+                                        $$P(A) = 1 - \frac{13244}{19600} = \frac{1589}{4900} \approx 0.3243$$
+                                    </div>
+                                    <div class="answer">✅ Đáp số: $\approx 32.43\%$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="loading">
+                    <p>📄 <strong>Bài 1.2 đến 1.17</strong> với đầy đủ lời giải chi tiết</p>
+                    <p style="margin-top: 10px;">Xem file <strong>BAI_GIAI_XAC_XUAT_THONG_KE.md</strong> và <strong>CHUONG_2_3_4_BAI_GIAI.md</strong></p>
+                </div>
+            </div>
+            
+            <!-- Chương 2 -->
+            <div id="chuong2" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">🎲 CHƯƠNG 2: ĐẠI LƯỢNG NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI</h2>
+                
+                <div class="note">
+                    Chương này có <strong>26 bài</strong> (Bài 2.1 - 2.26) với 48 câu hỏi, bao gồm:<br>
+                    • ĐLNN liên tục và rời rạc<br>
+                    • Phân phối Nhị thức, Poisson<br>
+                    • Phân phối Chuẩn ⭐<br>
+                    • Xấp xỉ chuẩn
+                </div>
+                
+                <div class="loading">
+                    <p>📄 Xem file <strong>CHUONG_2_3_4_BAI_GIAI.md</strong> và <strong>CHUONG_2_FINAL_CHUONG_3_4.md</strong></p>
+                    <p style="margin-top: 10px;">Các bài quan trọng: <strong>2.12 (Gà đẻ), 2.24 (Kiểm tra kiện), 2.25 (Máy SX - Lãi)</strong></p>
+                </div>
+            </div>
+            
+            <!-- Chương 3 -->
+            <div id="chuong3" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">📉 CHƯƠNG 3: LÝ THUYẾT MẪU</h2>
+                
+                <div class="note">
+                    Chương này có <strong>2 bài</strong> về lý thuyết mẫu:<br>
+                    • Trung bình mẫu, phương sai mẫu<br>
+                    • Độ lệch mẫu hiệu chỉnh<br>
+                    • Tỷ lệ mẫu
+                </div>
+                
+                <div class="loading">
+                    <p>📄 Xem file <strong>CHUONG_2_FINAL_CHUONG_3_4.md</strong></p>
+                </div>
+            </div>
+            
+            <!-- Chương 4 -->
+            <div id="chuong4" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">📊 CHƯƠNG 4: ƯỚC LƯỢNG THAM SỐ</h2>
+                
+                <div class="note">
+                    Chương này có <strong>13 bài</strong> (Bài 4.1 - 4.13) với 25+ câu hỏi:<br>
+                    • Ước lượng trung bình (biết σ và không biết σ)<br>
+                    • Ước lượng tỷ lệ<br>
+                    • Xác định cỡ mẫu ⭐
+                </div>
+                
+                <div class="loading">
+                    <p>📄 Xem file <strong>CHUONG_2_FINAL_CHUONG_3_4.md</strong></p>
+                    <p style="margin-top: 10px;">Bài quan trọng: <strong>4.3 (Bóng đèn), 4.7 (Tỷ lệ SP), 4.11 (Năng suất lúa)</strong></p>
+                </div>
+            </div>
+            
+            <!-- Chương 5 -->
+            <div id="chuong5" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">🔬 CHƯƠNG 5: KIỂM ĐỊNH GIẢ THIẾT THỐNG KÊ</h2>
+                
+                <div class="note">
+                    Chương này có <strong>10 bài</strong> (Bài 5.1 - 5.10) với 15 câu hỏi:<br>
+                    • Kiểm định trung bình<br>
+                    • Kiểm định tỷ lệ<br>
+                    • So sánh 2 mẫu ⭐<br>
+                    • Kiểm định 1 phía và 2 phía
+                </div>
+                
+                <!-- Bài 5.3 - Quan trọng -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>⭐ Bài 5.3: Quyết định mở siêu thị (Quan trọng!)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="problem">
+                                <div class="problem-title">Đề bài:</div>
+                                Công ty dự định mở siêu thị tại khu dân cư A. Thu nhập bình quân (triệu/tháng):<br>
+                                <table>
+                                    <tr><th>Thu nhập</th><td>5-7</td><td>7-9</td><td>9-11</td><td>11-13</td><td>13-15</td></tr>
+                                    <tr><th>Số hộ</th><td>10</td><td>15</td><td>20</td><td>30</td><td>5</td></tr>
+                                </table>
+                                Siêu thị không hiệu quả nếu thu nhập TB chỉ đạt 11 triệu. Với α = 1%, công ty có nên mở siêu thị không?
+                            </div>
+                            
+                            <div class="solution">
+                                <div class="step">
+                                    <strong>Bước 1: Tính trung bình mẫu</strong>
+                                    <div class="formula">
+                                        $$\overline{x} = \frac{10(6) + 15(8) + 20(10) + 30(12) + 5(14)}{80} = 10.125$$<br>
+                                        $$s \approx 2.302$$
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <strong>Bước 2: Đặt giả thiết</strong>
+                                    <ul>
+                                        <li>$H_0: \mu \leq 11$ (không nên mở)</li>
+                                        <li>$H_1: \mu > 11$ (nên mở)</li>
+                                        <li>Mức ý nghĩa: $\alpha = 0.01$</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="step">
+                                    <strong>Bước 3: Tính thống kê</strong>
+                                    <div class="formula">
+                                        $$z = \frac{10.125 - 11}{2.302/\sqrt{80}} = -3.40$$
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <strong>Bước 4: Kết luận</strong>
+                                    <p>$z = -3.40 < -2.33$ → Bác bỏ $H_0$</p>
+                                </div>
+                                
+                                <div class="answer">
+                                    ✅ Kết luận: Công ty <strong>KHÔNG NÊN</strong> mở siêu thị vì thu nhập TB thấp hơn 11 triệu đáng kể (chỉ 10.125 triệu)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="loading">
+                    <p>📄 Xem đầy đủ tại file <strong>CHUONG_5_KIEM_DINH_GIA_THIET.md</strong></p>
+                    <p style="margin-top: 10px;">Có bảng tóm tắt kết quả + Mẹo kiểm định!</p>
+                </div>
+            </div>
+            
+            <!-- Công Thức -->
+            <div id="congthuc" class="chapter">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">📖 CÔNG THỨC QUAN TRỌNG</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📐 1. Tổ Hợp - Chỉnh Hợp - Hoán Vị</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="formula">
+                                <strong>Tổ hợp (Combination):</strong><br>
+                                $$C_n^k = \frac{n!}{k!(n-k)!}$$<br><br>
+                                
+                                <strong>Chỉnh hợp (Permutation):</strong><br>
+                                $$A_n^k = \frac{n!}{(n-k)!}$$<br><br>
+                                
+                                <strong>Hoán vị:</strong><br>
+                                $$P_n = n!$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📊 2. Công Thức Xác Suất</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="formula">
+                                <strong>Công thức đầy đủ:</strong><br>
+                                $$P(A) = \sum_{i=1}^n P(H_i) \cdot P(A|H_i)$$<br><br>
+                                
+                                <strong>Công thức Bayes:</strong><br>
+                                $$P(H_i|A) = \frac{P(H_i) \cdot P(A|H_i)}{P(A)}$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>🎲 3. Phân Phối Xác Suất</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="formula">
+                                <strong>Phân phối Nhị thức: $X \sim B(n,p)$</strong><br>
+                                $$P(X = k) = C_n^k \cdot p^k \cdot (1-p)^{n-k}$$<br>
+                                $$E(X) = np, \quad Var(X) = np(1-p)$$<br><br>
+                                
+                                <strong>Phân phối Poisson: $X \sim P(\lambda)$</strong><br>
+                                $$P(X = k) = \frac{\lambda^k \cdot e^{-\lambda}}{k!}$$<br>
+                                $$E(X) = Var(X) = \lambda$$<br><br>
+                                
+                                <strong>Phân phối Chuẩn: $X \sim N(\mu, \sigma^2)$</strong><br>
+                                $$Z = \frac{X - \mu}{\sigma}$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📏 4. Ước Lượng</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="formula">
+                                <strong>Ước lượng trung bình (biết σ):</strong><br>
+                                $$\left(\overline{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}}; \overline{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right)$$<br><br>
+                                
+                                <strong>Ước lượng trung bình (không biết σ):</strong><br>
+                                $$\left(\overline{x} - t_{\alpha/2}\frac{s}{\sqrt{n}}; \overline{x} + t_{\alpha/2}\frac{s}{\sqrt{n}}\right)$$<br><br>
+                                
+                                <strong>Ước lượng tỷ lệ:</strong><br>
+                                $$\left(f - z_{\alpha/2}\sqrt{\frac{f(1-f)}{n}}; f + z_{\alpha/2}\sqrt{\frac{f(1-f)}{n}}\right)$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>🔬 5. Kiểm Định Giả Thiết</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="formula">
+                                <strong>Kiểm định trung bình (biết σ):</strong><br>
+                                $$z = \frac{\overline{x} - \mu_0}{\sigma/\sqrt{n}}$$<br><br>
+                                
+                                <strong>Kiểm định trung bình (không biết σ):</strong><br>
+                                $$t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}}$$<br><br>
+                                
+                                <strong>Kiểm định tỷ lệ:</strong><br>
+                                $$z = \frac{f - p_0}{\sqrt{p_0(1-p_0)/n}}$$<br><br>
+                                
+                                <strong>So sánh 2 trung bình:</strong><br>
+                                $$z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$$
+                            </div>
+                            
+                            <div class="tip">
+                                <strong>Nhận biết kiểm định:</strong><br>
+                                • Hai phía ($H_1: \theta \neq \theta_0$): "Có thay đổi không?", "Có khác biệt không?"<br>
+                                • Một phía phải ($H_1: \theta > \theta_0$): "Có tăng không?", "Có lớn hơn không?"<br>
+                                • Một phía trái ($H_1: \theta < \theta_0$): "Có giảm không?", "Có nhỏ hơn không?"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll to top button -->
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script>
+        // Toggle accordion
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            const allContents = document.querySelectorAll('.accordion-content');
+            
+            // Close all others
+            allHeaders.forEach(h => {
+                if (h !== element) {
+                    h.classList.remove('active');
+                }
+            });
+            allContents.forEach(c => {
+                if (c !== content) {
+                    c.classList.remove('active');
+                }
+            });
+            
+            // Toggle current
+            element.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            // Retypeset math if opened
+            if (content.classList.contains('active')) {
+                MathJax.typesetPromise([content]).catch(err => console.log(err));
+            }
+        }
+        
+        // Show chapter
+        function showChapter(chapterId) {
+            // Hide all chapters
+            document.querySelectorAll('.chapter').forEach(ch => ch.classList.remove('active'));
+            
+            // Show selected chapter
+            document.getElementById(chapterId).classList.add('active');
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // Retypeset math
+            MathJax.typesetPromise().catch(err => console.log(err));
+        }
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.style.display = 'flex';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        });
+        
+        // Initial MathJax typeset
+        window.addEventListener('load', function() {
+            MathJax.typesetPromise().catch(err => console.log(err));
+        });
+    </script>
+</body>
+</html>
+

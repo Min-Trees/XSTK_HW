@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổ Hợp - 4 Bài Đầy Đủ</title>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .exercise {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exercise-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .exercise-body {
+            padding: 30px;
+        }
+        
+        .problem {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .solution {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .step strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            overflow-x: auto;
+        }
+        
+        .answer {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        
+        .icon {
+            transition: transform 0.3s;
+        }
+        
+        .exercise-header.collapsed .icon {
+            transform: rotate(-90deg);
+        }
+        
+        .exercise-body.collapsed {
+            display: none;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #764ba2;
+        }
+        
+        ul {
+            margin-left: 30px;
+            line-height: 2;
+        }
+        
+        @media print {
+            .header, .controls, .scroll-top {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 PHẦN MỞ ĐẦU: BỔ TÚC GIẢI TÍCH TỔ HỢP</h1>
+        <div class="subtitle">4 Bài Tập - 15 Câu Hỏi - Đầy Đủ Lời Giải</div>
+    </div>
+    
+    <div class="controls">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Tìm kiếm...">
+        <button class="btn btn-primary" onclick="expandAll()">📂 Mở Tất Cả</button>
+        <button class="btn btn-primary" onclick="collapseAll()">📁 Đóng Tất Cả</button>
+        <button class="btn btn-success" onclick="window.print()">🖨️ In PDF</button>
+    </div>
+    
+    <div class="container">
+        
+        <!-- BÀI 1 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggleExercise(this)">
+                <span>📝 BÀI 1: Bài toán bắt tay - Tìm số người</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>Đề bài:</strong><br>
+                    Trong một buổi họp lớp, mỗi bạn bắt tay tất cả các bạn khác 1 lần. Người ta đếm được có tất cả 435 cái bắt tay. Hỏi có bao nhiêu bạn tham dự buổi họp lớp đó?
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Lời giải chi tiết:</h3>
+                    
+                    <div class="step">
+                        <strong>Bước 1: Phân tích bài toán</strong>
+                        <ul>
+                            <li>Mỗi cái bắt tay là sự kết hợp của 2 bạn</li>
+                            <li>Gọi n là số bạn tham dự buổi họp</li>
+                            <li>Số cái bắt tay = số cách chọn 2 bạn từ n bạn</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 2: Lập phương trình</strong>
+                        <div class="formula">
+                            Số cách chọn 2 bạn từ n bạn là:<br>
+                            $$C_n^2 = \frac{n!}{2!(n-2)!} = \frac{n(n-1)}{2}$$<br><br>
+                            Theo đề bài:<br>
+                            $$\frac{n(n-1)}{2} = 435$$
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Bước 3: Giải phương trình</strong>
+                        <div class="formula">
+                            $$n(n-1) = 870$$<br>
+                            $$n^2 - n - 870 = 0$$<br><br>
+                            Giải phương trình bậc 2:<br>
+                            $$\Delta = 1 + 4 \times 870 = 3481 = 59^2$$<br><br>
+                            $$n = \frac{1 + 59}{2} = 30$$ (loại nghiệm âm)
+                        </div>
+                    </div>
+                    
+                    <div class="answer">
+                        ✅ Đáp số: Có <strong>30 bạn</strong> tham dự buổi họp lớp
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BÀI 2 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggleExercise(this)">
+                <span>📝 BÀI 2: Chọn bi từ hộp (3 câu a, b, c)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>Đề bài:</strong><br>
+                    Một hộp gồm 20 bi (6 trắng, 4 đỏ và 10 xanh). Có bao nhiêu cách:<br>
+                    <strong>a)</strong> Chọn 4 viên bi từ hộp?<br>
+                    <strong>b)</strong> Chọn 4 viên bi từ hộp, trong đó có ít nhất 1 bi đỏ?<br>
+                    <strong>c)</strong> Chọn ra 4 viên bi, trong đó số bi trắng nhiều hơn tổng số bi đỏ và xanh?
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu a) Chọn 4 viên bi từ hộp</h3>
+                    <div class="formula">
+                        $$C_{20}^4 = \frac{20!}{4! \times 16!} = \frac{20 \times 19 \times 18 \times 17}{24} = 4845$$
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>4845 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu b) Có ít nhất 1 bi đỏ</h3>
+                    <div class="step">
+                        <strong>Cách 1: Tính trực tiếp</strong>
+                        <ul>
+                            <li>1 đỏ, 3 bi khác: $C_4^1 \times C_{16}^3 = 4 \times 560 = 2240$ cách</li>
+                            <li>2 đỏ, 2 bi khác: $C_4^2 \times C_{16}^2 = 6 \times 120 = 720$ cách</li>
+                            <li>3 đỏ, 1 bi khác: $C_4^3 \times C_{16}^1 = 4 \times 16 = 64$ cách</li>
+                            <li>4 đỏ: $C_4^4 = 1$ cách</li>
+                        </ul>
+                        <div class="formula">Tổng: $2240 + 720 + 64 + 1 = 3025$ cách</div>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Cách 2: Phần bù (đơn giản hơn)</strong>
+                        <div class="formula">
+                            Số cách chọn 4 bi không có bi đỏ nào:<br>
+                            $$C_{16}^4 = 1820$$<br><br>
+                            Số cách chọn có ít nhất 1 bi đỏ:<br>
+                            $$4845 - 1820 = 3025$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>3025 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu c) Số bi trắng nhiều hơn tổng bi đỏ và xanh</h3>
+                    <div class="step">
+                        <strong>Phân tích:</strong> Số bi trắng > 2 (vì tổng 4 bi)
+                    </div>
+                    <div class="step">
+                        <strong>TH1: 3 bi trắng, 1 bi khác</strong>
+                        <div class="formula">$$C_6^3 \times C_{14}^1 = 20 \times 14 = 280$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 4 bi trắng</strong>
+                        <div class="formula">$$C_6^4 = 15$$</div>
+                    </div>
+                    <div class="formula">
+                        <strong>Tổng:</strong> $280 + 15 = 295$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>295 cách</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BÀI 3 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggleExercise(this)">
+                <span>📝 BÀI 3: Bầu ban cán sự lớp (3 câu a, b, c)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>Đề bài:</strong><br>
+                    Một lớp có 45 sinh viên, trong đó có 20 nam. Có bao nhiêu cách bầu ra ban cán sự lớp gồm 4 sinh viên thỏa mãn:<br>
+                    <em>Số nữ: 45 - 20 = 25</em><br><br>
+                    <strong>a)</strong> Có đúng 2 nam<br>
+                    <strong>b)</strong> Ít nhất một nam<br>
+                    <strong>c)</strong> Nhiều nhất 2 nam
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu a) Có đúng 2 nam</h3>
+                    <div class="formula">
+                        Chọn 2 nam từ 20 nam và 2 nữ từ 25 nữ:<br>
+                        $$C_{20}^2 \times C_{25}^2 = \frac{20 \times 19}{2} \times \frac{25 \times 24}{2} = 190 \times 300 = 57000$$
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>57000 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu b) Ít nhất một nam</h3>
+                    <div class="step">
+                        <strong>Cách: Phần bù</strong>
+                        <div class="formula">
+                            Tổng số cách chọn 4 SV bất kỳ: $C_{45}^4 = 148995$<br><br>
+                            Số cách chọn 4 SV toàn nữ: $C_{25}^4 = 12650$<br><br>
+                            Số cách có ít nhất 1 nam: $148995 - 12650 = 136345$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>136345 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu c) Nhiều nhất 2 nam</h3>
+                    <div class="step">
+                        <strong>Nhiều nhất 2 nam nghĩa là: 0 nam, 1 nam, hoặc 2 nam</strong>
+                        <ul>
+                            <li>0 nam (4 nữ): $C_{25}^4 = 12650$</li>
+                            <li>1 nam, 3 nữ: $C_{20}^1 \times C_{25}^3 = 20 \times 2300 = 46000$</li>
+                            <li>2 nam, 2 nữ: $C_{20}^2 \times C_{25}^2 = 190 \times 300 = 57000$</li>
+                        </ul>
+                        <div class="formula">
+                            <strong>Tổng:</strong> $12650 + 46000 + 57000 = 115650$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>115650 cách</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BÀI 4 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggleExercise(this)">
+                <span>📝 BÀI 4: Hai hộp bi (5 câu a, b, c, d, e)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>Đề bài:</strong><br>
+                    Có 2 hộp. Hộp I đựng 10 bi (8 xanh, 2 đỏ). Hộp II đựng 20 bi (15 xanh, 5 đỏ).<br><br>
+                    <strong>a)</strong> Có bao nhiêu cách lấy từ mỗi hộp ra 2 bi?<br>
+                    <strong>b)</strong> Có bao nhiêu cách lấy từ mỗi hộp ra 2 bi sao cho có đúng 1 bi đỏ được lấy ra?<br>
+                    <strong>c)</strong> Có bao nhiêu cách lấy từ mỗi hộp ra 2 bi sao cho có đúng 2 bi đỏ được lấy ra?<br>
+                    <strong>d)</strong> Có bao nhiêu cách lấy từ mỗi hộp ra 2 bi sao cho có đúng 3 bi đỏ được lấy ra?<br>
+                    <strong>e)</strong> Có bao nhiêu cách lấy từ mỗi hộp ra 2 bi sao cho các bi lấy ra cùng màu?
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu a) Lấy từ mỗi hộp ra 2 bi</h3>
+                    <div class="formula">
+                        Từ hộp I lấy 2 bi: $C_{10}^2 = 45$ cách<br><br>
+                        Từ hộp II lấy 2 bi: $C_{20}^2 = 190$ cách<br><br>
+                        Tổng số cách (theo quy tắc nhân): $45 \times 190 = 8550$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>8550 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu b) Đúng 1 bi đỏ được lấy ra</h3>
+                    <div class="step">
+                        <strong>TH1: 1 đỏ từ I (1 đỏ + 1 xanh), 2 xanh từ II</strong>
+                        <div class="formula">$$C_2^1 \times C_8^1 \times C_{15}^2 = 2 \times 8 \times 105 = 1680$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 2 xanh từ I, 1 đỏ từ II (1 đỏ + 1 xanh)</strong>
+                        <div class="formula">$$C_8^2 \times C_5^1 \times C_{15}^1 = 28 \times 5 \times 15 = 2100$$</div>
+                    </div>
+                    <div class="formula">
+                        <strong>Tổng:</strong> $1680 + 2100 = 3780$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>3780 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu c) Đúng 2 bi đỏ được lấy ra</h3>
+                    <div class="step">
+                        <strong>TH1: 2 đỏ từ I, 2 xanh từ II</strong>
+                        <div class="formula">$$C_2^2 \times C_{15}^2 = 1 \times 105 = 105$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 1 đỏ + 1 xanh từ I, 1 đỏ + 1 xanh từ II</strong>
+                        <div class="formula">$$C_2^1 \times C_8^1 \times C_5^1 \times C_{15}^1 = 2 \times 8 \times 5 \times 15 = 1200$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH3: 2 xanh từ I, 2 đỏ từ II</strong>
+                        <div class="formula">$$C_8^2 \times C_5^2 = 28 \times 10 = 280$$</div>
+                    </div>
+                    <div class="formula">
+                        <strong>Tổng:</strong> $105 + 1200 + 280 = 1585$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>1585 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu d) Đúng 3 bi đỏ được lấy ra</h3>
+                    <div class="step">
+                        <strong>TH1: 2 đỏ từ I, 1 đỏ + 1 xanh từ II</strong>
+                        <div class="formula">$$C_2^2 \times C_5^1 \times C_{15}^1 = 1 \times 5 \times 15 = 75$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 1 đỏ + 1 xanh từ I, 2 đỏ từ II</strong>
+                        <div class="formula">$$C_2^1 \times C_8^1 \times C_5^2 = 2 \times 8 \times 10 = 160$$</div>
+                    </div>
+                    <div class="formula">
+                        <strong>Tổng:</strong> $75 + 160 = 235$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>235 cách</strong></div>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 Câu e) Các bi lấy ra cùng màu</h3>
+                    <div class="step">
+                        <strong>TH1: Tất cả 4 bi đều xanh</strong>
+                        <div class="formula">$$C_8^2 \times C_{15}^2 = 28 \times 105 = 2940$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: Tất cả 4 bi đều đỏ</strong>
+                        <div class="formula">$$C_2^2 \times C_5^2 = 1 \times 10 = 10$$</div>
+                    </div>
+                    <div class="formula">
+                        <strong>Tổng:</strong> $2940 + 10 = 2950$ cách
+                    </div>
+                    <div class="answer">✅ Đáp số: <strong>2950 cách</strong></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script>
+        function toggleExercise(header) {
+            header.classList.toggle('collapsed');
+            header.nextElementSibling.classList.toggle('collapsed');
+            
+            if (!header.classList.contains('collapsed')) {
+                MathJax.typesetPromise([header.nextElementSibling]).catch(err => console.log(err));
+            }
+        }
+        
+        function expandAll() {
+            document.querySelectorAll('.exercise-header').forEach(h => {
+                h.classList.remove('collapsed');
+                h.nextElementSibling.classList.remove('collapsed');
+            });
+            MathJax.typesetPromise().catch(err => console.log(err));
+        }
+        
+        function collapseAll() {
+            document.querySelectorAll('.exercise-header').forEach(h => {
+                h.classList.add('collapsed');
+                h.nextElementSibling.classList.add('collapsed');
+            });
+        }
+        
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.exercise').forEach(ex => {
+                const text = ex.textContent.toLowerCase();
+                ex.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            scrollTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+        
+        window.addEventListener('load', function() {
+            MathJax.typesetPromise().catch(err => console.log(err));
+        });
+    </script>
+</body>
+</html>
+

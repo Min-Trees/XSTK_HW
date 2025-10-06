@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1 - Phần 1: Bài 1.1-1.6</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+    
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: #333;}
+        .header {background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+        .header h1 {color: #2c3e50; font-size: 2.2em; margin-bottom: 10px;}
+        .controls {background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; position: sticky; top: 20px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+        .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #667eea; color: white; transition: all 0.3s;}
+        .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .container {max-width: 1200px; margin: 0 auto;}
+        .exercise {background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);}
+        .exercise-header {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
+        .exercise-header:hover {background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);}
+        .exercise-body {padding: 30px; display: none;}
+        .exercise-body.active {display: block;}
+        .problem {background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 8px;}
+        .solution {background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;}
+        .solution h4 {color: #155724; margin-bottom: 15px;}
+        .step {margin: 15px 0; padding-left: 20px;}
+        .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; overflow-x: auto;}
+        .answer {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; margin-top: 20px; font-size: 1.1em;}
+        ul {margin-left: 30px; line-height: 2;}
+        .nav-footer {background: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px;}
+        .nav-footer a {display: inline-block; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
+        .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        @media print {.controls, .nav-footer {display: none;} .exercise-body {display: block !important;} body {background: white; padding: 0;}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 CHƯƠNG 1 - PHẦN 1: BÀI 1.1 - 1.6</h1>
+        <p style="color: #7f8c8d; margin-top: 10px;">✅ ĐẦY ĐỦ 6 BÀI - 12 CÂU HỎI - TẤT CẢ BÀI GIẢI CHI TIẾT</p>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="expandAll()">📂 Mở Tất Cả</button>
+        <button class="btn" onclick="collapseAll()">📁 Đóng Tất Cả</button>
+        <button class="btn" onclick="window.print()">🖨️ In PDF</button>
+        <button class="btn" onclick="window.location.href='chuong_1_phan_2.html'">➡️ Phần 2 (Bài 7-12)</button>
+        <button class="btn" onclick="window.location.href='INDEX_CHINH.html'">🏠 Trang Chủ</button>
+    </div>
+    
+    <div class="container">
+        
+        <!-- BÀI 1.1 - ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.1: Gọi tên sinh viên (3 câu a,b,c)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Một lớp có 50 sinh viên. Trong kỳ thi môn XSTK có 6 SV đạt giỏi, 20 SV đạt khá, 5 SV không đạt yêu cầu, các SV còn lại đạt trung bình. Gọi tên ngẫu nhiên 3 SV của lớp. Tìm xác suất gọi được:<br>
+                    <em>💡 Số SV trung bình = 50 - 6 - 20 - 5 = 19</em><br><br>
+                    <strong>a)</strong> Ít nhất 1 SV đạt giỏi<br>
+                    <strong>b)</strong> 2 SV đạt trung bình và 1 SV đạt khá<br>
+                    <strong>c)</strong> Không quá 1 SV không đạt yêu cầu
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Ít nhất 1 SV đạt giỏi</h4>
+                    <div class="step">
+                        <strong>Bước 1: Xác định không gian mẫu</strong>
+                        <div class="formula">
+                            Số cách gọi 3 SV từ 50 SV:<br>
+                            $$|\Omega| = C_{50}^3 = \frac{50 \times 49 \times 48}{6} = 19600$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất (dùng phần bù)</strong>
+                        <div class="formula">
+                            Biến cố đối: Không có SV nào đạt giỏi (chọn 3 từ 44 SV còn lại)<br>
+                            $$C_{44}^3 = \frac{44 \times 43 \times 42}{6} = 13244$$<br><br>
+                            Xác suất không có SV giỏi:<br>
+                            $$P(\overline{A}) = \frac{13244}{19600} = \frac{3311}{4900}$$<br><br>
+                            Xác suất có ít nhất 1 SV giỏi:<br>
+                            $$P(A) = 1 - \frac{3311}{4900} = \frac{1589}{4900} \approx 0.3243$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{1589}{4900} \approx 32.43\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) 2 SV đạt trung bình và 1 SV đạt khá</h4>
+                    <div class="formula">
+                        Số cách chọn 2 SV trung bình từ 19: $C_{19}^2 = 171$<br>
+                        Số cách chọn 1 SV khá từ 20: $C_{20}^1 = 20$<br>
+                        Số kết quả thuận lợi: $171 \times 20 = 3420$<br><br>
+                        Xác suất:<br>
+                        $$P(B) = \frac{3420}{19600} = \frac{9}{52} \approx 0.1745$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{9}{52} \approx 17.45\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu c) Không quá 1 SV không đạt yêu cầu</h4>
+                    <div class="step">
+                        <strong>TH1: 0 SV không đạt (chọn 3 từ 45 SV còn lại)</strong>
+                        <div class="formula">$$C_{45}^3 = 14190$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 1 SV không đạt, 2 SV khác</strong>
+                        <div class="formula">$$C_5^1 \times C_{45}^2 = 5 \times 990 = 4950$$</div>
+                    </div>
+                    <div class="formula">
+                        Tổng số kết quả thuận lợi: $14190 + 4950 = 19140$<br>
+                        $$P(C) = \frac{19140}{19600} = \frac{957}{980} \approx 0.9765$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{957}{980} \approx 97.65\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.2 - ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.2: Hai hộp sản phẩm (3 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có hai hộp I và II. Hộp I chứa 15 sản phẩm tốt và 5 phế phẩm. Hộp II chứa 8 sản phẩm tốt và 2 phế phẩm. Từ hộp I lấy ra 1 sản phẩm và từ hộp II lấy ra 2 sản phẩm. Tính xác suất để được:<br><br>
+                    <strong>a)</strong> Cả 3 sản phẩm tốt<br>
+                    <strong>b)</strong> Đúng 1 sản phẩm tốt<br>
+                    <strong>c)</strong> Ít nhất 2 sản phẩm tốt
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Cả 3 sản phẩm tốt</h4>
+                    <div class="formula">
+                        $$P(I_{tốt}) = \frac{15}{20} = \frac{3}{4}$$<br><br>
+                        $$P(II_{2tốt}) = \frac{C_8^2}{C_{10}^2} = \frac{28}{45}$$<br><br>
+                        $$P(A) = \frac{3}{4} \times \frac{28}{45} = \frac{7}{15} \approx 0.4667$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{7}{15} \approx 46.67\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Đúng 1 sản phẩm tốt</h4>
+                    <div class="step">
+                        <strong>TH1: 1 tốt từ I, 2 phế từ II</strong>
+                        <div class="formula">$$P_1 = \frac{3}{4} \times \frac{1}{45} = \frac{1}{60}$$</div>
+                    </div>
+                    <div class="step">
+                        <strong>TH2: 1 phế từ I, 1 tốt + 1 phế từ II</strong>
+                        <div class="formula">$$P_2 = \frac{1}{4} \times \frac{16}{45} = \frac{4}{45}$$</div>
+                    </div>
+                    <div class="formula">
+                        $$P(B) = \frac{1}{60} + \frac{4}{45} = \frac{19}{180} \approx 0.1056$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{19}{180} \approx 10.56\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu c) Ít nhất 2 sản phẩm tốt</h4>
+                    <div class="formula">
+                        3 tốt (câu a): $\frac{7}{15}$<br><br>
+                        2 tốt: $\frac{3}{4} \times \frac{16}{45} + \frac{1}{4} \times \frac{28}{45} = \frac{19}{45}$<br><br>
+                        Tổng: $\frac{7}{15} + \frac{19}{45} = \frac{8}{9} \approx 0.8889$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{8}{9} \approx 88.89\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.3 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.3: 10 bóng đèn (2 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Trong một hộp có 10 bóng đèn, trong đó có 2 bóng hỏng. Lấy ngẫu nhiên có thứ tự không hoàn lại 3 bóng để dùng. Tìm xác suất để:<br><br>
+                    <strong>a)</strong> Lấy được cả 3 bóng đều tốt<br>
+                    <strong>b)</strong> Lấy phải 2 bóng hỏng
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Lấy được cả 3 bóng đều tốt</h4>
+                    <div class="formula">
+                        Số bóng tốt = 10 - 2 = 8<br><br>
+                        Lấy có thứ tự không hoàn lại:<br>
+                        - Bóng 1 tốt: $\frac{8}{10}$<br>
+                        - Bóng 2 tốt (còn 7 tốt trong 9): $\frac{7}{9}$<br>
+                        - Bóng 3 tốt (còn 6 tốt trong 8): $\frac{6}{8}$<br><br>
+                        $$P(A) = \frac{8}{10} \times \frac{7}{9} \times \frac{6}{8} = \frac{7}{15} \approx 0.4667$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{7}{15} \approx 46.67\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Lấy phải 2 bóng hỏng</h4>
+                    <div class="step">
+                        Có 3 trường hợp (vị trí 2 bóng hỏng):
+                        <ul>
+                            <li>Hỏng - Hỏng - Tốt (HHT): $P_1 = \frac{2}{10} \times \frac{1}{9} \times \frac{8}{8} = \frac{16}{720}$</li>
+                            <li>Hỏng - Tốt - Hỏng (HTH): $P_2 = \frac{2}{10} \times \frac{8}{9} \times \frac{1}{8} = \frac{16}{720}$</li>
+                            <li>Tốt - Hỏng - Hỏng (THH): $P_3 = \frac{8}{10} \times \frac{2}{9} \times \frac{1}{8} = \frac{16}{720}$</li>
+                        </ul>
+                    </div>
+                    <div class="formula">
+                        $$P(B) = \frac{16 + 16 + 16}{720} = \frac{48}{720} = \frac{1}{15} \approx 0.0667$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{1}{15} \approx 6.67\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.4 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.4: 3 máy hoạt động (4 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Một công nhân đứng 3 máy. XS để trong 1 ca làm việc máy I hỏng là 0,1; máy II hỏng là 0,15 và máy III hỏng là 0,2. Tìm XS để trong ca làm việc:<br><br>
+                    <strong>a)</strong> Cả 3 máy không hỏng<br>
+                    <strong>b)</strong> Có đúng 1 máy hỏng<br>
+                    <strong>c)</strong> Có 2 máy không hỏng<br>
+                    <strong>d)</strong> Ít nhất 1 máy không hỏng
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Dữ kiện:</h4>
+                    <div class="formula">
+                        - $P(I_{hỏng}) = 0.1 \Rightarrow P(I_{tốt}) = 0.9$<br>
+                        - $P(II_{hỏng}) = 0.15 \Rightarrow P(II_{tốt}) = 0.85$<br>
+                        - $P(III_{hỏng}) = 0.2 \Rightarrow P(III_{tốt}) = 0.8$
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Cả 3 máy không hỏng</h4>
+                    <div class="formula">
+                        $$P(A) = 0.9 \times 0.85 \times 0.8 = 0.612$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.612 = 61.2\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Có đúng 1 máy hỏng</h4>
+                    <div class="step">
+                        <ul>
+                            <li>Máy I hỏng, II và III tốt: $P_1 = 0.1 \times 0.85 \times 0.8 = 0.068$</li>
+                            <li>Máy II hỏng, I và III tốt: $P_2 = 0.9 \times 0.15 \times 0.8 = 0.108$</li>
+                            <li>Máy III hỏng, I và II tốt: $P_3 = 0.9 \times 0.85 \times 0.2 = 0.153$</li>
+                        </ul>
+                    </div>
+                    <div class="formula">
+                        $$P(B) = 0.068 + 0.108 + 0.153 = 0.329$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.329 = 32.9\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu c) Có 2 máy không hỏng</h4>
+                    <div class="formula">
+                        2 máy không hỏng ⇔ 1 máy hỏng (giống câu b)
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.329 = 32.9\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu d) Ít nhất 1 máy không hỏng</h4>
+                    <div class="formula">
+                        Biến cố đối: Cả 3 máy đều hỏng<br>
+                        $$P(\text{cả 3 hỏng}) = 0.1 \times 0.15 \times 0.2 = 0.003$$<br><br>
+                        $$P(D) = 1 - 0.003 = 0.997$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.997 = 99.7\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.5 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.5: Vi trùng kháng thuốc
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Xác suất vi trùng kháng mỗi loại thuốc A, B, C lần lượt là: 5%, 10%, 15%. Nếu dùng cả 3 loại để diệt vi trùng. Tính xác suất vi trùng bị diệt (giả sử các loại thuốc độc lập nhau).
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Phân tích:</h4>
+                    <div class="formula">
+                        - $P(\text{kháng A}) = 0.05 \Rightarrow P(\text{không kháng A}) = 0.95$<br>
+                        - $P(\text{kháng B}) = 0.10 \Rightarrow P(\text{không kháng B}) = 0.90$<br>
+                        - $P(\text{kháng C}) = 0.15 \Rightarrow P(\text{không kháng C}) = 0.85$
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải:</h4>
+                    <div class="step">
+                        Vi trùng bị diệt khi KHÔNG kháng ít nhất 1 loại thuốc<br><br>
+                        Vi trùng KHÔNG bị diệt ⇔ Vi trùng kháng cả 3 loại:
+                    </div>
+                    <div class="formula">
+                        $$P(\text{kháng cả 3}) = 0.05 \times 0.10 \times 0.15 = 0.00075$$<br><br>
+                        $$P(\text{bị diệt}) = 1 - 0.00075 = 0.99925$$
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.99925 = 99.925\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 1.6 ĐẦY ĐỦ -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 1.6: 2 hộp bi - Xác suất đầy đủ & Bayes (2 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Có 2 hộp giống hệt nhau, mỗi hộp chứa 20 bi. Trong đó, hộp I gồm 15 bi đỏ và 5 bi trắng; hộp II gồm 12 bi đỏ và 8 bi trắng. Lấy ngẫu nhiên 1 hộp rồi từ hộp đó lấy ngẫu nhiên 4 bi.<br><br>
+                    <strong>a)</strong> Tính xác suất lấy được 2 bi đỏ và 2 bi trắng<br>
+                    <strong>b)</strong> Giả sử đã được 2 bi đỏ và 2 bi trắng. Hỏi khả năng chọn được hộp nào cao hơn?
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu a) Tính xác suất lấy được 2 bi đỏ và 2 bi trắng</h4>
+                    <div class="step">
+                        <strong>Bước 1: Áp dụng công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            Gọi:<br>
+                            - $H_1$: chọn hộp I, $P(H_1) = \frac{1}{2}$<br>
+                            - $H_2$: chọn hộp II, $P(H_2) = \frac{1}{2}$<br>
+                            - A: lấy được 2 đỏ và 2 trắng
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 2: Tính xác suất có điều kiện</strong>
+                        <div class="formula">
+                            Nếu chọn hộp I:<br>
+                            $$P(A|H_1) = \frac{C_{15}^2 \times C_5^2}{C_{20}^4} = \frac{105 \times 10}{4845} = \frac{1050}{4845} = \frac{70}{323}$$<br><br>
+                            Nếu chọn hộp II:<br>
+                            $$P(A|H_2) = \frac{C_{12}^2 \times C_8^2}{C_{20}^4} = \frac{66 \times 28}{4845} = \frac{1848}{4845} = \frac{616}{1615}$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Bước 3: Áp dụng công thức xác suất đầy đủ</strong>
+                        <div class="formula">
+                            $$P(A) = P(H_1) \times P(A|H_1) + P(H_2) \times P(A|H_2)$$<br>
+                            $$P(A) = \frac{1}{2} \times \frac{70}{323} + \frac{1}{2} \times \frac{616}{1615}$$<br>
+                            $$P(A) = \frac{1}{2} \times \frac{350}{1615} + \frac{1}{2} \times \frac{616}{1615} = \frac{1}{2} \times \frac{966}{1615} = \frac{483}{1615}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = \frac{483}{1615} \approx 0.2991 = 29.91\%$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Giả sử đã được 2 bi đỏ và 2 bi trắng. Hỏi khả năng chọn được hộp nào cao hơn?</h4>
+                    <div class="step">
+                        <strong>Áp dụng công thức Bayes:</strong>
+                        <div class="formula">
+                            $$P(H_1|A) = \frac{P(H_1) \times P(A|H_1)}{P(A)} = \frac{\frac{1}{2} \times \frac{70}{323}}{\frac{483}{1615}} = \frac{\frac{35}{323}}{\frac{483}{1615}}$$<br><br>
+                            $$P(H_1|A) = \frac{35}{323} \times \frac{1615}{483} = \frac{35 \times 5}{483} = \frac{175}{483} \approx 0.3623$$<br><br>
+                            $$P(H_2|A) = 1 - P(H_1|A) = 1 - \frac{175}{483} = \frac{308}{483} \approx 0.6377$$
+                        </div>
+                    </div>
+                    <div class="step">
+                        <strong>Kết luận:</strong> Khả năng chọn được <strong>hộp II cao hơn</strong> (63.77% so với 36.23%)
+                    </div>
+                    <div class="answer">✅ Đáp số: Hộp II có khả năng cao hơn với $P(H_2|A) = \frac{308}{483} \approx 63.77\%$</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="nav-footer">
+        <h3 style="color: #2c3e50; margin-bottom: 20px;">📚 Điều Hướng</h3>
+        <a href="chuong_0_to_hop.html">⬅️ Chương 0</a>
+        <a href="chuong_1_phan_2.html">➡️ Phần 2 (Bài 7-12)</a>
+        <a href="chuong_1_phan_3.html">⏩ Phần 3 (Bài 13-17)</a>
+        <a href="INDEX_CHINH.html">🏠 Trang Chủ</a>
+    </div>
+    
+    <script>
+        function toggle(header) {
+            const body = header.nextElementSibling;
+            const isActive = body.classList.contains('active');
+            body.classList.toggle('active');
+            header.querySelector('span').textContent = isActive ? '▼' : '▲';
+            if (!isActive) MathJax.typesetPromise([body]).catch(err => console.log(err));
+        }
+        function expandAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.add('active');
+                b.previousElementSibling.querySelector('span').textContent = '▲';
+            });
+            MathJax.typesetPromise().catch(err => console.log(err));
+        }
+        function collapseAll() {
+            document.querySelectorAll('.exercise-body').forEach(b => {
+                b.classList.remove('active');
+                b.previousElementSibling.querySelector('span').textContent = '▼';
+            });
+        }
+        window.addEventListener('load', () => MathJax.typesetPromise().catch(err => console.log(err)));
+    </script>
+</body>
+</html>
+
