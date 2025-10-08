@@ -11,35 +11,38 @@
     
     <style>
         * {margin: 0; padding: 0; box-sizing: border-box;}
-        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); padding: 20px; color: #333;}
-        .header {background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
-        .header h1 {color: #2c3e50; font-size: 2.2em; margin-bottom: 10px;}
+        body {font-family: 'Segoe UI', sans-serif; line-height: 1.8; background: #f0f9ff; padding: 20px; color: #0f172a;}
+        .header {background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.07); border-top: 4px solid #0284c7;}
+        .header h1 {color: #0284c7; font-size: 2.2em; margin-bottom: 10px; font-weight: 700;}
         .controls {background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; position: sticky; top: 20px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
         .btn {padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: #0284c7; color: white; transition: all 0.3s;}
-        .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .btn:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(2, 132, 199, 0.4);}
         .container {max-width: 1200px; margin: 0 auto;}
         .exercise {background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);}
         .exercise-header {background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: white; padding: 20px 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
-        .exercise-header:hover {background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);}
+        .exercise-header:hover {background: linear-gradient(135deg, #075985 0%, #0ea5e9 100%);}
         .exercise-body {padding: 30px; display: none;}
         .exercise-body.active {display: block;}
-        .problem {background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 8px;}
-        .solution {background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;}
-        .solution h4 {color: #155724; margin-bottom: 15px;}
+        .problem {background: #e0f2fe; border-left: 4px solid #0284c7; padding: 20px; margin-bottom: 20px; border-radius: 8px; color: #0c4a6e;}
+        .solution {background: #ecfdf5; border-left: 4px solid #059669; padding: 20px; margin: 20px 0; border-radius: 8px;}
+        .solution h4 {color: #047857; margin-bottom: 15px; font-weight: 600;}
         .step {margin: 15px 0; padding-left: 20px;}
-        .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; overflow-x: auto;}
-        .answer {background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; margin-top: 20px; font-size: 1.1em;}
+        .formula {background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #0284c7; overflow-x: auto;}
+        .answer {background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color: white; padding: 15px 20px; border-radius: 8px; font-weight: 600; margin-top: 20px; font-size: 1.1em;}
         ul {margin-left: 30px; line-height: 2;}
+        table {width: 100%; border-collapse: collapse; margin: 15px 0;}
+        table td, table th {border: 1px solid #bae6fd; padding: 10px; text-align: center;}
+        table th {background: #e0f2fe; color: #0c4a6e; font-weight: 600;}
         .nav-footer {background: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px;}
         .nav-footer a {display: inline-block; padding: 12px 30px; background: #0284c7; color: white; text-decoration: none; border-radius: 8px; margin: 0 10px; transition: all 0.3s;}
-        .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);}
+        .nav-footer a:hover {transform: translateY(-2px); box-shadow: 0 5px 15px rgba(2, 132, 199, 0.4);}
         @media print {.controls, .nav-footer {display: none;} .exercise-body {display: block !important;} body {background: white; padding: 0;}}
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🎲 CHƯƠNG 2 - PHẦN 1: BÀI 2.1 - 2.9</h1>
-        <p style="color: #7f8c8d; margin-top: 10px;">✅ ĐẠI LƯỢNG NGẪU NHIÊN & LUẬT PHÂN PHỐI - 9 BÀI ĐẦY ĐỦ</p>
+        <p style="color: #64748b; margin-top: 10px;">✅ ĐẠI LƯỢNG NGẪU NHIÊN & LUẬT PHÂN PHỐI - 9 BÀI ĐẦY ĐỦ</p>
     </div>
     
     <div class="controls">
@@ -120,31 +123,322 @@
             </div>
         </div>
 
-        <!-- Thông báo -->
-        <div style="background: white; padding: 40px; border-radius: 15px; text-align: center; margin: 40px 0;">
-            <h2 style="color: #2c3e50; margin-bottom: 20px;">📄 BÀI 2.2 - 2.9</h2>
-            <p style="color: #7f8c8d; font-size: 1.2em; line-height: 2;">
-                <strong>Đã tạo BÀI MẪU 2.1</strong> để bạn thấy cấu trúc<br><br>
+        <!-- BÀI 2.2 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.2: Hàm phân phối F(x) = 1/2 + (1/π) arctan x (2 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Cho ĐLNN X có hàm phân phối xác suất: $F(x) = \frac{1}{2} + \frac{1}{\pi} \arctan x$<br><br>
+                    <strong>a)</strong> Tính P(0 < X < 1)<br>
+                    <strong>b)</strong> Tìm hàm mật độ xác suất của X
+                </div>
                 
-                Do độ dài file HTML quá lớn (hơn 30,000 dòng nếu viết hết),<br>
-                tôi đang tạo <strong>TẤT CẢ FILE HTML ĐẦY ĐỦ</strong> cho bạn!<br><br>
+                <div class="solution">
+                    <h4>💡 Câu a) Tính P(0 < X < 1)</h4>
+                    <div class="step">
+                        <div class="formula">
+                            $$P(0 < X < 1) = F(1) - F(0)$$<br><br>
+                            $$F(1) = \frac{1}{2} + \frac{1}{\pi} \arctan(1) = \frac{1}{2} + \frac{1}{\pi} \times \frac{\pi}{4} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$<br><br>
+                            $$F(0) = \frac{1}{2} + \frac{1}{\pi} \arctan(0) = \frac{1}{2} + 0 = \frac{1}{2}$$<br><br>
+                            $$P(0 < X < 1) = \frac{3}{4} - \frac{1}{2} = \frac{1}{4}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.25 = 25\%$</div>
+                </div>
                 
-                <strong style="color: #0284c7;">Đang tạo:</strong><br>
-                ✅ Chương 2 - Phần 1: Bài 2.1-2.9<br>
-                ✅ Chương 2 - Phần 2: Bài 2.10-2.19<br>
-                ✅ Chương 2 - Phần 3: Bài 2.20-2.26<br>
-                ✅ Chương 3+4: 2 phần<br>
-                ✅ Chương 5: Đầy đủ<br><br>
+                <div class="solution">
+                    <h4>💡 Câu b) Tìm hàm mật độ xác suất của X</h4>
+                    <div class="step">
+                        <div class="formula">
+                            $$f(x) = F'(x) = \frac{d}{dx}\left(\frac{1}{2} + \frac{1}{\pi}\arctan x\right)$$<br><br>
+                            $$f(x) = \frac{1}{\pi} \times \frac{1}{1+x^2} = \frac{1}{\pi(1+x^2)}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $f(x) = \frac{1}{\pi(1+x^2)}$ với $x \in \mathbb{R}$ (Phân phối Cauchy)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.3 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.3: Ba xạ thủ bắn bia (2 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Ba xạ thủ độc lập bắn vào bia, mỗi xạ thủ có một viên đạn. Xác suất để từng xạ thủ bắn trúng bia lần lượt là 0,8; 0,7; 0,6. Gọi X là số viên đạn bắn trúng bia.<br><br>
+                    <strong>a)</strong> Lập bảng phân phối xác suất và tính các đặc trưng số của X<br>
+                    <strong>b)</strong> Tính P(2 ≤ X ≤ 7)
+                </div>
                 
-                <strong style="color: #28a745;">Vui lòng đợi tôi tạo xong tất cả!</strong><br>
-                Tôi sẽ tạo ~10 file HTML nữa với đầy đủ bài giải...
-            </p>
+                <div class="solution">
+                    <h4>💡 Câu a) Lập bảng PPXS và tính đặc trưng số</h4>
+                    <div class="step">
+                        X có thể nhận giá trị: 0, 1, 2, 3
+                        <div class="formula">
+                            <strong>Tính P(X = k):</strong><br><br>
+                            $$P(X = 0) = 0.2 \times 0.3 \times 0.4 = 0.024$$<br><br>
+                            $$P(X = 1) = 0.8 \times 0.3 \times 0.4 + 0.2 \times 0.7 \times 0.4 + 0.2 \times 0.3 \times 0.6$$
+                            $$= 0.096 + 0.056 + 0.036 = 0.188$$<br><br>
+                            $$P(X = 2) = 0.8 \times 0.7 \times 0.4 + 0.8 \times 0.3 \times 0.6 + 0.2 \times 0.7 \times 0.6$$
+                            $$= 0.224 + 0.144 + 0.084 = 0.452$$<br><br>
+                            $$P(X = 3) = 0.8 \times 0.7 \times 0.6 = 0.336$$
+                        </div>
+                        <strong>Bảng phân phối xác suất:</strong>
+                        <table>
+                            <tr><th>X</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+                            <tr><td><strong>P</strong></td><td>0.024</td><td>0.188</td><td>0.452</td><td>0.336</td></tr>
+                        </table>
+                        <div class="formula">
+                            <strong>Kỳ vọng:</strong><br>
+                            $$E(X) = 0 \times 0.024 + 1 \times 0.188 + 2 \times 0.452 + 3 \times 0.336$$
+                            $$= 0 + 0.188 + 0.904 + 1.008 = 2.1$$<br><br>
+                            <strong>Kỳ vọng X²:</strong><br>
+                            $$E(X^2) = 0^2 \times 0.024 + 1^2 \times 0.188 + 2^2 \times 0.452 + 3^2 \times 0.336$$
+                            $$= 0 + 0.188 + 1.808 + 3.024 = 5.02$$<br><br>
+                            <strong>Phương sai:</strong><br>
+                            $$Var(X) = E(X^2) - [E(X)]^2 = 5.02 - (2.1)^2 = 5.02 - 4.41 = 0.61$$<br><br>
+                            <strong>Độ lệch chuẩn:</strong><br>
+                            $$\sigma(X) = \sqrt{0.61} \approx 0.781$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $E(X) = 2.1$, $Var(X) = 0.61$, $\sigma(X) \approx 0.781$</div>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Câu b) Tính P(2 ≤ X ≤ 7)</h4>
+                    <div class="step">
+                        Do X chỉ nhận giá trị 0, 1, 2, 3 nên:
+                        <div class="formula">
+                            $$P(2 \leq X \leq 7) = P(X = 2) + P(X = 3) = 0.452 + 0.336 = 0.788$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $P = 0.788 = 78.8\%$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.4 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.4: Lấy quả cầu từ hộp (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Một hộp có 4 quả cầu trắng và 3 quả cầu đen. Lấy ngẫu nhiên lần lượt từng quả cầu cho đến khi lấy được quả cầu trắng. Tìm hàm phân phối xác suất cho số quả cầu được lấy ra?
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        Gọi X là số quả cầu được lấy ra. X có thể nhận giá trị: 1, 2, 3, 4
+                        <div class="formula">
+                            $$P(X = 1) = \frac{4}{7}$$ (Lấy ngay quả trắng)<br><br>
+                            $$P(X = 2) = \frac{3}{7} \times \frac{4}{6} = \frac{12}{42} = \frac{2}{7}$$ (Đen, rồi Trắng)<br><br>
+                            $$P(X = 3) = \frac{3}{7} \times \frac{2}{6} \times \frac{4}{5} = \frac{24}{210} = \frac{4}{35}$$ (Đen, Đen, Trắng)<br><br>
+                            $$P(X = 4) = \frac{3}{7} \times \frac{2}{6} \times \frac{1}{5} \times \frac{4}{4} = \frac{24}{840} = \frac{1}{35}$$ (Đen, Đen, Đen, Trắng)
+                        </div>
+                        <strong>Hàm phân phối xác suất:</strong>
+                        <div class="formula">
+                            $$F(x) = P(X \leq x) = \begin{cases}
+                            0 & \text{nếu } x < 1 \\
+                            \frac{4}{7} & \text{nếu } 1 \leq x < 2 \\
+                            \frac{4}{7} + \frac{2}{7} = \frac{6}{7} & \text{nếu } 2 \leq x < 3 \\
+                            \frac{6}{7} + \frac{4}{35} = \frac{34}{35} & \text{nếu } 3 \leq x < 4 \\
+                            1 & \text{nếu } x \geq 4
+                            \end{cases}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Đã tìm được hàm phân phối F(x) như trên</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.5 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.5: Bảo hiểm xe máy (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Tỷ lệ xe máy bị tai nạn trong năm là 0,0055. Công ty bảo hiểm bán với giá 60.000đ/xe, bồi thường 3 triệu/vụ. Chi phí quản lý 30% giá bán. Tính lợi nhuận kỳ vọng cho mỗi hợp đồng?
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        <strong>Phân tích:</strong>
+                        <ul>
+                            <li>Thu từ bán BH: 60.000đ</li>
+                            <li>Chi phí quản lý: 60.000 × 0.3 = 18.000đ</li>
+                            <li>Xác suất tai nạn: p = 0.0055</li>
+                            <li>Bồi thường nếu tai nạn: 3.000.000đ</li>
+                        </ul>
+                        Gọi X là lợi nhuận (đơn vị: nghìn đồng)
+                        <div class="formula">
+                            - Nếu không tai nạn (p = 0.9945): $X = 60 - 18 = 42$<br>
+                            - Nếu có tai nạn (p = 0.0055): $X = 60 - 18 - 3000 = -2958$<br><br>
+                            <strong>Kỳ vọng lợi nhuận:</strong><br>
+                            $$E(X) = 42 \times 0.9945 + (-2958) \times 0.0055$$
+                            $$= 41.769 - 16.269 = 25.5 \text{ nghìn đồng}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Lợi nhuận kỳ vọng = <strong>25.500đ/hợp đồng</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.6 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.6: Xe buýt - Tìm giá vé (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Khảo sát số khách trên xe buýt. Chi phí 200 ngàn/chuyến. Tìm giá vé để lời bình quân 100 ngàn/chuyến.<br><br>
+                    <table>
+                        <tr><th>Số khách</th><th>25</th><th>30</th><th>35</th><th>40</th><th>45</th></tr>
+                        <tr><td>Tần suất</td><td>0.15</td><td>0.2</td><td>0.3</td><td>0.25</td><td>0.1</td></tr>
+                    </table>
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        Gọi X là số khách trên một chuyến, a là giá vé (nghìn đồng)
+                        <div class="formula">
+                            <strong>Kỳ vọng số khách:</strong><br>
+                            $$E(X) = 25 \times 0.15 + 30 \times 0.2 + 35 \times 0.3 + 40 \times 0.25 + 45 \times 0.1$$
+                            $$= 3.75 + 6 + 10.5 + 10 + 4.5 = 34.75 \text{ khách}$$<br><br>
+                            <strong>Thu nhập trung bình:</strong> $34.75 \times a$ nghìn đồng<br><br>
+                            <strong>Lợi nhuận trung bình = Thu nhập - Chi phí:</strong><br>
+                            $$34.75a - 200 = 100$$
+                            $$34.75a = 300$$
+                            $$a = \frac{300}{34.75} \approx 8.633 \text{ nghìn đồng}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Giá vé cần là khoảng <strong>8.600đ - 8.700đ</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.7 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.7: Lấy sản phẩm từ 2 hộp (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Hộp I: 10 SP (7 tốt, 3 phế). Hộp II: 15 SP (11 tốt, 4 phế). Lấy 1 từ I, 2 từ II. Lập bảng phân phối xác suất số SP tốt.
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        Gọi X là số SP tốt. X nhận giá trị: 0, 1, 2, 3
+                        <div class="formula">
+                            <strong>Tính P(X = k):</strong><br><br>
+                            $$P(X = 0) = \frac{3}{10} \times \frac{C_4^2}{C_{15}^2} = \frac{3}{10} \times \frac{6}{105} = \frac{18}{1050} = \frac{3}{175}$$<br><br>
+                            $$P(X = 1) = \frac{3}{10} \times \frac{C_{11}^1 \times C_4^1}{C_{15}^2} + \frac{7}{10} \times \frac{C_4^2}{C_{15}^2}$$
+                            $$= \frac{3}{10} \times \frac{44}{105} + \frac{7}{10} \times \frac{6}{105} = \frac{132 + 42}{1050} = \frac{174}{1050} = \frac{29}{175}$$<br><br>
+                            $$P(X = 2) = \frac{3}{10} \times \frac{C_{11}^2}{C_{15}^2} + \frac{7}{10} \times \frac{C_{11}^1 \times C_4^1}{C_{15}^2}$$
+                            $$= \frac{3}{10} \times \frac{55}{105} + \frac{7}{10} \times \frac{44}{105} = \frac{165 + 308}{1050} = \frac{473}{1050}$$<br><br>
+                            $$P(X = 3) = \frac{7}{10} \times \frac{C_{11}^2}{C_{15}^2} = \frac{7}{10} \times \frac{55}{105} = \frac{385}{1050} = \frac{11}{30}$$
+                        </div>
+                        <strong>Bảng phân phối:</strong>
+                        <table>
+                            <tr><th>X</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+                            <tr><td><strong>P</strong></td><td>3/175</td><td>29/175</td><td>473/1050</td><td>11/30</td></tr>
+                        </table>
+                        <div class="formula">
+                            <strong>Kỳ vọng:</strong><br>
+                            $$E(X) = \frac{7}{10} \times 1 + \frac{11}{15} \times 2 = 0.7 + 1.467 = 2.167$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Kỳ vọng số SP tốt ≈ <strong>2.17</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.8 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.8: Bán máy lạnh có bảo hành (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    Bán máy lạnh lời 800k, bảo hành lỗ 1tr. Xác suất bảo hành 10%. Tính mức lời trung bình?
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        Gọi X là lợi nhuận (nghìn đồng)
+                        <div class="formula">
+                            - Không bảo hành (p = 0.9): X = 800<br>
+                            - Phải bảo hành (p = 0.1): X = -1000<br><br>
+                            $$E(X) = 800 \times 0.9 + (-1000) \times 0.1 = 720 - 100 = 620 \text{ nghìn đồng}$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: Mức lời trung bình = <strong>620.000đ/máy</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BÀI 2.9 -->
+        <div class="exercise">
+            <div class="exercise-header" onclick="toggle(this)">
+                📝 BÀI 2.9: Lấy 3 SP từ hộp ngẫu nhiên (1 câu)
+                <span>▼</span>
+            </div>
+            <div class="exercise-body">
+                <div class="problem">
+                    <strong>📋 Đề bài:</strong><br>
+                    10 hộp (4 loại I, 6 loại II). Loại I: 15 tốt/5 phế. Loại II: 13 tốt/7 phế. Chọn 1 hộp, lấy 3 SP. Tính kỳ vọng số SP tốt?
+                </div>
+                
+                <div class="solution">
+                    <h4>💡 Giải</h4>
+                    <div class="step">
+                        Gọi X là số SP tốt.
+                        <div class="formula">
+                            $$P(H_1) = \frac{4}{10} = 0.4, \quad P(H_2) = \frac{6}{10} = 0.6$$<br><br>
+                            <strong>Tính P(X = 0):</strong><br>
+                            $$P(X = 0) = 0.4 \times \frac{C_5^3}{C_{20}^3} + 0.6 \times \frac{C_7^3}{C_{20}^3}$$
+                            $$= 0.4 \times \frac{10}{1140} + 0.6 \times \frac{35}{1140} = \frac{4 + 21}{1140} = \frac{25}{1140}$$<br><br>
+                            <strong>Tính P(X = 1):</strong><br>
+                            $$P(X = 1) = 0.4 \times \frac{C_{15}^1 \times C_5^2}{C_{20}^3} + 0.6 \times \frac{C_{13}^1 \times C_7^2}{C_{20}^3}$$
+                            $$= 0.4 \times \frac{150}{1140} + 0.6 \times \frac{273}{1140} = \frac{60 + 163.8}{1140} = \frac{223.8}{1140}$$<br><br>
+                            (Tương tự cho X = 2, 3)<br><br>
+                            <strong>Kỳ vọng:</strong><br>
+                            $$E(X) = 0.4 \times \frac{15}{20} \times 3 + 0.6 \times \frac{13}{20} \times 3 = 0.9 + 1.17 = 2.07$$
+                        </div>
+                    </div>
+                    <div class="answer">✅ Đáp số: $E(X) \approx <strong>2.07</strong>$ SP tốt</div>
+                </div>
+            </div>
         </div>
 
     </div>
     
     <div class="nav-footer">
-        <h3 style="color: #2c3e50; margin-bottom: 20px;">📚 Điều Hướng</h3>
+        <h3 style="color: #0c4a6e; margin-bottom: 20px;">📚 Điều Hướng</h3>
         <a href="chuong_1_phan_3.html">⬅️ Chương 1 - Phần 3</a>
         <a href="chuong_2_phan_2.html">➡️ Phần 2 (Bài 10-19)</a>
         <a href="chuong_2_phan_3.html">⏩ Phần 3 (Bài 20-26)</a>
@@ -176,4 +470,3 @@
     </script>
 </body>
 </html>
-
